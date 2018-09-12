@@ -1,0 +1,30 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Part 2
+{% endblock %}
+
+{% block content %}
+
+<p>
+    We are now ready to proceed with part 2.
+    In this part, some of you may have to do again the same task that you did in part 1.
+
+    <br><br>
+
+    Some of you will not do the task. Instead, you will choose someone else to do the task for you.
+    How this is done will now be explained.
+
+    <br><br>
+
+    You will be divided into two groups: called A-participants and B-participants.
+    <span style="color: #ff0000">A-participants will do the task again.</span>
+    <span style="color: #0000ff">B-participants will choose an A-participant to do the task for them</span>.
+</p>
+
+
+    {% next_button %}
+
+{% endblock %}
+

@@ -1,0 +1,28 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Part 2 - Your decision
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Before you are told whether you are an A-participant or a B-participant, you will be asked to choose <span style="color: #ff0000">as if</span>
+    you were a B-participant.
+    After everyone has made their choice, you will be told which type of participant you actually are.
+    <span style="color: #ff0000">If you do turn out to be a B-participant then your choice will be implemented.</span>
+
+    <br><br>
+
+    Please raise your hand if you have a question; one of the experimenters will come to your table to answer your question in private.
+    When everyone has finished with the instructions, we will proceed with part 2.
+</p>
+
+
+    {% next_button %}
+
+{% endblock %}
+
+
+

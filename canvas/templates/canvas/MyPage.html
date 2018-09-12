@@ -1,0 +1,185 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    <h1> Round {{ subsession.round_number }} of {{ Constants.num_rounds }} - <small>First message</small></h1>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4" style="background-color:#000000;">
+            <center>
+            <div class="container">
+                <br><br>
+                <font color=#FFFFFF><h6>You have coordinated in <font color="#009AFF"><strong>X</strong></font> of the
+                    {{ Constants.num_rounds }}  rounds:</h6></font>
+                <canvas id="ResultsCanvas" width="297" height="120"></canvas>
+                <font color=#FFFFFF><h6>You have earned X of the Y points accumulated in your group:</h6></font>
+            </div>
+            </center>
+        </div>
+
+        <div class="col-md-4" style="background-color:#FFFFFF;">
+            <center>
+            <div class="container">
+                <canvas id="NetworkCanvas" width="297" height="350"></canvas>
+            </div>
+            </center>
+        </div>
+
+        <div class="col-md-4" style="background-color:#000000;">
+            <center>
+            <div class="container">
+                <br><br>
+                <font color=#FFFFFF><h5>You are <font color="#009AFF"><strong>{{player.role}}</strong></font></h5></font>
+                <br>
+                <font color=#FFFFFF><h6>Click on the message you want to send</h6></font>
+                <br>
+                <input type="hidden" value="0" name="first" id="first"/>
+                <button name="first" value="0" class="btn btn-warning">O</button>
+                <button name="first" value="1" class="btn btn-success">G</button>
+                <button name="first" value="2" class="btn btn-info">B</button>
+                <button name="first" value="3" class="btn btn-danger">R</button>
+            </div>
+            </center>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+{% block scripts %}
+    <script>
+        var canvas = document.getElementById("NetworkCanvas");
+        var ctx = canvas.getContext("2d");
+
+        //Network links
+        ctx.beginPath();
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth   = 2;
+        ctx.moveTo(70, 100); //A-B
+        ctx.lineTo(220, 100);
+        ctx.moveTo(70, 250); //C-D
+        ctx.lineTo(220, 250);
+        ctx.moveTo(220, 100); //B-C
+        ctx.lineTo(220, 250);
+        ctx.moveTo(70, 100); //A-D
+        ctx.lineTo(70, 250);
+        ctx.moveTo(70, 100); //A-C
+        ctx.lineTo(220, 250);
+        ctx.moveTo(220, 100); //B-D
+        ctx.lineTo(70, 250);
+        ctx.stroke();
+    </script>
+
+    <script>
+        // Nodes
+        ctx.beginPath(); //A
+        ctx.fillStyle = '#FFFFFF';
+        ctx.arc(70, 100, 30, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth   = 4;
+        ctx.arc(70, 100, 30, 0, 2 * Math.PI);
+        ctx.stroke();
+    </script>
+
+    <script>
+        ctx.beginPath(); //B
+        ctx.fillStyle = '#FFFFFF';
+        ctx.arc(215, 100, 30, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth   = 4;
+        ctx.arc(215, 100, 30, 0, 2 * Math.PI);
+        ctx.stroke();
+    </script>
+
+    <script>
+        ctx.beginPath(); //C
+        ctx.fillStyle = '#FFFFFF';
+        ctx.arc(215, 245, 30, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth   = 4;
+        ctx.arc(215, 245, 30, 0, 2 * Math.PI);
+        ctx.stroke();
+    </script>
+
+    <script>
+        ctx.beginPath(); //D
+        ctx.fillStyle = '#FFFFFF';
+        ctx.arc(70, 245, 30, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth   = 4;
+        ctx.arc(70, 245, 30, 0, 2 * Math.PI);
+        ctx.stroke();
+    </script>
+
+    <script>
+        // Labels
+        ctx.font = '20px serif';
+        ctx.fillStyle = '#000000';
+        ctx.fillText('P1', 60, 105);
+        ctx.fillText('P2', 205, 105);
+        ctx.fillText('P3', 60, 253);
+        ctx.fillText('P4', 205, 253);
+    </script>
+
+    <script>
+        var canvas = document.getElementById("ResultsCanvas");
+        var ctx = canvas.getContext("2d");
+    </script>
+
+    <script>
+        // History of choices
+        ctx.fillStyle = "#FF0000"; //T1
+        ctx.fillRect(10,40,20,20);
+        ctx.fillStyle = "#FFFFFF"; //T2
+        ctx.fillRect(35,40,20,20);
+        ctx.fillStyle = "#FFFFFF"; //T3
+        ctx.fillRect(60,40,20,20);
+        ctx.fillStyle = "#FFFFFF"; //T4
+        ctx.fillRect(85,40,20,20);
+        ctx.fillStyle = "#FFFFFF"; //T5
+        ctx.fillRect(110,40,20,20);
+        ctx.fillStyle = "#FFFFFF"; //T6
+        ctx.fillRect(135,40,20,20);
+        ctx.fillStyle = "#FFFFFF"; //T7
+        ctx.fillRect(160,40,20,20);
+        ctx.fillStyle = "#FFFFFF"; //T8
+        ctx.fillRect(185,40,20,20);
+        ctx.fillStyle = "#FFFFFF"; //T9
+        ctx.fillRect(210,40,20,20);
+        ctx.fillStyle = "#FFFFFF"; //T10
+        ctx.fillRect(235,40,20,20);
+        ctx.fillStyle = "#FF0000"; //T11
+        ctx.fillRect(10,65,20,20);
+        ctx.fillStyle = "#FFFFFF"; //T12
+        ctx.fillRect(35,65,20,20);
+        ctx.fillStyle = "#FFFFFF"; //T13
+        ctx.fillRect(60,65,20,20);
+        ctx.fillStyle = "#FFFFFF"; //T14
+        ctx.fillRect(85,65,20,20);
+        ctx.fillStyle = "#FFFFFF"; //T15
+        ctx.fillRect(110,65,20,20);
+        ctx.fillStyle = "#FFFFFF"; //T16
+        ctx.fillRect(135,65,20,20);
+        ctx.fillStyle = "#FFFFFF"; //T17
+        ctx.fillRect(160,65,20,20);
+        ctx.fillStyle = "#FFFFFF"; //T18
+        ctx.fillRect(185,65,20,20);
+        ctx.fillStyle = "#FFFFFF"; //T19
+        ctx.fillRect(210,65,20,20);
+        ctx.fillStyle = "#FFFFFF"; //T20
+        ctx.fillRect(235,65,20,20);
+    </script>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% block title %}
+    Survey
+{% endblock %}
+{% block content %}
+    Please choose a name.
+    {% for field in form %}
+        {% formfield field %}
+    {% endfor %}
+    {% next_button %}
+{% endblock %}

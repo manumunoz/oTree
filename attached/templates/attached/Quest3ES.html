@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Questionnaire
+{% endblock %}
+
+{% block content %}
+
+     {% formfield player.q25 label="25. Se lo cuento todo a mi pareja." %}
+     {% formfield player.q26 label="26. Creo que mi pareja no quiere tener tanta intimidad afectiva conmigo como a mí me gustaría." %}
+     {% formfield player.q27 label="27. Normalmente discuto mis problemas y preocupaciones con mi pareja." %}
+     {% formfield player.q28 label="28. Cuando no tengo una relación, me siento un poco ansioso/a e inseguro/a." %}
+     {% formfield player.q29 label="29. Me siento bien dependiendo de mi pareja." %}
+     {% formfield player.q30 label="30. Me siento frustrado/a cuando mi pareja no me hace tanto caso como a mí me gustaría." %}
+     {% formfield player.q31 label="31. No me importa pedirle a mi pareja consuelo, consejo, o ayuda." %}
+     {% formfield player.q32 label="32. Me siento frustrado/a si mi pareja no está disponible cuando la necesito." %}
+     {% formfield player.q33 label="33. Ayuda mucho recurrir a la pareja en épocas de crisis." %}
+     {% formfield player.q34 label="34. Cuando mi pareja me critica, me siento muy mal." %}
+     {% formfield player.q35 label="35. Recurro a mi pareja para muchas cosas, entre otras, consuelo y tranquilidad." %}
+     {% formfield player.q36 label="36. Me tomo a mal que mi pareja pase tiempo lejos de mí." %}
+
+    {% next_button %}
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+Please click on the button to start the task.
+{% endblock %}
+
+{% block content %}
+<p>
+    You will have <font color="blue">5 minutes</font> to complete it.
+
+    <br><br>
+
+    {% next_button %}
+</p>
+
+{% endblock %}

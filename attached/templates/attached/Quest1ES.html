@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Questionnaire
+{% endblock %}
+
+{% block content %}
+
+     {% formfield player.q1 label="1. Prefiero no mostrar a mi pareja cómo me siento por dentro." %}
+     {% formfield player.q2 label="2. Me preocupa que me abandonen." %}
+     {% formfield player.q3 label="3. Me siento muy cómodo/a teniendo un alto grado de intimidad con mi pareja." %}
+     {% formfield player.q4 label="4. Me preocupo mucho por mis relaciones." %}
+     {% formfield player.q5 label="5. Cuando mi pareja comienza a establecer mayor intimidad conmigo, me doy cuenta que me suelo cerrar." %}
+     {% formfield player.q6 label="6. Me preocupa que mi pareja no se interese por mí tanto como me intereso yo por ella." %}
+     {% formfield player.q7 label="7. Me siento violento/a cuando mi pareja quiere demasiada intimidad afectiva." %}
+     {% formfield player.q8 label="8. Me preocupa bastante el hecho de perder a mi pareja." %}
+     {% formfield player.q9 label="9. No me siento cómodo/a abriéndome a mi pareja." %}
+     {% formfield player.q10 label="10. A menudo deseo que los sentimientos de mi pareja hacia mí fueran tan fuertes como mis sentimientos hacia él/ella." %}
+     {% formfield player.q11 label="11. Quiero acercarme afectivamente a mi pareja, pero a la vez marco las distancias con él/ella." %}
+     {% formfield player.q12 label="12. A menudo quiero fusionarme completamente con mi pareja, pero me doy cuenta que esto a veces le asusta." %}
+
+    {% next_button %}
+
+{% endblock %}

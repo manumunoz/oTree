@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Questionnaire
+{% endblock %}
+
+{% block content %}
+
+     {% formfield player.q25 label="25. I tell my partner just about everything." %}
+     {% formfield player.q26 label="26. I find that my partner(s) don’t want to get as close as I would like." %}
+     {% formfield player.q27 label="27. I usually discuss my problems and concerns with my partner." %}
+     {% formfield player.q28 label="28. When I’m not involved in a relationship, I feel somewhat anxious and insecure." %}
+     {% formfield player.q29 label="29. I feel comfortable depending on romantic partners." %}
+     {% formfield player.q30 label="30. I get frustrated when my partner is not around as much as I would like." %}
+     {% formfield player.q31 label="31. I don’t mind asking romantic partners for comfort, advice, or help." %}
+     {% formfield player.q32 label="32. I get frustrated if romantic partners are not available when I need them." %}
+     {% formfield player.q33 label="33. It helps to turn to my romantic partner in times of need." %}
+     {% formfield player.q34 label="34. When romantic partners disapprove of me, I feel really bad about myself." %}
+     {% formfield player.q35 label="35. I turn to my partner for many things, including comfort and reassurance." %}
+     {% formfield player.q36 label="36. I resent it when my partner spends time away from me." %}
+
+    {% next_button %}
+
+{% endblock %}

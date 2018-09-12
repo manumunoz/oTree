@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+The task is over
+{% endblock %}
+
+{% block content %}
+
+<p>
+
+    Your scored <font color="blue">{{ participant.payoff }}</font> in the task.
+
+    <br><br>
+
+    Please return to Qualtrix. You will be asked to provide a number to process your payment. Your number is:
+
+    <br><br>
+
+     <center><font size="25" color="blue">{{ participant.code }}{{ session.code }}</font></center>
+</p>
+
+
+{% endblock %}
+
+
+

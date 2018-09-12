@@ -1,0 +1,49 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Part 2
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'global/matrix.css' %}" />
+
+    <style>
+        .highlight-row-on-hover:hover td {
+            background-color: #fcf8e3;
+        }
+
+    </style>
+
+{% endblock %}
+
+{% block content %}
+        <p>
+            In the second part of the experiment you might be a <span style="color: #0000ff">B-participant.</span>
+            If this is the case, an A-participant will perform the task for you.
+            <br><br>
+            <span style="color: #ff0000">Please select the A-participant that you would want to perform the task for you.</span>
+            <br><br>
+            If you are indeed the B-participant then this choice will be implemented.
+        </p>
+
+    <div class="form-group required">
+        <table class="table table-bordered text-center" style="width: auto; margin: auto">
+            <tr>
+                <th>A-Participant's Chosen Name</th>
+                <th>Number of Points in Part 1</th>
+                <th>Your Decision</th>
+            </tr>
+            <tr class="highlight-row-on-hover">
+                <td>Scarlett</td>
+                <td>0 points</td>
+                <td><button name="hiring_decision" value="Female" class="btn btn-primary btn-large">This A-Participant</button></td>
+            </tr>
+            <tr class="highlight-row-on-hover">
+                <td>Oliver</td>
+                <td>0 points</td>
+                <td><button name="hiring_decision" value="Male" class="btn btn-primary btn-large">This A-Participant</button></td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

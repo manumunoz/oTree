@@ -1,0 +1,13 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Page title
+{% endblock %}
+
+{% block content %}
+    {% formfield player.language label="Por favor elige tu idioma / Please select your language" %}
+    {% next_button %}
+{% endblock %}
+
+

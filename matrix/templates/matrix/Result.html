@@ -1,0 +1,46 @@
+
+
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round {{ subsession.round_number }} of {{ Constants.num_rounds }}
+{% endblock %}
+{% block content %}
+<div class="container">
+<div class="OuterMostClass row">
+
+    <div id="rightTable" class="outerClass col-xs-6">
+
+    </div>
+    <div id="leftTable" class="outerClass2 col-xs-6">
+
+    </div>
+</div>
+
+
+
+</div>
+<br>
+<script>
+    var max_right = {{max_right|json }};
+    var max_left = {{max_left|json }};
+    var sumOfMax = {{ sumOfMax|json }}
+    if(max_left+max_right == sumOfMax)
+        alert("Ura");
+
+    document.getElementById("rightTable").innerHTML = getTable(rightTbl);
+    document.getElementById("leftTable").innerHTML = getTable(leftTbl);
+
+</script>
+
+    {% for field in form %}
+        {% formfield field %}
+    {% endfor %}
+    {{ max_right }}
+  {{ max_left }}
+    {{ sumOfMax }}
+    {% next_button %}
+
+{% endblock %}
+

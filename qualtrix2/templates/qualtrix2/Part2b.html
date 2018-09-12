@@ -1,0 +1,39 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Part 2 - Your decision
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Each B-participant will be given information about two A-participants.
+    This information consists of:
+
+    <ul>
+      <li>Each A-participant's chosen name.</li>
+      <li>Number of points scored by each participant in part 1.</li>
+
+    </ul>
+
+    Then, the B-participant will choose one of the two A-participants.
+    Every chosen A-participant will do the task again. The counting of points is the same as in part 1.
+    Now, these points are given to the A-participant and the <span style="color: #0000ff">same number of points is given
+    to the B-participant who selected her or him.</span>
+    Note that <span style="color: #ff0000">A-participants who are not chosen will not do a task and will not earn
+    additional points</span> in part 2.
+
+    <br><br>
+
+    <span style="color: #ff0000">B-participants will not do the task.</span>
+
+    <br><br>
+
+    Everyone must wait quietly until the chosen A-participants have finished their task.
+</p>
+
+
+    {% next_button %}
+
+{% endblock %}

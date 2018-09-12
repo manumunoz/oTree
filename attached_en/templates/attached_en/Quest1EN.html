@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Questionnaire
+{% endblock %}
+
+{% block content %}
+
+     {% formfield player.q1 label="1. I prefer not to show a partner how I feel deep down." %}
+     {% formfield player.q2 label="2. I worry about being abandoned." %}
+     {% formfield player.q3 label="3. I am very comfortable being close to romantic partners." %}
+     {% formfield player.q4 label="4. I worry a lot about my relationships." %}
+     {% formfield player.q5 label="5. Just when my partner starts to get close to me I find myself pulling away." %}
+     {% formfield player.q6 label="6. I worry that romantic partners won’t care about me as much as I care about them." %}
+     {% formfield player.q7 label="7. I get uncomfortable when a romantic partner wants to be very close." %}
+     {% formfield player.q8 label="8. I worry a fair amount about losing my partner." %}
+     {% formfield player.q9 label="9. I don’t feel comfortable opening up to romantic partners." %}
+     {% formfield player.q10 label="10. I often wish that my partner’s feelings for me were as strong as my feelings for him/her." %}
+     {% formfield player.q11 label="11. I want to get close to my partner, but I keep pulling back." %}
+     {% formfield player.q12 label="12. I often want to merge completely with romantic partners, and this sometimes scares them away." %}
+
+    {% next_button %}
+
+{% endblock %}

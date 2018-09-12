@@ -1,0 +1,61 @@
+
+
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round {{ subsession.round_number }} of {{ Constants.num_rounds }}
+{% endblock %}
+{% block content %}
+<div class="container">
+<div class="OuterMostClass row">
+
+    <div id="rightTable" class="outerClass col-xs-6">
+
+    </div>
+    <div id="leftTable" class="outerClass2 col-xs-6">
+
+    </div>
+</div>
+
+
+
+</div>
+<br>
+<script>
+    var rightTbl = {{matrix_right|json }};
+    var leftTbl = {{matrix_left|json }};
+    function getTable(mtrx)
+    {
+        var tbl = "";
+        if(Array.isArray( mtrx ))
+        {
+            var tbl = "<table class='table-bordered'>";
+            for (r = 0; r < mtrx.length; r++) {
+                tbl += "<tr>";
+                for (c = 0; c < mtrx[r].length; c++) {
+                    tbl += "<td style='width:30px'>" + mtrx[r][c] + "</td>";
+                }
+                tbl += "</tr>";
+            }
+            tbl += "</table>";
+        }
+
+        return tbl;
+    }
+
+
+    document.getElementById("rightTable").innerHTML = getTable(rightTbl);
+    document.getElementById("leftTable").innerHTML = getTable(leftTbl);
+
+</script>
+
+    {% for field in form %}
+        {% formfield field %}
+    {% endfor %}
+    {{ max_right }}
+  {{ max_left }}
+    {% next_button %}
+
+{% endblock %}
+

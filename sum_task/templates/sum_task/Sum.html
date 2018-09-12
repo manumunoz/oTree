@@ -1,0 +1,49 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    <font color="blue">Addition task ({{ subsession.round_number }}/{{ Constants.num_rounds }})</font>
+    <br>
+<font size="3">Please sum the highest numbers in both matrices (Correct answers:<font color="blue">{{ player.num_correct }})</font></font>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1 text-center">
+            <table border="1">
+                {% for row in player.m_left %}
+                <tr>
+                    {% for n in row %}
+                        <td style="padding: 5px">{{ n|floatformat:"0" }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-md-5 text-center">
+            <table border="1">
+                {% for row in player.m_right %}
+                <tr>
+                    {% for n in row %}
+                        <td style="padding: 5px">{{ n|floatformat:"0" }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <p>
+        {% formfield player.answer label="Your answer" %} <!-- (Sol: {{ player.solution }})-->
+    </p>
+
+    <button class="otree-btn-next btn btn-primary next-button otree-next-button">Submit</button>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+
+</script>
+{% endblock %}
