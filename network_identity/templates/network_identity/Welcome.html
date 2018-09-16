@@ -2,17 +2,45 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    <h2 id="bold">Welcome to this study.</h2>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
+        <h2> Welcome to this study </h2>
+      </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block content %}
-<p>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
+          <br>
+          <h6 style="color: #B3E5FC">Please, click on the button to begin your participation.</h6>
+                <button type="otree-btn-next" class="btn button1 btn-md"> Begin </button>
+      </div>
+    </div>
+</div>
 
-    Please, click on the button to begin your participation in this study.
+{% endblock %}
 
-</p>
-
-    <button type="otree-btn-next" class="btn btn-primary btn-md"> Begin </button>
-
+{% block styles %}
+    <style type="text/css">
+        .button1 {
+            background-color: #B3E5FC;
+            color: #000000;
+            border: 2px solid #3E2723
+        }
+        .button1:hover {
+            background-color: #455A64;
+            color: #B3E5FC;
+            border: 2px solid #B3E5FC
+        }
+        .button1:active {
+          background-color: #1E88E5;
+          box-shadow: 0 5px #666;
+          transform: translateY(4px);
+        }
+    </style>
 
 {% endblock %}

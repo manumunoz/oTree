@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
-        <h2> Action </h2>
+        <h2> Results </h2>
       </div>
     </div>
 </div>
@@ -33,12 +33,27 @@
     </div>
     <div class="row">
       <div class="col-sm-3 border border-dark text-white rounded p-3 mb-1" style='background-color: #607D8B;'>
-        <h6>Please, choose an action:</h6>
-          <br>
         <div>
-            <button name="action" value="True" class="btn button1 btn-large"> Arriba </button>
+            You are connected to:
+                <h5>$$$ players</h5>
+            and pay a cost of
+                <h5>CCC</h5>
+            <br>
+            {% if player.action == 1 %}
+                You chose action
+                <h4 style="color: #E1BEE7">Up</h4>
+            {% else %}
+                You chose action
+                <h4 style="color: #C8E6C9">Down</h4>
+            {% endif %}
+            and coordinated with
+                <h5>YYY</h5> of your connections.
             <br><br>
-            <button name="action" value="False" class="btn button2 btn-large"> Abajo </button>
+            In this round you earn:
+            <br>
+            <h2 style='color: #B3E5FC'>$$$ points</h2>
+            <br><br>
+                <button type="otree-btn-next" class="btn button1 btn-md"> Continue </button>
         </div>
       </div>
       <div class="col-sm-9 border border-dark rounded p-3 mb-1" style='background-color: #F8F8FF;'>
@@ -97,40 +112,42 @@
 
         cy.style()
             .selector('edge')
-            .style('line-color', '#8D6E63')
+            .style('line-color', '#607D8B')
             .style("target-arrow-shape", "vee")
-            .style("target-arrow-color", "#8D6E63")
+            .style("target-arrow-color", "#607D8B")
             .style("curve-style", 'bezier')
             .style('width', '2')
 
-
             .selector('edge[isMine="yes"]')
-            .style('line-color', '#3E2723')
-            .style("target-arrow-color", "#3E2723")
+            .style('line-color', '#455A64')
+            .style("target-arrow-color", "#455A64")
             .style('width', '4')
 
+            .selector('edge[isMine="no"]')
+            .style('display', 'none')
 
-         //   .selector('edge[linkStyle="source"]')
-         //   .style('line-color', 'green')
 
-            // .selector('node[attribute=0]')
-            // .style('shape', 'circle')
+            .selector('node[action_test=1]')
+            .style('border-color', '#8E24AA')
+            .style('background-color', '#E1BEE7')
+
+            .selector('node[action_test=0]')
+            .style('border-color', '#43A047')
+            .style('background-color', '#C8E6C9')
+
 
             .selector('node[attribute=1]')
             .style('shape', 'triangle')
 
             .selector('node[isMine="yes"]')
-            .style('background-color', '#FAFAFA')
             .style('border-width', '5')
-            .style('border-color', '#3E2723')
-
 
             .selector('node[isMine="no"]')
-            .style('background-color', '#FAFAFA')
             .style('border-width', '2')
-            .style('border-color', '#8D6E63')
-
-
+             //   .selector('edge[linkStyle="source"]')
+             //   .style('line-color', 'green')
+            // .selector('node[attribute=0]')
+            // .style('shape', 'circle')
             .update() // update the elements in the graph with the new style
         ;
 
@@ -146,36 +163,21 @@
             height: 500px;
             display: block;
         }
-    .button1 {
-        background-color: #D500F9;
-        color: #ffffff;
-        border: 2px solid #B3E5FC
-    }
-    .button1:hover {
-        background-color: #EA80FC;
-        color: #ffffff;
-    }
-    .button1:active {
-      background-color: #3e8e41;
-      box-shadow: 0 5px #666;
-      transform: translateY(4px);
-    }
-    .button2 {
-        background-color: #4CAF50;
-        color: #000000;
-        border: 2px solid #B3E5FC
-    }
-    .button2:hover {
-        background-color: #CCFF90;
-        color: #000000;
-    }
-    .button2:active {
-      background-color: #3e8e41;
-      box-shadow: 0 5px #666;
-      transform: translateY(4px);
-    }
-
-
+        .button1 {
+            background-color: #B3E5FC;
+            color: #000000;
+            border: 2px solid #3E2723
+        }
+        .button1:hover {
+            background-color: #455A64;
+            color: #B3E5FC;
+            border: 2px solid #B3E5FC
+        }
+        .button1:active {
+          background-color: #1E88E5;
+          box-shadow: 0 5px #666;
+          transform: translateY(4px);
+        }
     </style>
 
 {% endblock %}

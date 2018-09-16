@@ -24,6 +24,7 @@ class Constants(BaseConstants):
     attributes = {'1': 0, '2': 1, '3': 1}
     visible = 1
     invisible = 0
+    tests = {'1': 0, '2': 1, '3': 1}
 
 
 class Subsession(BaseSubsession):
@@ -41,7 +42,7 @@ class Group(BaseGroup):
     network_data = models.LongStringField()
 
     def displaying_network(self):
-        nodes = [{'data': {'id': i, 'name': i, 'attribute': Constants.attributes[i]}, 'group': 'nodes'} for i in Constants.names]
+        nodes = [{'data': {'id': i, 'name': i, 'action_test': Constants.tests[i], 'attribute': Constants.attributes[i]},  'group': 'nodes'} for i in Constants.names]
         edges = []
         elements = nodes + edges
         style = [{'selector': 'node', 'style': {'content': 'data(name)'}}]
@@ -50,7 +51,7 @@ class Group(BaseGroup):
                                         })
 
     def forming_network(self):
-        nodes = [{'data': {'id': i, 'name': i, 'attribute': Constants.attributes[i]}, 'group': 'nodes'} for i in Constants.names]
+        nodes = [{'data': {'id': i, 'name': i, 'action_test': Constants.tests[i], 'attribute': Constants.attributes[i]}, 'group': 'nodes'} for i in Constants.names]
         edges = []
         for p in self.get_players():
             friends = json.loads(p.friends)
