@@ -1,0 +1,203 @@
+{% extends "p1_no3/Style.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    <h2>Hidden Number</h2>
+{% endblock %}
+
+{% block content %}
+<div>
+    <p>
+
+    You are <b id="large">P1</b>.
+
+    <br><br>
+
+    Select one of the buttons below by clicking on it, which determines the <b id="hidden">hidden number</b>.
+
+    <br><br>
+
+    <input type="hidden" value="0" name="rnum" id="rnum"/>
+    <input type="hidden" value="0" name="pnum" id="pnum"/>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(1); $('#pnum').val(1)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(7); $('#pnum').val(2)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(27); $('#pnum').val(3)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(5); $('#pnum').val(4)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(5)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(15); $('#pnum').val(6)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(11); $('#pnum').val(7)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(7); $('#pnum').val(8)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(16); $('#pnum').val(9)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(10)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(11)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(12)"></button>
+
+    <br>
+
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(13)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(14)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(6); $('#pnum').val(15)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(16)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(7); $('#pnum').val(17)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(18)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(19)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(11); $('#pnum').val(20)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(21)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(22)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(23)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(6); $('#pnum').val(24)"></button>
+
+    <br>
+
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(11); $('#pnum').val(25)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(26)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(27)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(28)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(29)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(30)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(31)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(3); $('#pnum').val(32)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(7); $('#pnum').val(33)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(11); $('#pnum').val(34)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(35)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(36)"></button>
+
+    <br>
+
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(7); $('#pnum').val(37)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(38)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(22); $('#pnum').val(39)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(21); $('#pnum').val(40)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(11); $('#pnum').val(41)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(26); $('#pnum').val(42)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(43)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(11); $('#pnum').val(44)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(45)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(46)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(20); $('#pnum').val(47)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(7); $('#pnum').val(48)"></button>
+
+    <br>
+
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(49)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(50)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(51)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(30); $('#pnum').val(52)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(53)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(12); $('#pnum').val(54)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(7); $('#pnum').val(55)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(25); $('#pnum').val(56)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(57)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(11); $('#pnum').val(58)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(59)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(60)"></button>
+
+    <br>
+
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(61)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(11); $('#pnum').val(62)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(63)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(11); $('#pnum').val(64)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(65)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(14); $('#pnum').val(66)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(67)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(68)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(11); $('#pnum').val(69)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(13); $('#pnum').val(70)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(7); $('#pnum').val(71)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(72)"></button>
+
+    <br>
+
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(73)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(74)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(6); $('#pnum').val(75)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(2); $('#pnum').val(76)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(12); $('#pnum').val(77)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(6); $('#pnum').val(78)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(79)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(7); $('#pnum').val(80)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(81)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(6); $('#pnum').val(82)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(83)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(84)"></button>
+
+    <br>
+
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(85)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(7); $('#pnum').val(86)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(87)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(11); $('#pnum').val(88)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(24); $('#pnum').val(89)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(7); $('#pnum').val(90)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(91)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(11); $('#pnum').val(92)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(93)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(7); $('#pnum').val(94)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(95)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(11); $('#pnum').val(96)"></button>
+
+    <br>
+
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(97)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(98)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(7); $('#pnum').val(99)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(100)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(101)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(102)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(12); $('#pnum').val(103)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(104)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(12); $('#pnum').val(105)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(106)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(29); $('#pnum').val(107)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(6); $('#pnum').val(108)"></button>
+
+    <br>
+
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(23); $('#pnum').val(109)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(6); $('#pnum').val(110)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(111)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(5); $('#pnum').val(112)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(7); $('#pnum').val(113)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(114)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(115)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(11); $('#pnum').val(116)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(117)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(118)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(5); $('#pnum').val(119)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(120)"></button>
+
+    <br>
+
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(11); $('#pnum').val(121)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(5); $('#pnum').val(122)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(18); $('#pnum').val(123)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(124)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(125)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(126)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(127)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(128)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(17); $('#pnum').val(129)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(130)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(131)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(7); $('#pnum').val(132)"></button>
+
+    <br>
+
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(7); $('#pnum').val(133)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(134)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(135)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(28); $('#pnum').val(136)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(9); $('#pnum').val(137)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(6); $('#pnum').val(138)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(11); $('#pnum').val(139)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(4); $('#pnum').val(140)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(141)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(10); $('#pnum').val(142)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(19); $('#pnum').val(143)"></button>
+    <button type="otree-btn-next" class="btn btn-warning btn-lg" onclick="$('#rnum').val(8); $('#pnum').val(144)"></button>
+
+    </p>
+
+</div>
+{% endblock %}

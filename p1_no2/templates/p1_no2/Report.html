@@ -1,0 +1,105 @@
+{% extends "p1_no2/Style.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    <h2 id="bold">Task 1: Report.</h2>
+{% endblock %}
+
+{% block content %}
+
+<div>
+    <p>
+        The image illustrates the order in which the players send messages reporting on the <b id="hidden"> hidden number </b>.
+        <br><br>
+
+        <div class="center">
+            {% if player.treat == 6 %} <!-- FRST -->
+                    <img width="400" height="150" src="{% static "p1_no2/T6_Img_Sequence_FRST_2.png" %}"/>
+
+            {% elif player.treat == 7 %} <!-- NO -->
+                    <img width="650" height="150" src="{% static "p1_no2/T7_Img_Sequence_NO_2.png" %}"/>
+
+            {% elif player.treat == 8 %} <!-- EXO -->
+                    <img width="650" height="150" src="{% static "p1_no2/T8_Img_Sequence_EXO_2.png" %}"/>
+
+            {% elif player.treat == 9 %} <!-- ENDO -->
+                    <img width="650" height="150" src="{% static "p1_no2/T9_Img_Sequence_ENDO_2.png" %}"/>
+
+            {% else %} <!-- VCTM -->
+                    <img width="650" height="150" src="{% static "p1_no2/T10_Img_Sequence_VCTM_2.png" %}"/>
+
+            {% endif %} <!-- -->
+        </div>
+
+        <br>
+
+        You are <b id="large">P1</b>. The number below is the <b id="hidden"> hidden number </b> that you have drawn.
+        <br>
+
+        <div class="center">
+            <b id="big">{{ player.rnum }}</b>
+        </div>
+    </p>
+</div>
+
+<div>
+    <p>
+        {% if player.treat == 6 %} <!-- FRST -->
+            The objective of the game is that P1 would report in the <b id="final">final message</b> the
+            <b id="hidden"> hidden number </b> drawn by P1.
+
+            <br><br>
+
+            In the box below, send your <b id="final">final message</b> on the <b id="hidden"> hidden number </b> to
+            determine the earnings that you and P2 will each receive for this task.
+
+       {% elif player.treat == 7 or player.treat == 8 or player.treat == 9 %} <!-- NO, EXO, ENDO -->
+            The objective of the game is to send a message so that P2 would report in the
+            <b id="final">final message</b> the <b id="hidden"> hidden number</b> drawn by P1.
+
+            <br><br>
+
+            In the box below, send your message to P2 reporting on the <b id="hidden"> hidden number</b>. P2 will then send the
+            <b id="final">final message</b> on the <b id="hidden"> hidden number </b> to determine the earnings that
+            you and P2 will each receive for this task.
+
+       {% elif player.treat == 10 %} <!-- VCTM -->
+            The objective of the game is to send a message so that P2 would report in the
+            <b id="final">final message</b> the <b id="hidden"> hidden number</b> drawn by P1.
+
+            <br><br>
+
+            In the box below, send your message to P2 reporting on the <b id="hidden"> hidden number</b>. P2 will then send the
+            <b id="final">final message</b> on the <b id="hidden"> hidden number </b> to determine the earnings that
+            you, P2 and P3 will each receive for this task.
+        {% endif %} <!-- -->
+    </p>
+
+    <center>
+        {% formfield player.report_1 label="" %}
+
+    <p>
+        {% if player.treat == 6 %} <!-- FRST -->
+        <button type="otree-btn-next" class="btn btn-danger btn-md"> Send the final message </button>
+
+        {% else %} <!-- NO, EXO, ENDO, VCTM -->
+        <button type="otree-btn-next" class="btn btn-primary btn-md"> Send my message to P2 </button>
+        {% endif %} <!-- -->
+
+    </center>
+    </p>
+</div>
+
+<div>
+    <br><br>
+    <center>
+        <input type="hidden" value="0" name="inst_show" id="inst_show"/>
+        <button type="button" class="btn btn-warning btn-large" onclick="$('#inst_show').val(1); document.getElementById('demo').style.display='block'">Show Instructions</button>
+    </center>
+
+    <br> <br>
+
+    <div id="demo" style="display:none"> {% include Constants.instructions_template %} </div>
+
+</div>
+{% endblock %}

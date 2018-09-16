@@ -2,13 +2,17 @@
 {% load otree static %}
 
 {% block title %}
-    Resulting network
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
+        <h2> Action </h2>
+</div>
 {% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="row">
-      <div class="col-sm-12 border border-dark">
+      <div class="col-sm-12 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
           <p>
             {% if player.given_type == 1 %}
             You are {{ player.name }}. Your internal symbol is Circle and your external symbol is Circle
@@ -26,14 +30,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-3  border border-dark">
+      <div class="col-sm-3 border border-dark text-white rounded p-3 mb-1" style='background-color: #607D8B;'>
         <h6>Please, choose an action:</h6>
         <div>
-            <button name="action" value="True" class="btn btn-outline-primary btn-large">Up</button>
-            <button name="action" value="False" class="btn btn-outline-warning btn-large">Down</button>
+            <button name="action" value="True" class="btn btn-large" style='background-color: #D500F9; color: white;'>Up</button>
+            <button name="action" value="False" class="btn btn-large" style='background-color: #8BC34A; color: white;'>Down</button>
         </div>
       </div>
-      <div class="col-sm-9  border border-dark">
+      <div class="col-sm-9 border border-dark rounded p-3 mb-1" style='background-color: #F8F8FF;'>
         <div id="cy"></div>
             <div class="container ">
                 <div class="row">
@@ -51,22 +55,81 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.1.0/cytoscape.js"></script>
     <script>
         var jsonnet = JSON.parse('{{group.network_data|safe}}');
+        var player_id = {{ player.name }};
         console.log(jsonnet);
         var cy = window.cy = cytoscape({
             container: document.getElementById('cy'),
 
         });
+
+        // Add isMine = 'yes' to all player's node and edges
+        jsonnet.elements = jsonnet.elements.map(
+            function(value) {
+                if ( (value.group === 'nodes' && value.data.name == player_id) ||
+                     (value.group === 'edges' && (value.data.source == player_id || value.data.target == player_id))
+                ) {
+                    value.data.isMine = 'yes'
+                }
+                else {
+                    value.data.isMine = 'no'
+                }
+
+                    //                 if (value.group === 'edges' && value.data.source == player_id) {
+                    //     value.data.linkStyle = 'source'
+                    // }
+                return value
+            });
+
+        console.log(jsonnet)
         cy.json(jsonnet);
+
         var layout = cy.layout({name: 'circle'});
 
         layout.run();
+        //cy.center('node[isMine="yes"]');
+        cy.panBy('node[isMine="yes"]');
+        //cy.fit();
+        // Centra en el nodo pero no con los demás al rededor
+
         cy.style()
             .selector('edge')
-            .style('line-color', 'black')
-            .style("target-arrow-shape", "triangle")
+            .style('line-color', '#8D6E63')
+            .style("target-arrow-shape", "vee")
+            .style("target-arrow-color", "#8D6E63")
             .style("curve-style", 'bezier')
+            .style('width', '2')
+
+
+            .selector('edge[isMine="yes"]')
+            .style('line-color', '#3E2723')
+            .style("target-arrow-color", "#3E2723")
+            .style('width', '4')
+
+
+         //   .selector('edge[linkStyle="source"]')
+         //   .style('line-color', 'green')
+
+            // .selector('node[attribute=0]')
+            // .style('shape', 'circle')
+
+            .selector('node[attribute=1]')
+            .style('shape', 'triangle')
+
+            .selector('node[isMine="yes"]')
+            .style('background-color', '#FAFAFA')
+            .style('border-width', '5')
+            .style('border-color', '#3E2723')
+
+
+            .selector('node[isMine="no"]')
+            .style('background-color', '#FAFAFA')
+            .style('border-width', '2')
+            .style('border-color', '#8D6E63')
+
+
             .update() // update the elements in the graph with the new style
         ;
+
         cy.userZoomingEnabled(false);
         cy.autoungrabify(true);
     </script>

@@ -411,6 +411,21 @@ SESSION_CONFIGS = [
     #         'battle_of_the_sexes', 'payment_info'
     #     ],
     # },
+    {
+        'name': 'p1_frst3',
+        'display_name': "p1_frst3",
+        'num_demo_participants': 8,
+        'app_sequence': ['p1_no3'],
+        'treatment': 1,
+    },
+    {
+        'name': 'p1_no3',
+        'display_name': "p1_no3",
+        'num_demo_participants': 8,
+        'app_sequence': ['p1_no3'],
+        'treatment': 2,
+    },
+
 ]
 
 # anything you put after the below line will override

@@ -21,6 +21,7 @@ class Constants(BaseConstants):
     triangle = 0 # Minority
     names = ['1','2', '3']
     attribute = [0,1,1,0,1,0,1,1,1,0,0]
+    attributes = {'1': 0, '2': 1, '3': 1}
     visible = 1
     invisible = 0
 
@@ -49,17 +50,28 @@ class Group(BaseGroup):
                                         })
 
     def forming_network(self):
-        nodes = [{'data': {'id': i, 'name': i}, 'group': 'nodes'} for i in Constants.names]
+        nodes = [{'data': {'id': i, 'name': i, 'attribute': Constants.attributes[i]}, 'group': 'nodes'} for i in Constants.names]
         edges = []
         for p in self.get_players():
             friends = json.loads(p.friends)
             edges.extend(
                 [{'data': {'id': p.name + i, 'source': p.name, 'target': i}, 'group': 'edges'} for i in friends])
+
+        #
+        # for receiver in players
+        #   prop_received = []
+        #   for proposer in players:
+        #      if propser != sender:
+        #         if receiver in proposer.friends:
+        #              prop_received.append(proposer.name)
+        #   receiver.props_from = str(prop_received)
+
         elements = nodes + edges
         style = [{'selector': 'node', 'style': {'content': 'data(name)'}}]
         self.network_data = json.dumps({'elements': elements,
                                         'style': style,
                                         })
+
 
 class Player(BasePlayer):
     given_symbol = models.IntegerField()
@@ -68,7 +80,7 @@ class Player(BasePlayer):
     chosen_preference = models.IntegerField()  # circle or triangle chosen endogenously
     given_type = models.IntegerField() # combination of symbol and preference
     chosen_type = models.IntegerField() # combination of symbol and preference
-    action= models.BooleanField() # Reported belief on P3's verification
+    action = models.BooleanField() # Reported belief on P3's verification
 
     # Type Assignation
     def assign_values(self):
@@ -87,6 +99,7 @@ class Player(BasePlayer):
 
     name = models.StringField()
     friends = models.LongStringField()
+    proposals_from = models.LongStringField()
 
 
 for i in Constants.names:

@@ -1,0 +1,32 @@
+{% extends "p1_no2/Style.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    <h2 id="bold">Task 2: How do you think others play in this game?</h2>
+{% endblock %}
+
+{% block content %}
+<div>
+    {% include Constants.instructions_belief_yesno %}
+    <p>
+        {% if player.treat == 8 %} <!-- EXO -->
+            In addition to seeing your report, there is an {{ Constants.exo_prob_show }}% chance that P2 would see the
+                <b id="hidden"> hidden number </b> drawn. Do you think P2 observed the <b id="hidden"> hidden number</b>?
+
+                <div>
+                    <button name="belief_endo" value="True" class="btn btn-primary btn-large">Yes</button>
+                    <button name="belief_endo" value="False" class="btn btn-primary btn-large">No</button>
+                </div>
+
+        {% elif player.treat >= 9 %} <!-- ENDO, VCTM -->
+            In addition to seeing your report, P2 could click on a button to see the <b id="hidden"> hidden number </b> drawn.
+                    Do you think P2 clicked on the button and observed the <b id="hidden"> hidden number</b>?
+
+                <div>
+                    <button name="belief_endo" value="True" class="btn btn-primary btn-large">Yes</button>
+                    <button name="belief_endo" value="False" class="btn btn-primary btn-large">No</button>
+                </div>
+        {% endif %}
+    </p>
+</div>
+{% endblock %}
