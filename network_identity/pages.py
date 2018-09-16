@@ -19,7 +19,7 @@ class BeforeFormationWP(WaitPage):
     def after_all_players_arrive(self):
         self.group.displaying_network()
 
-class MyPage(Page):
+class Formation(Page):
     form_model = 'player'
 
     def get_form_fields(self):
@@ -46,7 +46,7 @@ class Results(Page):
 page_sequence = [
     Welcome,
     BeforeFormationWP,
-    MyPage,
+    Formation,
     BeforeResultsWP,
     Results
 ]

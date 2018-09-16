@@ -41,7 +41,7 @@ class Group(BaseGroup):
     network_data = models.LongStringField()
 
     def displaying_network(self):
-        nodes = [{'data': {'id': i, 'name': i}, 'group': 'nodes'} for i in Constants.names]
+        nodes = [{'data': {'id': i, 'name': i, 'attribute': Constants.attributes[i]}, 'group': 'nodes'} for i in Constants.names]
         edges = []
         elements = nodes + edges
         style = [{'selector': 'node', 'style': {'content': 'data(name)'}}]
