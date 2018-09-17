@@ -15,9 +15,11 @@ class Welcome(Page):
         self.player.assign_values()
         self.player.assign_types()
 
+
 class BeforeFormationWP(WaitPage):
     def after_all_players_arrive(self):
         self.group.displaying_network()
+
 
 class Formation(Page):
     form_model = 'player'
@@ -38,7 +40,6 @@ class Action(Page):
     form_model = 'player'
     form_fields = ['action']
 
-
     def vars_for_template(self):
         self.group.forming_network()
 
@@ -47,10 +48,17 @@ class BeforeResultsWP(WaitPage):
     def after_all_players_arrive(self):
         self.group.forming_network()
 
+
 class Results(Page):
 
     def vars_for_template(self):
         self.group.forming_network()
+
+
+class TypeChoice(Page):
+    form_model = 'player'
+    form_fields = ['chosen_preference']
+# self.cooperate == self.in_round(self.round_number - 1).cooperate_bot
 
 page_sequence = [
     Welcome,
@@ -59,5 +67,6 @@ page_sequence = [
     BeforeActionWP,
     Action,
     BeforeResultsWP,
-    Results
+    Results,
+    TypeChoice
 ]

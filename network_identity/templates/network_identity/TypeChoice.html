@@ -29,19 +29,21 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-3 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
-        <h4 class="text-center"> Action </h4>
+        <h4 class="text-center"> Symbol Choice </h4>
       </div>
       <div class="col-sm-9 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
-           <p class="text-center"> There are <b style='color: #B3E5FC'>6 &#9711</b> and <b style='color: #B3E5FC'>5 &#9651</b> in your group. </p>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-3 border border-dark text-white rounded p-3 mb-1" style='background-color: #607D8B;'>
-        <p>Please, choose an action:</p>
         <div>
-            <button name="action" value="True" class="btn button1 btn-large"> Arriba </button>
-            <br><br>
-            <button name="action" value="False" class="btn button2 btn-large"> Abajo </button>
+            Choose your symbol for next period:
+          <br><br>
+            <div>
+                <button name="chosen_preference" value="True" class="btn button btn-large"> Círculo </button>
+                <br><br>
+                <button name="chosen_preference" value="False" class="btn button btn-large"> Triángulo </button>
+            </div>
         </div>
       </div>
       <div class="col-sm-9 border border-dark rounded p-3 mb-1" style='background-color: #F8F8FF;'>
@@ -102,35 +104,41 @@
 
         cy.style()
             .selector('edge')
-            .style('line-color', '#607D8B')
+            .style('line-color', '#37474F')
             .style("target-arrow-shape", "vee")
-            .style("target-arrow-color", "#607D8B")
+            .style("target-arrow-color", "#37474F")
             .style("curve-style", 'bezier')
-            .style('width', '2')
-
+            .style('width', '1')
 
             .selector('edge[isMine="yes"]')
             .style('line-color', '#455A64')
             .style("target-arrow-color", "#455A64")
             .style('width', '4')
 
-            .selector('edge[linkStyle="target"]')
-            .style('line-color', '#78909C')
+            .selector('edge[isMine="no"]')
+            // .style('display', 'none')
+
+
+            .selector('node[action_test=1]')
+            .style('border-color', '#8E24AA')
+            .style('background-color', '#E1BEE7')
+
+            .selector('node[action_test=0]')
+            .style('border-color', '#43A047')
+            .style('background-color', '#C8E6C9')
+
 
             .selector('node[attribute=1]')
             .style('shape', 'triangle')
 
             .selector('node[isMine="yes"]')
-            .style('background-color', '#B3E5FC')
             .style('border-width', '5')
-            .style('border-color', '#455A64')
-
 
             .selector('node[isMine="no"]')
-            .style('background-color', '#FAFAFA')
             .style('border-width', '2')
-            .style('border-color', '#607D8B')
 
+            .selector('edge[linkStyle="target"]')
+            .style('line-color', '#78909C')
 
             .update() // update the elements in the graph with the new style
         ;
@@ -147,36 +155,21 @@
             height: 500px;
             display: block;
         }
-    .button1 {
-        background-color: #B3E5FC;
-        color: #000000;
-        border: 2px solid #3E2723
-    }
-    .button1:hover {
-        background-color: #8E24AA;
-        color: #ffffff;
-    }
-    .button1:active {
-      background-color: #3e8e41;
-      box-shadow: 0 5px #666;
-      transform: translateY(4px);
-    }
-    .button2 {
-        background-color: #B3E5FC;
-        color: #000000;
-        border: 2px solid #3E2723
-    }
-    .button2:hover {
-        background-color: #43A047;
-        color: #ffffff;
-    }
-    .button2:active {
-      background-color: #3e8e41;
-      box-shadow: 0 5px #666;
-      transform: translateY(4px);
-    }
-
-
+        .button {
+            background-color: #455A64;
+            color: #B3E5FC;
+            border: 2px solid #B3E5FC
+        }
+        .button:hover {
+            background-color: #B3E5FC;
+            color: #000000;
+            border: 2px solid #3E2723
+        }
+        .button:active {
+          background-color: #B3E5FC;
+          box-shadow: 0 5px #666;
+          transform: translateY(4px);
+        }
     </style>
 
 {% endblock %}

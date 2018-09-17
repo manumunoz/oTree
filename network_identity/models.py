@@ -3,6 +3,7 @@ from otree.api import (
     Currency as c, currency_range
 )
 import random
+from collections import OrderedDict
 import json
 
 author = 'Manu Munoz'
@@ -14,17 +15,19 @@ Network Identity
 
 class Constants(BaseConstants):
     name_in_url = 'network_identity'
-    num_rounds = 1
+    num_rounds = 2
     players_per_group = 3
 
     circle = 1 # Majority
     triangle = 0 # Minority
-    names = ['1','2', '3']
+    # names_1 = ['1','2','3','4','5','6','7','8','9','10','11']
+    # names_2 = ['5','7','9','11','2','4','6','8','10','1','3']
+    names = ['1', '2', '3']
     attribute = [0,1,1,0,1,0,1,1,1,0,0]
-    attributes = {'1': 0, '2': 1, '3': 1}
+    attributes = {'1': 0, '2': 1, '3': 1, '4': 0, '5': 1, '6': 0, '7': 1, '8': 1, '9': 1, '10': 0, '11': 0}
     visible = 1
     invisible = 0
-    tests = {'1': 0, '2': 1, '3': 1}
+    tests = {'1': 0, '2': 1, '3': 1, '4': 1, '5': 1, '6': 0, '7': 0, '8': 1, '9': 1, '10': 0, '11': 0}
 
 
 class Subsession(BaseSubsession):
@@ -37,6 +40,8 @@ class Subsession(BaseSubsession):
             # random.shuffle(cur_names)
             for i, p in enumerate(g.get_players()):
                 p.name = cur_names[i]
+
+
 
 class Group(BaseGroup):
     network_data = models.LongStringField()
@@ -75,18 +80,18 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    given_symbol = models.IntegerField()
-    chosen_symbol = models.IntegerField()
-    given_preference = models.IntegerField() # circle or triangle assigned exogenously
-    chosen_preference = models.IntegerField()  # circle or triangle chosen endogenously
+    given_symbol = models.BooleanField()
+    chosen_symbol = models.BooleanField()
+    given_preference = models.BooleanField() # circle or triangle assigned exogenously
+    chosen_preference = models.BooleanField()  # circle or triangle chosen endogenously
     given_type = models.IntegerField() # combination of symbol and preference
     chosen_type = models.IntegerField() # combination of symbol and preference
     action = models.BooleanField() # Reported belief on P3's verification
 
     # Type Assignation
     def assign_values(self):
-        self.given_symbol = int(Constants.attribute[self.id_in_group - 1])
-        self.given_preference = int(Constants.attribute[self.id_in_group - 1])
+        self.given_symbol = bool(Constants.attribute[self.id_in_group - 1])
+        self.given_preference = bool(Constants.attribute[self.id_in_group - 1])
 
     def assign_types(self):
         if self.given_symbol == 0 and self.given_preference == 0:

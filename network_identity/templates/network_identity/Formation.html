@@ -5,7 +5,21 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
-        <h2> Connections </h2>
+          <h2> You are player <b style='color: #B3E5FC'> {{ player.name }}</b>.</h2>
+            <h6>
+                {% if player.given_type == 1 %}
+                Your internal symbol is <b style='color: #B3E5FC'>&#9711</b> and your external symbol is <b style='color: #B3E5FC'>&#9711</b>
+
+                {% elif player.given_type == 2 %}
+                Your internal symbol is <b style='color: #B3E5FC'>&#9711</b> and your external symbol is <b style='color: #B3E5FC'>&#9651</b>
+
+                {% elif player.given_type == 3 %}
+                Your internal symbol is <b style='color: #B3E5FC'>&#9651</b> and your external symbol is <b style='color: #B3E5FC'>&#9711</b>
+
+                {% else %}
+                Your internal symbol is <b style='color: #B3E5FC'>&#9651</b> and your external symbol is <b style='color: #B3E5FC'>&#9651</b>
+                {% endif %}
+            </h6>
       </div>
     </div>
 </div>
@@ -14,33 +28,23 @@
 {% block content %}
 <div class="container">
     <div class="row">
-      <div class="col-sm-12 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
-        <p>
-            {% if player.given_type == 1 %}
-            You are player <b style='color: #B3E5FC'> {{ player.name }}</b>. Your internal symbol is <b style='color: #B3E5FC'>Circle</b> and your external symbol is <b style='color: #B3E5FC'>Circle</b>
-
-            {% elif player.given_type == 2 %}
-            You are player <b style='color: #B3E5FC'> {{ player.name }}</b>. Your internal symbol is <b style='color: #B3E5FC'>Circle</b> and your external symbol is <b style='color: #B3E5FC'>Triangle</b>
-
-            {% elif player.given_type == 3 %}
-            You are player <b style='color: #B3E5FC'> {{ player.name }}</b>. Your internal symbol is <b style='color: #B3E5FC'>Triangle</b> and your external symbol is <b style='color: #B3E5FC'>Circle</b>
-
-            {% else %}
-            You are player <b style='color: #B3E5FC'> {{ player.name }}</b>. Your internal symbol is <b style='color: #B3E5FC'>Triangle</b> and your external symbol is <b style='color: #B3E5FC'>Triangle</b>
-            {% endif %}
-        </p>
+      <div class="col-sm-3 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
+        <h4 class="text-center"> Connections </h4>
+      </div>
+      <div class="col-sm-9 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
+           <p class="text-center"> There are <b style='color: #B3E5FC'>6 &#9711</b> and <b style='color: #B3E5FC'>5 &#9651</b> in your group. </p>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-3 border border-dark text-white rounded p-3 mb-1" style='background-color: #607D8B;'>
-        <h6>Please, check the names of your friends in this list:</h6>
+        <p>Click on the players to whom you want to propose a connection:</p>
 
             {% for f in form %}
                 {% formfield f %}
             {% endfor %}
 
           <br><br>
-        <button type="otree-btn-next" class="btn button1 btn-md"> Send my proposals </button>
+        <button type="otree-btn-next" class="btn button btn-md"> Send my proposals </button>
       </div>
       <div class="col-sm-9 border border-dark rounded p-3 mb-1" style='background-color: #F8F8FF;'>
         <div id="cy"></div>
@@ -102,7 +106,6 @@
             .style('background-color', '#B3E5FC')
             .style('border-width', '5')
             .style('border-color', '#455A64')
-            .style()
 
 
             .selector('node[isMine="no"]')
@@ -134,18 +137,18 @@
         .center {
             text-align: center;
         }
-        .button1 {
-            background-color: #B3E5FC;
-            color: #000000;
-            border: 2px solid #3E2723
-        }
-        .button1:hover {
+        .button {
             background-color: #455A64;
             color: #B3E5FC;
             border: 2px solid #B3E5FC
         }
-        .button1:active {
-          background-color: #1E88E5;
+        .button:hover {
+            background-color: #B3E5FC;
+            color: #000000;
+            border: 2px solid #3E2723
+        }
+        .button:active {
+          background-color: #B3E5FC;
           box-shadow: 0 5px #666;
           transform: translateY(4px);
         }

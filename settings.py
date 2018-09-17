@@ -137,6 +137,12 @@ SESSION_CONFIGS = [
         'app_sequence': ['network_identity'],
     },
     # {
+    #     'name': 'network_identity2',
+    #     'display_name': "network_identity2",
+    #     'num_demo_participants': 4,
+    #     'app_sequence': ['network_identity2'],
+    # },
+    # {
     #     'name': 'network_study',
     #     'display_name': "network_study",
     #     'num_demo_participants': 4,

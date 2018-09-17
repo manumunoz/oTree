@@ -5,7 +5,21 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
-        <h2> Results </h2>
+          <h2> You are player <b style='color: #B3E5FC'> {{ player.name }}</b>.</h2>
+            <h6>
+                {% if player.given_type == 1 %}
+                Your internal symbol is <b style='color: #B3E5FC'>&#9711</b> and your external symbol is <b style='color: #B3E5FC'>&#9711</b>
+
+                {% elif player.given_type == 2 %}
+                Your internal symbol is <b style='color: #B3E5FC'>&#9711</b> and your external symbol is <b style='color: #B3E5FC'>&#9651</b>
+
+                {% elif player.given_type == 3 %}
+                Your internal symbol is <b style='color: #B3E5FC'>&#9651</b> and your external symbol is <b style='color: #B3E5FC'>&#9711</b>
+
+                {% else %}
+                Your internal symbol is <b style='color: #B3E5FC'>&#9651</b> and your external symbol is <b style='color: #B3E5FC'>&#9651</b>
+                {% endif %}
+            </h6>
       </div>
     </div>
 </div>
@@ -14,30 +28,20 @@
 {% block content %}
 <div class="container">
     <div class="row">
-      <div class="col-sm-12 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
-        <p>
-            {% if player.given_type == 1 %}
-            You are player <b style='color: #B3E5FC'> {{ player.name }}</b>. Your internal symbol is <b style='color: #B3E5FC'>Circle</b> and your external symbol is <b style='color: #B3E5FC'>Circle</b>
-
-            {% elif player.given_type == 2 %}
-            You are player <b style='color: #B3E5FC'> {{ player.name }}</b>. Your internal symbol is <b style='color: #B3E5FC'>Circle</b> and your external symbol is <b style='color: #B3E5FC'>Triangle</b>
-
-            {% elif player.given_type == 3 %}
-            You are player <b style='color: #B3E5FC'> {{ player.name }}</b>. Your internal symbol is <b style='color: #B3E5FC'>Triangle</b> and your external symbol is <b style='color: #B3E5FC'>Circle</b>
-
-            {% else %}
-            You are player <b style='color: #B3E5FC'> {{ player.name }}</b>. Your internal symbol is <b style='color: #B3E5FC'>Triangle</b> and your external symbol is <b style='color: #B3E5FC'>Triangle</b>
-            {% endif %}
-        </p>
+      <div class="col-sm-3 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
+        <h4 class="text-center"> Results </h4>
+      </div>
+      <div class="col-sm-9 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
+           <p class="text-center"> There are <b style='color: #B3E5FC'>6 &#9711</b> and <b style='color: #B3E5FC'>5 &#9651</b> in your group. </p>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-3 border border-dark text-white rounded p-3 mb-1" style='background-color: #607D8B;'>
         <div>
             You are connected to:
-                <h5>$$$ players</h5>
+                <h6 style='color: #B3E5FC'>$$$ players</h6>
             and pay a cost of
-                <h5>CCC</h5>
+                <h6 style='color: #B3E5FC'>CCC points</h6>
             <br>
             {% if player.action == 1 %}
                 You chose action
@@ -47,13 +51,13 @@
                 <h4 style="color: #C8E6C9">Down</h4>
             {% endif %}
             and coordinated with
-                <h5>YYY</h5> of your connections.
+                <h6 style='color: #B3E5FC'>XXX</h6> of your connections.
             <br><br>
             In this round you earn:
             <br>
             <h2 style='color: #B3E5FC'>$$$ points</h2>
             <br><br>
-                <button type="otree-btn-next" class="btn button1 btn-md"> Continue </button>
+                <button type="otree-btn-next" class="btn button btn-md"> Continue </button>
         </div>
       </div>
       <div class="col-sm-9 border border-dark rounded p-3 mb-1" style='background-color: #F8F8FF;'>
@@ -92,10 +96,12 @@
                 else {
                     value.data.isMine = 'no'
                 }
-
-                    //                 if (value.group === 'edges' && value.data.source == player_id) {
-                    //     value.data.linkStyle = 'source'
-                    // }
+                if (value.group === 'edges' && value.data.source == player_id) {
+                    value.data.linkStyle = 'source'
+                }
+                if (value.group === 'edges' && value.data.target == player_id) {
+                    value.data.linkStyle = 'target'
+                }
                 return value
             });
 
@@ -144,10 +150,10 @@
 
             .selector('node[isMine="no"]')
             .style('border-width', '2')
-             //   .selector('edge[linkStyle="source"]')
-             //   .style('line-color', 'green')
-            // .selector('node[attribute=0]')
-            // .style('shape', 'circle')
+
+            .selector('edge[linkStyle="target"]')
+            .style('line-color', '#78909C')
+
             .update() // update the elements in the graph with the new style
         ;
 
@@ -163,18 +169,18 @@
             height: 500px;
             display: block;
         }
-        .button1 {
-            background-color: #B3E5FC;
-            color: #000000;
-            border: 2px solid #3E2723
-        }
-        .button1:hover {
+        .button {
             background-color: #455A64;
             color: #B3E5FC;
             border: 2px solid #B3E5FC
         }
-        .button1:active {
-          background-color: #1E88E5;
+        .button:hover {
+            background-color: #B3E5FC;
+            color: #000000;
+            border: 2px solid #3E2723
+        }
+        .button:active {
+          background-color: #B3E5FC;
           box-shadow: 0 5px #666;
           transform: translateY(4px);
         }
