@@ -15,7 +15,7 @@ class Constants(BaseConstants):
     name_in_url = 'instructions'
     players_per_group = None
     num_rounds = 1
-
+    min_pay = 10000
 
 class Subsession(BaseSubsession):
     pass
@@ -26,4 +26,4 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    pass
+    test1=models.IntegerField()

@@ -136,6 +136,12 @@ SESSION_CONFIGS = [
         'num_demo_participants': 3,
         'app_sequence': ['network_identity'],
     },
+    {
+        'name': 'instructions',
+        'display_name': "instructions",
+        'num_demo_participants': 1,
+        'app_sequence': ['instructions'],
+    },
     # {
     #     'name': 'network_identity2',
     #     'display_name': "network_identity2",
