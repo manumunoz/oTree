@@ -7,13 +7,13 @@
       <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
           <h2> You are player <b style='color: #B3E5FC'> {{ player.name }}</b>.</h2>
             <h6>
-                {% if player.given_type == 1 %}
+                {% if player.chosen_type == 1 %}
                 Your internal symbol is <b style='color: #B3E5FC'>&#9711</b> and your external symbol is <b style='color: #B3E5FC'>&#9711</b>
 
-                {% elif player.given_type == 2 %}
+                {% elif player.chosen_type == 2 %}
                 Your internal symbol is <b style='color: #B3E5FC'>&#9711</b> and your external symbol is <b style='color: #B3E5FC'>&#9651</b>
 
-                {% elif player.given_type == 3 %}
+                {% elif player.chosen_type == 3 %}
                 Your internal symbol is <b style='color: #B3E5FC'>&#9651</b> and your external symbol is <b style='color: #B3E5FC'>&#9711</b>
 
                 {% else %}
@@ -37,7 +37,7 @@
     </div>
     <div class="row">
       <div class="col-sm-3 border border-dark text-white rounded p-3 mb-1" style='background-color: #607D8B;'>
-        <p>Please, choose an action:</p>
+        <p>Choose an action:</p>
         <div>
             <button name="action" value="True" class="btn button1 btn-large"> Arriba </button>
             <br><br>
@@ -148,35 +148,33 @@
             display: block;
         }
     .button1 {
-        background-color: #B3E5FC;
-        color: #000000;
-        border: 2px solid #3E2723
+        background-color: #455A64;
+        color: #B3E5FC;
+        border: 2px solid #B3E5FC
     }
     .button1:hover {
         background-color: #8E24AA;
         color: #ffffff;
     }
-    .button1:active {
-      background-color: #3e8e41;
-      box-shadow: 0 5px #666;
-      transform: translateY(4px);
-    }
+    /*.button1:active {*/
+      /*background-color: #3e8e41;*/
+      /*box-shadow: 0 5px #666;*/
+      /*transform: translateY(4px);*/
+    /*}*/
     .button2 {
-        background-color: #B3E5FC;
-        color: #000000;
-        border: 2px solid #3E2723
+        background-color: #455A64;
+        color: #B3E5FC;
+        border: 2px solid #B3E5FC
     }
     .button2:hover {
         background-color: #43A047;
         color: #ffffff;
     }
-    .button2:active {
-      background-color: #3e8e41;
-      box-shadow: 0 5px #666;
-      transform: translateY(4px);
-    }
-
-
+    /*.button2:active {*/
+      /*background-color: #3e8e41;*/
+      /*box-shadow: 0 5px #666;*/
+      /*transform: translateY(4px);*/
+    /*}*/
     </style>
 
 {% endblock %}

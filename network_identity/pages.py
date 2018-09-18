@@ -6,16 +6,6 @@ from collections import OrderedDict
 import json
 
 
-class Welcome(Page):
-
-    def is_displayed(self):
-        return self.round_number == 1
-
-    def before_next_page(self):
-        self.player.assign_values()
-        self.player.assign_types()
-
-
 class BeforeFormationWP(WaitPage):
     def after_all_players_arrive(self):
         self.group.displaying_network()
@@ -50,7 +40,6 @@ class BeforeResultsWP(WaitPage):
 
 
 class Results(Page):
-
     def vars_for_template(self):
         self.group.forming_network()
 
@@ -61,12 +50,12 @@ class TypeChoice(Page):
 # self.cooperate == self.in_round(self.round_number - 1).cooperate_bot
 
 page_sequence = [
-    Welcome,
+    # Welcome,
     BeforeFormationWP,
     Formation,
     BeforeActionWP,
     Action,
     BeforeResultsWP,
-    Results,
-    TypeChoice
+    Results
+    #TypeChoice
 ]

@@ -25,8 +25,8 @@ class Constants(BaseConstants):
     names = ['1', '2', '3']
     attribute = [0,1,1,0,1,0,1,1,1,0,0]
     attributes = {'1': 0, '2': 1, '3': 1, '4': 0, '5': 1, '6': 0, '7': 1, '8': 1, '9': 1, '10': 0, '11': 0}
-    visible = 1
-    invisible = 0
+    # visible = 1
+    # invisible = 0
     tests = {'1': 0, '2': 1, '3': 1, '4': 1, '5': 1, '6': 0, '7': 0, '8': 1, '9': 1, '10': 0, '11': 0}
 
 
@@ -40,14 +40,21 @@ class Subsession(BaseSubsession):
             # random.shuffle(cur_names)
             for i, p in enumerate(g.get_players()):
                 p.name = cur_names[i]
-
-
+        for p in self.get_players():
+            p.given_symbol = bool(Constants.attribute[p.id_in_group - 1])
+            p.given_preference = bool(Constants.attribute[p.id_in_group - 1])
+            if p.given_symbol == 1 and p.given_preference == 1:
+                p.given_type = 1  # circle-circle
+                p.chosen_type = 1
+            else:
+                p.given_type = 4 # triangle-triangle
+                p.chosen_type = 4
 
 class Group(BaseGroup):
     network_data = models.LongStringField()
 
     def displaying_network(self):
-        nodes = [{'data': {'id': i, 'name': i, 'action_test': Constants.tests[i], 'attribute': Constants.attributes[i]},  'group': 'nodes'} for i in Constants.names]
+        nodes = [{'data': {'id': i, 'name': i, 'action': self.get_player_by_id(i).action, 'attribute': Constants.attributes[i]},  'group': 'nodes'} for i in Constants.names]
         edges = []
         elements = nodes + edges
         style = [{'selector': 'node', 'style': {'content': 'data(name)'}}]
@@ -56,12 +63,13 @@ class Group(BaseGroup):
                                         })
 
     def forming_network(self):
-        nodes = [{'data': {'id': i, 'name': i, 'action_test': Constants.tests[i], 'attribute': Constants.attributes[i]}, 'group': 'nodes'} for i in Constants.names]
+        nodes = [{'data': {'id': i, 'name': i, 'action': self.get_player_by_id(i).action, 'attribute': Constants.attributes[i]}, 'group': 'nodes'} for i in Constants.names]
         edges = []
         for p in self.get_players():
             friends = json.loads(p.friends)
             edges.extend(
                 [{'data': {'id': p.name + i, 'source': p.name, 'target': i}, 'group': 'edges'} for i in friends])
+
 
         #
         # for receiver in players
@@ -81,27 +89,42 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     given_symbol = models.BooleanField()
-    chosen_symbol = models.BooleanField()
+    # chosen_symbol = models.BooleanField()
     given_preference = models.BooleanField() # circle or triangle assigned exogenously
-    chosen_preference = models.BooleanField()  # circle or triangle chosen endogenously
+    # chosen_preference = models.BooleanField()  # circle or triangle chosen endogenously
     given_type = models.IntegerField() # combination of symbol and preference
     chosen_type = models.IntegerField() # combination of symbol and preference
     action = models.BooleanField() # Reported belief on P3's verification
 
-    # Type Assignation
-    def assign_values(self):
-        self.given_symbol = bool(Constants.attribute[self.id_in_group - 1])
-        self.given_preference = bool(Constants.attribute[self.id_in_group - 1])
+    # # Symbol Assignation
+    # def assign_values(self):
+    #     self.given_symbol = bool(Constants.attribute[self.id_in_group - 1])
+    #     self.given_preference = bool(Constants.attribute[self.id_in_group - 1])
+    #
+    # # Given-Type Assignation
+    # def assign_types(self):
+    #     if self.given_symbol == 1 and self.given_preference == 1:
+    #         self.given_type = 1  # circle-circle
+    #         self.chosen_type = 1
+    #     else:
+    #         self.given_type = 4 # triangle-triangle
+    #         self.chosen_type = 4
 
-    def assign_types(self):
-        if self.given_symbol == 0 and self.given_preference == 0:
-            self.given_type = 1 # circle-circle
-        elif self.given_symbol == 0 and self.given_preference == 1:
-            self.given_type = 2  # circle-triangle
-        elif self.given_symbol == 1 and self.given_preference == 0:
-            self.given_type = 3 # triangle-circle
-        else:
-            self.given_type = 4 # triangle-triangle
+    # ONLY FOR PART 2!!!
+    # # Chosen-Type Assignation if INCONSISTENT (should be different if consistent || invisible)
+    # def update_values(self):
+    #     if self.round_number == 1:
+    #         self.chosen_type = self.given_type
+    #     else:
+    #         self.chosen_preference = self.player.in_round(self.round_number - 1).chosen_preference
+    #         if self.given_type == 1 and self.chosen_preference == 1:
+    #             self.chosen_type = 1 # circle-circle
+    #         elif self.given_type == 1 and self.chosen_preference == 0:
+    #             self.chosen_type = 2 # circle-triangle
+    #         elif self.given_type == 4 and self.chosen_preference == 1:
+    #             self.chosen_type = 3 # triangle-circle
+    #         else:
+    #             self.chosen_type = 4 # triangle-triangle
 
     name = models.StringField()
     friends = models.LongStringField()

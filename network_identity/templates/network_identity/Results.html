@@ -7,13 +7,13 @@
       <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
           <h2> You are player <b style='color: #B3E5FC'> {{ player.name }}</b>.</h2>
             <h6>
-                {% if player.given_type == 1 %}
+                {% if player.chosen_type == 1 %}
                 Your internal symbol is <b style='color: #B3E5FC'>&#9711</b> and your external symbol is <b style='color: #B3E5FC'>&#9711</b>
 
-                {% elif player.given_type == 2 %}
+                {% elif player.chosen_type == 2 %}
                 Your internal symbol is <b style='color: #B3E5FC'>&#9711</b> and your external symbol is <b style='color: #B3E5FC'>&#9651</b>
 
-                {% elif player.given_type == 3 %}
+                {% elif player.chosen_type == 3 %}
                 Your internal symbol is <b style='color: #B3E5FC'>&#9651</b> and your external symbol is <b style='color: #B3E5FC'>&#9711</b>
 
                 {% else %}
@@ -102,6 +102,12 @@
                 if (value.group === 'edges' && value.data.target == player_id) {
                     value.data.linkStyle = 'target'
                 }
+                if (value.group === 'nodes' && value.data.action == true) {
+                    value.data.behavior = 'up'
+                }
+                else {
+                    value.data.behavior = 'down'
+                }
                 return value
             });
 
@@ -132,15 +138,13 @@
             .selector('edge[isMine="no"]')
             .style('display', 'none')
 
-
-            .selector('node[action_test=1]')
+            .selector('node[behavior="up"]')
             .style('border-color', '#8E24AA')
             .style('background-color', '#E1BEE7')
 
-            .selector('node[action_test=0]')
+            .selector('node[behavior="down"]')
             .style('border-color', '#43A047')
             .style('background-color', '#C8E6C9')
-
 
             .selector('node[attribute=1]')
             .style('shape', 'triangle')
@@ -179,11 +183,11 @@
             color: #000000;
             border: 2px solid #3E2723
         }
-        .button:active {
-          background-color: #B3E5FC;
-          box-shadow: 0 5px #666;
-          transform: translateY(4px);
-        }
+        /*.button:active {*/
+          /*background-color: #B3E5FC;*/
+          /*box-shadow: 0 5px #666;*/
+          /*transform: translateY(4px);*/
+        /*}*/
     </style>
 
 {% endblock %}
