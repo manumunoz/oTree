@@ -26,7 +26,6 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
     <div class="row">
       <div class="col-sm-3 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
         <h4 class="text-center"> Results </h4>
@@ -165,15 +164,23 @@
 
             .selector('node[shape=1]')
             .style('shape', 'ellipse')
+            .style('background-image', 'url("{% static "network_identity/circle.png" %}")')
+            .style('background-fit', 'cover cover')
 
             .selector('node[shape=2]')
             .style('shape', 'ellipse')
+            .style('background-image', 'url("{% static "network_identity/circle.png" %}")')
+            .style('background-fit', 'cover cover')
 
             .selector('node[shape=3]')
             .style('shape', 'triangle')
+            .style('background-image', 'url("{% static "network_identity/triangle.png" %}")')
+            .style('background-fit', 'cover cover')
 
             .selector('node[shape=4]')
             .style('shape', 'triangle')
+            .style('background-image', 'url("{% static "network_identity/triangle.png" %}")')
+            .style('background-fit', 'cover cover')
 
             .selector('node[isMine="yes"]')
             .style('border-width', '5')
