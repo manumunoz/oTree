@@ -6,6 +6,9 @@ from .models import Constants
 class WelcomeInst(Page):
     pass
 
+class PartOneInst(Page):
+    pass
+
 class LinkingInst(Page):
     pass
 
@@ -34,6 +37,8 @@ class SummaryInst(Page):
 
 # You will observe your type, choose connection, observe the network, choose an action, and observe your earnings.
 
+
 page_sequence = [
     WelcomeInst,
+    PartOneInst,
 ]
