@@ -41,4 +41,5 @@ class SummaryInst(Page):
 page_sequence = [
     WelcomeInst,
     PartOneInst,
+    LinkingInst,
 ]
