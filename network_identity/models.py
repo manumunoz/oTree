@@ -21,12 +21,12 @@ class Constants(BaseConstants):
     triangle = 0 # Minority
     names = ['1','2','3','4','5','6','7','8','9','10','11']
     # names_2 = ['5','7','9','11','2','4','6','8','10','1','3']
-    # names = ['1', '2']
+    names = ['1', '2', '3']
     attribute = [0,1,1,0,1,0,1,1,1,0,0]
     attributes = {'1': 0, '2': 1, '3': 1, '4': 0, '5': 1, '6': 0, '7': 1, '8': 1, '9': 1, '10': 0, '11': 0}
     # visible = 1
     # invisible = 0
-    players_per_group = len(names)
+    players_per_group = 3 #len(names)
 
 class Subsession(BaseSubsession):
     def creating_session(self):
@@ -75,11 +75,24 @@ class Group(BaseGroup):
             edges.extend(
                 [{'data': {'id': p.name + i, 'source': p.name, 'target': i}, 'group': 'edges'} for i in friends])
 
+            # Copio el valor de las propuestas recogido en las variables con numbre (1,2,3,...) a
+            # proo_to_1, prop_to_2, ...
+            for i in friends:
+                setattr(p, 'prop_to_' + i, getattr(p, i))
+
         elements = nodes + edges
         style = [{'selector': 'node', 'style': {'content': 'data(name)'}}]
         self.network_data = json.dumps({'elements': elements,
                                         'style': style,
                                         })
+
+    def calculate_props_from(self):
+        for player_to in self.get_players():
+            for player_from in self.get_players():
+                prop = False
+                if player_from.name != player_to.name: # si no soy yo mismo
+                    prop = bool(getattr(player_from, 'prop_to_' + player_to.name)) # cojo el valor de la propuesta
+                setattr(player_to, 'prop_from_' + player_from.name, prop) # la añado a prop_from_X
 
     def summing_types(self):
         players = self.get_players()
@@ -87,6 +100,8 @@ class Group(BaseGroup):
         self.total_circles = sum(circles)
         self.total_triangles = len(Constants.names)-self.total_circles
 
+
+# noinspection PyPackageRequirements
 class Player(BasePlayer):
     given_symbol = models.BooleanField()
     # chosen_symbol = models.BooleanField()
@@ -129,24 +144,10 @@ class Player(BasePlayer):
 
     name = models.StringField()
     friends = models.LongStringField()
-    proposals_from = models.LongStringField()
 
 
 for i in Constants.names:
     Player.add_to_class(i, models.BooleanField(widget=widgets.CheckboxInput, blank=True))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    # Añado a Player las variables de propuestas con friendly names que luego rellenaremos
+    Player.add_to_class('prop_to_' + i,  models.BooleanField(initial=0))
+    Player.add_to_class('prop_from_' + i,  models.BooleanField(initial=0))
