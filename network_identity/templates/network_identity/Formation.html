@@ -112,19 +112,27 @@
         cy.style()
             .selector('node[shape=1]')
             .style('shape', 'ellipse')
-
+            .style('background-image', 'url("{% static "network_identity/circle.png" %}")')
+            .style('background-fit', 'cover cover')
 
             .selector('node[shape=2]')
             .style('shape', 'ellipse')
+            .style('background-image', 'url("{% static "network_identity/triangle.png" %}")')
+            .style('background-fit', 'cover cover')
 
             .selector('node[shape=3]')
             .style('shape', 'triangle')
+            .style('background-image', 'url("{% static "network_identity/circle.png" %}")')
+            .style('background-fit', 'cover cover')
 
             .selector('node[shape=4]')
             .style('shape', 'triangle')
-
+            .style('background-image', 'url("{% static "network_identity/triangle.png" %}")')
+            .style('background-fit', 'cover cover')
 
             .selector('node[isMine="yes"]')
+            .style('width', '50px')
+            .style('height', '50px')
             .style('background-color', '#B3E5FC')
             .style('border-width', '5')
             .style('border-color', '#455A64')
