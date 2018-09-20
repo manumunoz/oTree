@@ -37,11 +37,6 @@
     <div class="row">
       <div class="col-sm-3 border border-dark text-white rounded p-3 mb-1" style='background-color: #607D8B;'>
         <div>
-            You are connected to:
-                <h6 style='color: #B3E5FC'>$$$ players</h6>
-            and pay a cost of
-                <h6 style='color: #B3E5FC'>CCC points</h6>
-            <br>
             {% if player.action == 1 %}
                 You chose action
                 <h4 style="color: #E1BEE7">Arriba</h4>
@@ -49,11 +44,14 @@
                 You chose action
                 <h4 style="color: #C8E6C9">Abajo</h4>
             {% endif %}
-            and coordinated with
-                <h6 style='color: #B3E5FC'>XXX</h6> of your connections.
+            and coordinated with <b style='color: #B3E5FC'> X</b> of your <b style='color: #B3E5FC'> Y </b> active
+            connections.
+
             <br><br>
-            In this round you earn:
-            <br>
+
+            You earn <b style='color: #B3E5FC'>$$$ </b> for your coordinations and pay a cost of
+            <b style='color: #B3E5FC'> C </b> for your active links. In this round you earn:
+            <br><br>
             <h2 style='color: #B3E5FC'>$$$ points</h2>
             <br><br>
                 <button type="otree-btn-next" class="btn button btn-md"> Continue </button>
@@ -107,20 +105,23 @@
                 else {
                     value.data.behavior = 'down'
                 }
-                if ( value.group === 'nodes' && value.data.shape == 1)
-                {
-                    value.data.myType = '1'
-                }
-                if  ( value.group === 'nodes' && value.data.shape == 2)
-                {
-                    value.data.myType = '2'
-                }
-                if  ( value.group === 'nodes' && value.data.shape == 3)
-                {
-                    value.data.myType = '3'
+                if ( (value.group === 'nodes' && value.data.name == 1) || (value.group === 'nodes' && value.data.name == 2) ||
+                        (value.group === 'nodes' && value.data.name == 3) || (value.group === 'nodes' && value.data.name == 10) ||
+                        (value.group === 'nodes' && value.data.name == 11)
+                ) {
+                    value.data.vertPos = 'top'
                 }
                 else {
-                    value.data.myType = '4'
+                    value.data.vertPos = 'bottom'
+                }
+                if ( (value.group === 'nodes' && value.data.name == 1) || (value.group === 'nodes' && value.data.name == 2) ||
+                        (value.group === 'nodes' && value.data.name == 3) || (value.group === 'nodes' && value.data.name == 4) ||
+                        (value.group === 'nodes' && value.data.name == 5) || (value.group === 'nodes' && value.data.name == 6)
+                ) {
+                    value.data.horPos = 'right'
+                }
+                else {
+                    value.data.horPos = 'left'
                 }
                 return value
             });
@@ -137,66 +138,92 @@
         // Centra en el nodo pero no con los demás al rededor
 
         cy.style()
+            // LINKS ==============================================
             .selector('edge')
             .style('line-color', '#607D8B')
             .style('source-endpoint', 'inside-to-node')
             .style('target-distance-from-node', '7px')
-            .style("target-arrow-shape", "vee")
-            .style("target-arrow-color", "#607D8B")
-            .style("curve-style", 'bezier')
-            .style('width', '1')
-
+            // My Links
             .selector('edge[isMine="yes"]')
             .style('line-color', '#455A64')
+            .style("target-arrow-shape", "triangle")
+            .style('arrow-scale','1')
             .style("target-arrow-color", "#455A64")
+            .style("curve-style", 'bezier')
+            .style('target-distance-from-node', '8px')
             .style('width', '4')
-
+            // My Links: In-degree
+            .selector('edge[linkStyle="source"]')
+            .style("target-arrow-color", "#455A64")
+            .style('line-color', '#78909C')
+            // NOT My Links
             .selector('edge[isMine="no"]')
             .style('display', 'none')
-
-            .selector('node[behavior="up"]')
-            .style('border-color', '#8E24AA')
-            .style('background-color', '#E1BEE7')
-
-            .selector('node[behavior="down"]')
-            .style('border-color', '#43A047')
-            .style('background-color', '#C8E6C9')
-
+            // ====================================================
+            // NODES ==============================================
+            .selector('node')
+            .style('padding-relative-to', 'width')
+            // Node Labels: Top
+            .selector('node[vertPos="top"]')
+            .style('text-valign','top')
+            // Node Labels: Bottom
+            .selector('node[vertPos="bottom"]')
+            .style('text-valign','bottom')
+            // Node Labels: Right
+            .selector('node[horPos="right"]')
+            .style('text-halign','right')
+            // Node Labels: Left
+            .selector('node[horPos="left"]')
+            .style('text-halign','left')
+            // Nodes: type == 1
             .selector('node[shape=1]')
             .style('shape', 'ellipse')
             .style('background-image', 'url("{% static "network_identity/circle.png" %}")')
-            .style('background-fit', 'cover cover')
-
+            .style('background-image-opacity', '0.7')
+            .style('background-fit', 'contain')
+            // Nodes: type == 2
             .selector('node[shape=2]')
             .style('shape', 'ellipse')
             .style('background-image', 'url("{% static "network_identity/triangle.png" %}")')
-            .style('background-fit', 'cover cover')
-
+            .style('background-image-opacity', '0.7')
+            .style('background-fit', 'contain')
+            // Nodes: type == 3
             .selector('node[shape=3]')
             .style('shape', 'triangle')
             .style('background-image', 'url("{% static "network_identity/circle.png" %}")')
-            .style('background-fit', 'cover cover')
-
+            .style('background-image-opacity', '0.7')
+            .style('background-fit', 'contain')
+            // Nodes: type == 4
             .selector('node[shape=4]')
             .style('shape', 'triangle')
             .style('background-image', 'url("{% static "network_identity/triangle.png" %}")')
-            .style('background-fit', 'cover cover')
-
+            .style('background-image-opacity', '0.7')
+            .style('background-fit', 'contain')
+            // My Node
             .selector('node[isMine="yes"]')
-            .style('width', '50px')
-            .style('height', '50px')
+            .style('width', '35px')
+            .style('height', '35px')
+            .style('background-color', '#FAFAFA')
             .style('border-width', '5')
             .style('font-size','25pt')
             .style('color','#455A64')
-
+            // NOT My Node
             .selector('node[isMine="no"]')
-            .style('border-width', '2')
+            .style('border-width', '3')
+            .style('background-color', '#FAFAFA')
             .style('font-size','15')
             .style('color','#607D8B')
-
-            .selector('edge[linkStyle="target"]')
-            .style('line-color', '#78909C')
-
+            // ====================================================
+            // BEHAVIOR ===========================================
+            // Choice == 1
+            .selector('node[behavior="up"]')
+            .style('border-color', '#8E24AA')
+                // .style('background-color', '#E1BEE7')
+            // Choice == 0
+            .selector('node[behavior="down"]')
+            .style('border-color', '#43A047')
+                // .style('background-color', '#C8E6C9')
+            // ====================================================
             .update() // update the elements in the graph with the new style
         ;
 

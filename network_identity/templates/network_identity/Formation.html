@@ -32,7 +32,7 @@
         <h4 class="text-center"> Connections </h4>
       </div>
       <div class="col-sm-9 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
-           <p class="text-center"> There are <b style='color: #B3E5FC'>6 &#9711</b> and <b style='color: #B3E5FC'>5 &#9651</b> in your group. </p>
+           <p class="text-center"> There are <b style='color: #B3E5FC'> {{ group.total_circles }} &#9711</b> and <b style='color: #B3E5FC'> {{ group.total_triangles }} &#9651</b> in your group. </p>
       </div>
     </div>
     <div class="row">
@@ -80,20 +80,23 @@
                 else {
                     value.data.isMine = 'no'
                 }
-                if ( value.group === 'nodes' && value.data.shape == 1)
-                {
-                    value.data.myType = '1'
-                }
-                if  ( value.group === 'nodes' && value.data.shape == 2)
-                {
-                    value.data.myType = '2'
-                }
-                if  ( value.group === 'nodes' && value.data.shape == 3)
-                {
-                    value.data.myType = '3'
+                if ( (value.group === 'nodes' && value.data.name == 1) || (value.group === 'nodes' && value.data.name == 2) ||
+                        (value.group === 'nodes' && value.data.name == 3) || (value.group === 'nodes' && value.data.name == 10) ||
+                        (value.group === 'nodes' && value.data.name == 11)
+                ) {
+                    value.data.vertPos = 'top'
                 }
                 else {
-                    value.data.myType = '4'
+                    value.data.vertPos = 'bottom'
+                }
+                if ( (value.group === 'nodes' && value.data.name == 1) || (value.group === 'nodes' && value.data.name == 2) ||
+                        (value.group === 'nodes' && value.data.name == 3) || (value.group === 'nodes' && value.data.name == 4) ||
+                        (value.group === 'nodes' && value.data.name == 5) || (value.group === 'nodes' && value.data.name == 6)
+                ) {
+                    value.data.horPos = 'right'
+                }
+                else {
+                    value.data.horPos = 'left'
                 }
                 return value
             });
@@ -110,43 +113,62 @@
         // Centra en el nodo pero no con los demás al rededor
 
         cy.style()
+            // NODES ==============================================
+            .selector('node')
+            .style('padding-relative-to', 'width')
+            // Node Labels: Top
+            .selector('node[vertPos="top"]')
+            .style('text-valign','top')
+            // Node Labels: Bottom
+            .selector('node[vertPos="bottom"]')
+            .style('text-valign','bottom')
+            // Node Labels: Right
+            .selector('node[horPos="right"]')
+            .style('text-halign','right')
+            // Node Labels: Left
+            .selector('node[horPos="left"]')
+            .style('text-halign','left')
+            // Nodes: type == 1
             .selector('node[shape=1]')
             .style('shape', 'ellipse')
             .style('background-image', 'url("{% static "network_identity/circle.png" %}")')
-            .style('background-fit', 'cover cover')
-
+            .style('background-image-opacity', '0.7')
+            .style('background-fit', 'contain')
+            // Nodes: type == 2
             .selector('node[shape=2]')
             .style('shape', 'ellipse')
             .style('background-image', 'url("{% static "network_identity/triangle.png" %}")')
-            .style('background-fit', 'cover cover')
-
+            .style('background-image-opacity', '0.7')
+            .style('background-fit', 'contain')
+            // Nodes: type == 3
             .selector('node[shape=3]')
             .style('shape', 'triangle')
             .style('background-image', 'url("{% static "network_identity/circle.png" %}")')
-            .style('background-fit', 'cover cover')
-
+            .style('background-image-opacity', '0.7')
+            .style('background-fit', 'contain')
+            // Nodes: type == 4
             .selector('node[shape=4]')
             .style('shape', 'triangle')
             .style('background-image', 'url("{% static "network_identity/triangle.png" %}")')
-            .style('background-fit', 'cover cover')
-
+            .style('background-image-opacity', '0.7')
+            .style('background-fit', 'contain')
+            // My Node
             .selector('node[isMine="yes"]')
-            .style('width', '50px')
-            .style('height', '50px')
+            .style('width', '35px')
+            .style('height', '35px')
             .style('background-color', '#B3E5FC')
-            .style('border-width', '5')
+            .style('border-width', '4')
             .style('border-color', '#455A64')
             .style('font-size','25pt')
             .style('color','#455A64')
-
+            // NOT My Node
             .selector('node[isMine="no"]')
-            .style('background-color', '#FAFAFA')
             .style('border-width', '2')
             .style('border-color', '#607D8B')
+            .style('background-color', '#FAFAFA')
             .style('font-size','15')
             .style('color','#607D8B')
-
-
+            // ====================================================
             .update() // update the elements in the graph with the new style
         ;
 

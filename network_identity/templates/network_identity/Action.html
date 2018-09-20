@@ -86,20 +86,23 @@
                 if (value.group === 'edges' && value.data.target == player_id) {
                     value.data.linkStyle = 'target'
                 }
-                if ( value.group === 'nodes' && value.data.shape == 1)
-                {
-                    value.data.myType = '1'
-                }
-                if  ( value.group === 'nodes' && value.data.shape == 2)
-                {
-                    value.data.myType = '2'
-                }
-                if  ( value.group === 'nodes' && value.data.shape == 3)
-                {
-                    value.data.myType = '3'
+                if ( (value.group === 'nodes' && value.data.name == 1) || (value.group === 'nodes' && value.data.name == 2) ||
+                        (value.group === 'nodes' && value.data.name == 3) || (value.group === 'nodes' && value.data.name == 10) ||
+                        (value.group === 'nodes' && value.data.name == 11)
+                ) {
+                    value.data.vertPos = 'top'
                 }
                 else {
-                    value.data.myType = '4'
+                    value.data.vertPos = 'bottom'
+                }
+                if ( (value.group === 'nodes' && value.data.name == 1) || (value.group === 'nodes' && value.data.name == 2) ||
+                        (value.group === 'nodes' && value.data.name == 3) || (value.group === 'nodes' && value.data.name == 4) ||
+                        (value.group === 'nodes' && value.data.name == 5) || (value.group === 'nodes' && value.data.name == 6)
+                ) {
+                    value.data.horPos = 'right'
+                }
+                else {
+                    value.data.horPos = 'left'
                 }
                 return value
             });
@@ -116,55 +119,88 @@
         // Centra en el nodo pero no con los demás al rededor
 
         cy.style()
+            // LINKS ==============================================
             .selector('edge')
             .style('line-color', '#607D8B')
             .style('source-endpoint', 'inside-to-node')
             .style('target-distance-from-node', '7px')
-            .style("target-arrow-shape", "vee")
-            .style("target-arrow-color", "#607D8B")
-            .style("curve-style", 'bezier')
-            .style('width', '1')
-
+            // My Links
             .selector('edge[isMine="yes"]')
             .style('line-color', '#455A64')
+            .style("target-arrow-shape", "triangle")
+            .style('arrow-scale','1')
             .style("target-arrow-color", "#455A64")
+            .style("curve-style", 'bezier')
+            .style('target-distance-from-node', '8px')
             .style('width', '4')
-
-            .selector('edge[linkStyle="target"]')
+            // My Links: In-degree
+            .selector('edge[linkStyle="source"]')
+            .style("target-arrow-color", "#455A64")
             .style('line-color', '#78909C')
-
+            // NOT My Links
+            .selector('edge[isMine="no"]')
+            .style("target-arrow-shape", "vee")
+            .style('arrow-scale','0.5')
+            .style("target-arrow-color", "#607D8B")
+            .style("curve-style", 'bezier')
+            .style('width', '0.25')
+            // ====================================================
+            // NODES ==============================================
             .selector('node')
             .style('padding-relative-to', 'width')
-
+            // Node Labels: Top
+            .selector('node[vertPos="top"]')
+            .style('text-valign','top')
+            // Node Labels: Bottom
+            .selector('node[vertPos="bottom"]')
+            .style('text-valign','bottom')
+            // Node Labels: Right
+            .selector('node[horPos="right"]')
+            .style('text-halign','right')
+            // Node Labels: Left
+            .selector('node[horPos="left"]')
+            .style('text-halign','left')
+            // Nodes: type == 1
             .selector('node[shape=1]')
             .style('shape', 'ellipse')
-
+            .style('background-image', 'url("{% static "network_identity/circle.png" %}")')
+            .style('background-image-opacity', '0.7')
+            .style('background-fit', 'contain')
+            // Nodes: type == 2
             .selector('node[shape=2]')
             .style('shape', 'ellipse')
-
+            .style('background-image', 'url("{% static "network_identity/triangle.png" %}")')
+            .style('background-image-opacity', '0.7')
+            .style('background-fit', 'contain')
+            // Nodes: type == 3
             .selector('node[shape=3]')
             .style('shape', 'triangle')
-
+            .style('background-image', 'url("{% static "network_identity/circle.png" %}")')
+            .style('background-image-opacity', '0.7')
+            .style('background-fit', 'contain')
+            // Nodes: type == 4
             .selector('node[shape=4]')
             .style('shape', 'triangle')
-
+            .style('background-image', 'url("{% static "network_identity/triangle.png" %}")')
+            .style('background-image-opacity', '0.7')
+            .style('background-fit', 'contain')
+            // My Node
             .selector('node[isMine="yes"]')
-            .style('width', '50px')
-            .style('height', '50px')
+            .style('width', '35px')
+            .style('height', '35px')
             .style('background-color', '#B3E5FC')
-            .style('border-width', '5')
+            .style('border-width', '4')
             .style('border-color', '#455A64')
             .style('font-size','25pt')
             .style('color','#455A64')
-
+            // NOT My Node
             .selector('node[isMine="no"]')
-            .style('background-color', '#FAFAFA')
             .style('border-width', '2')
             .style('border-color', '#607D8B')
+            .style('background-color', '#FAFAFA')
             .style('font-size','15')
             .style('color','#607D8B')
-
-
+            // ====================================================
             .update() // update the elements in the graph with the new style
         ;
 

@@ -16,17 +16,17 @@ Network Identity
 class Constants(BaseConstants):
     name_in_url = 'network_identity'
     num_rounds = 2
-    players_per_group = 2
 
     circle = 1 # Majority
     triangle = 0 # Minority
-    # names_1 = ['1','2','3','4','5','6','7','8','9','10','11']
+    names = ['1','2','3','4','5','6','7','8','9','10','11']
     # names_2 = ['5','7','9','11','2','4','6','8','10','1','3']
-    names = ['1', '2']
+    # names = ['1', '2']
     attribute = [0,1,1,0,1,0,1,1,1,0,0]
     attributes = {'1': 0, '2': 1, '3': 1, '4': 0, '5': 1, '6': 0, '7': 1, '8': 1, '9': 1, '10': 0, '11': 0}
     # visible = 1
     # invisible = 0
+    players_per_group = len(names)
 
 class Subsession(BaseSubsession):
     def creating_session(self):
@@ -44,11 +44,16 @@ class Subsession(BaseSubsession):
             if p.given_symbol == 1 and p.given_preference == 1:
                 p.given_type = 1  # circle-circle
                 p.chosen_type = 1
+                p.is_circle = 1
             else:
                 p.given_type = 4 # triangle-triangle
                 p.chosen_type = 4
+                p.is_circle = 0
+
 
 class Group(BaseGroup):
+    total_circles = models.IntegerField()
+    total_triangles = models.IntegerField()
     network_data = models.LongStringField()
 
     def displaying_network(self):
@@ -70,22 +75,17 @@ class Group(BaseGroup):
             edges.extend(
                 [{'data': {'id': p.name + i, 'source': p.name, 'target': i}, 'group': 'edges'} for i in friends])
 
-
-        #
-        # for receiver in players
-        #   prop_received = []
-        #   for proposer in players:
-        #      if propser != sender:
-        #         if receiver in proposer.friends:
-        #              prop_received.append(proposer.name)
-        #   receiver.props_from = str(prop_received)
-
         elements = nodes + edges
         style = [{'selector': 'node', 'style': {'content': 'data(name)'}}]
         self.network_data = json.dumps({'elements': elements,
                                         'style': style,
                                         })
 
+    def summing_types(self):
+        players = self.get_players()
+        circles = [p.is_circle for p in players]
+        self.total_circles = sum(circles)
+        self.total_triangles = len(Constants.names)-self.total_circles
 
 class Player(BasePlayer):
     given_symbol = models.BooleanField()
@@ -94,6 +94,7 @@ class Player(BasePlayer):
     # chosen_preference = models.BooleanField()  # circle or triangle chosen endogenously
     given_type = models.IntegerField() # combination of symbol and preference
     chosen_type = models.IntegerField() # combination of symbol and preference
+    is_circle = models.IntegerField()
     action = models.BooleanField() # Reported belief on P3's verification
 
     # # Symbol Assignation
