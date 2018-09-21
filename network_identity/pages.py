@@ -25,6 +25,7 @@ class Formation(Page):
 class BeforeActionWP(WaitPage):
     def after_all_players_arrive(self):
         self.group.forming_network()
+        self.group.calculate_props_from() # una vez generada la red, calculo las props from
 
 
 class Action(Page):
