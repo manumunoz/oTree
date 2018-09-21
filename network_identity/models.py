@@ -21,12 +21,12 @@ class Constants(BaseConstants):
     triangle = 0 # Minority
     names = ['1','2','3','4','5','6','7','8','9','10','11']
     # names_2 = ['5','7','9','11','2','4','6','8','10','1','3']
-    names = ['1', '2', '3']
+    # names = ['1', '2', '3']
     attribute = [0,1,1,0,1,0,1,1,1,0,0]
     attributes = {'1': 0, '2': 1, '3': 1, '4': 0, '5': 1, '6': 0, '7': 1, '8': 1, '9': 1, '10': 0, '11': 0}
     # visible = 1
     # invisible = 0
-    players_per_group = 3 #len(names)
+    players_per_group = len(names)
 
 class Subsession(BaseSubsession):
     def creating_session(self):

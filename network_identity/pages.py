@@ -52,7 +52,6 @@ class TypeChoice(Page):
 # self.cooperate == self.in_round(self.round_number - 1).cooperate_bot
 
 page_sequence = [
-    # Welcome,
     BeforeFormationWP,
     Formation,
     BeforeActionWP,
