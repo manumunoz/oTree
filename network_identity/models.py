@@ -19,9 +19,11 @@ class Constants(BaseConstants):
 
     circle = 1 # Majority
     triangle = 0 # Minority
-    names = ['1','2','3','4','5','6','7','8','9','10','11']
-    # names_2 = ['5','7','9','11','2','4','6','8','10','1','3']
-    # names = ['1', '2', '3']
+    # names = ['1','2','3','4','5','6','7','8','9','10','11']
+    #mnames = ['5','7','9','11','2','4','6','8','10','1','3']
+    position = {'1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, '10': 10, '11': 11}
+    # use "position" to assign node position in the circle layout, independent of the node's name
+    names = ['1', '2', '3']
     attribute = [0,1,1,0,1,0,1,1,1,0,0]
     attributes = {'1': 0, '2': 1, '3': 1, '4': 0, '5': 1, '6': 0, '7': 1, '8': 1, '9': 1, '10': 0, '11': 0}
     # visible = 1
@@ -58,7 +60,7 @@ class Group(BaseGroup):
 
     def displaying_network(self):
         nodes = [{'data': {'id': i, 'name': i, 'action': self.get_player_by_id(i).action, 'shape': self.get_player_by_id(i).chosen_type,
-                           'attribute': Constants.attributes[i]},  'group': 'nodes'} for i in Constants.names]
+                           'attribute': Constants.attributes[i], 'position': Constants.position[i]}, 'group': 'nodes'} for i in Constants.names]
         edges = []
         elements = nodes + edges
         style = [{'selector': 'node', 'style': {'content': 'data(name)'}}]
@@ -68,7 +70,7 @@ class Group(BaseGroup):
 
     def forming_network(self):
         nodes = [{'data': {'id': i, 'name': i, 'action': self.get_player_by_id(i).action, 'shape': self.get_player_by_id(i).chosen_type,
-                           'attribute': Constants.attributes[i]}, 'group': 'nodes'} for i in Constants.names]
+                           'attribute': Constants.attributes[i], 'position': Constants.position[i]}, 'group': 'nodes'} for i in Constants.names]
         edges = []
         for p in self.get_players():
             friends = json.loads(p.friends)
@@ -89,10 +91,19 @@ class Group(BaseGroup):
     def calculate_props_from(self):
         for player_to in self.get_players():
             for player_from in self.get_players():
+                # for player_tie in self.get_players():
                 prop = False
+                # link = False
                 if player_from.name != player_to.name: # si no soy yo mismo
                     prop = bool(getattr(player_from, 'prop_to_' + player_to.name)) # cojo el valor de la propuesta
                 setattr(player_to, 'prop_from_' + player_from.name, prop) # la añado a prop_from_X
+                # link = bool(getattr(player_tie, 'prop_to_' + player_to.name * 'prop_to_' + player_from.name))
+                # setattr(player_tie, 'link_' + player_tie.name, link) # la añado a prop_from_X
+
+
+
+
+    # CREATE LINKS HERE!!!
 
     def summing_types(self):
         players = self.get_players()
@@ -102,6 +113,7 @@ class Group(BaseGroup):
 
 
 # noinspection PyPackageRequirements
+
 class Player(BasePlayer):
     given_symbol = models.BooleanField()
     # chosen_symbol = models.BooleanField()
@@ -111,6 +123,14 @@ class Player(BasePlayer):
     chosen_type = models.IntegerField() # combination of symbol and preference
     is_circle = models.IntegerField()
     action = models.BooleanField() # Reported belief on P3's verification
+
+    def calculate_links(self):
+        for i in Constants.names:
+            if self.prop_to_[i] == True and self.prop_from_[i] == True:
+                self.link_[i] = True
+            else:
+                self.link_[i] = False
+
 
     # # Symbol Assignation
     # def assign_values(self):
@@ -145,9 +165,12 @@ class Player(BasePlayer):
     name = models.StringField()
     friends = models.LongStringField()
 
-
 for i in Constants.names:
     Player.add_to_class(i, models.BooleanField(widget=widgets.CheckboxInput, blank=True))
     # Añado a Player las variables de propuestas con friendly names que luego rellenaremos
     Player.add_to_class('prop_to_' + i,  models.BooleanField(initial=0))
     Player.add_to_class('prop_from_' + i,  models.BooleanField(initial=0))
+    Player.add_to_class('link_' + i,  models.BooleanField(initial=0))
+    Player.add_to_class('action' + i,  models.BooleanField(initial=0))
+
+

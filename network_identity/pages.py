@@ -21,7 +21,6 @@ class Formation(Page):
     def before_next_page(self):
         self.player.friends = json.dumps([i.name for i in self.player.get_others_in_group() if getattr(self.player, i.name)])
 
-
 class BeforeActionWP(WaitPage):
     def after_all_players_arrive(self):
         self.group.forming_network()
@@ -34,6 +33,9 @@ class Action(Page):
 
     def vars_for_template(self):
         self.group.forming_network()
+
+    # def before_next_page(self):
+    #     self.player.calculate_links()
 
 
 class BeforeResultsWP(WaitPage):
@@ -50,6 +52,7 @@ class TypeChoice(Page):
     form_model = 'player'
     form_fields = ['chosen_preference']
 # self.cooperate == self.in_round(self.round_number - 1).cooperate_bot
+
 
 page_sequence = [
     BeforeFormationWP,

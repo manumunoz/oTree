@@ -17,11 +17,11 @@
       <div class="col-sm-12 border" style='background-color: #F8F8FF;'>
         <p>
             <br>
-            At the beginning of each round, all participants are randomly assigned to groups of size <b>11</b>.
+            At the beginning of each round, all participants are randomly assigned to groups of size <b>{{ Constants.names }}</b>.
             You will be in a group with the same people for all the experiment.
             <br><br>
             Each participant is assigned a label (1 to 11), and an internal and an external symbol. You will be informed
-            of your label and your symbols on the top of the screen (see header below), which will not change during the
+            of your label and your symbols on the top of the screen (see illustration below), which will not change during the
             10 rounds of Part 1.
         </p>
           <img width="100%" src="{% static "instructions/Img_Inst_10_Header.jpg" %}"/>
@@ -29,9 +29,9 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-12 border" style='background-color: #F8F8FF;'>
+      <div class="col-sm-12 border" style='background-color: #ffffff;'>
         <p>
-            <b>Each round in Part 1 consists of 3 phases, as illustrated below. Each of these phases is explained in the
+            <b>Each round in Part 1 consists of 3 phases. This is illustrated below and explained in the
                 following screens.</b>
         </p>
       </div>
@@ -52,29 +52,35 @@
           <h4>3. Results</h4>
           <p>Participants observe who of their connections chose the same action, and earn points for it.</p>
             <img width="85%" src="{% static "instructions/Img_Inst_9.jpeg" %}"/>
-          <br>
-            <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Continue </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 border" style='background-color: #ffffff;'>
+          <p><br></p>
       </div>
     </div>
 </div>
+
 <div class="container">
     <div class="row">
       <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
-          <h4>Comprehension Questions:</h4>
+          <h4>Comprehension Questions</h4>
+          <p><b style='color: #B3E5FC'>Please answer the following questions:</b></p>
           <p>
-          1. How many participants are in your group:
-          - Only myself
-          - 11 including myself
-          - 6 including myself
-          2. You will be assigned an internal and an external symbol. How often does your symbol change?
-          - It changes in every round
-          - It is fixed and does not change
-          - I can change it whenever I want to
-          3. How many phases are in each round:
-          - 1 phase
-          - 2 phases
-          - 3 phases
+            <b>1. How many participants are in your group?</b>
+            <br>
+            <small>{% formfield player.participants label="" %}</small>
+            <br>
+            <b>2. You will be assigned an internal and an external symbol. How often do your symbols change?</b>
+            <br>
+            <small>{% formfield player.change label="" %}</small>
+            <br>
+            <b>3. How many phases are in each round?</b>
+            <br>
+            <small>{% formfield player.phases label="" %}</small>
           </p>
+                    <br>
+            <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Continue </button>
       </div>
     </div>
 </div>

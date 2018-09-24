@@ -7,7 +7,24 @@ class WelcomeInst(Page):
     pass
 
 class PartOneInst(Page):
-    pass
+    form_model = 'player'
+    form_fields = ['participants', 'change', 'phases']
+
+    def participants_error_message(self, value):
+        print('value is', value)
+        if value != 2:
+            return 'You will participate with 10 other players plus yourself'
+
+    def change_error_message(self, value):
+        print('value is', value)
+        if value != 1:
+            return 'In Part 1 your symbols are fixed for all 10 rounds'
+
+    def phases_error_message(self, value):
+        print('value is', value)
+        if value != 3:
+            return 'The phases in each round are: connections, action and results'
+
 
 class LinkingInst(Page):
     pass
