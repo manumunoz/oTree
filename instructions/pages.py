@@ -8,37 +8,44 @@ class WelcomeInst(Page):
 
 class PartOneInst(Page):
     form_model = 'player'
-    form_fields = ['participants', 'change', 'phases']
+    form_fields = ['change']
 
-    def participants_error_message(self, value):
+    def change_error_message(self, value):
+        # print('value is', value)
+        if value != 1:
+            return 'In Part 1 your symbols are fixed for all 10 rounds'
+
+
+class LinkingInst(Page):
+    form_model = 'player'
+    form_fields = ['change']
+
+    def change_error_message(self, value):
         print('value is', value)
-        if value != 2:
-            return 'You will participate with 10 other players plus yourself'
+        if value != 1:
+            return 'In Part 1 your symbols are fixed for all 10 rounds'
+# proposals: directed but only count if reciprocal
+
+class ActionInst(Page):
+    form_model = 'player'
+    form_fields = ['change']
 
     def change_error_message(self, value):
         print('value is', value)
         if value != 1:
             return 'In Part 1 your symbols are fixed for all 10 rounds'
 
-    def phases_error_message(self, value):
-        print('value is', value)
-        if value != 3:
-            return 'The phases in each round are: connections, action and results'
-
-
-class LinkingInst(Page):
-    pass
-
-# proposals: directed but only count if reciprocal
-
-class ActionInst(Page):
-    pass
-
 # action: two options and you earn points depending on your choice and the choice of your connections.
 # You are not affected by someone else's choice of she is not a connection
 
-class EarningsInst(Page):
-    pass
+class ResultsInst(Page):
+    form_model = 'player'
+    form_fields = ['change']
+
+    def change_error_message(self, value):
+        print('value is', value)
+        if value != 1:
+            return 'In Part 1 your symbols are fixed for all 10 rounds'
 
 # You get points of you choose the same as your connections (coordinate) and you loose points if you loose points if
 # you miscoordinate. Circles earn 4 or 2, etc
@@ -59,4 +66,6 @@ page_sequence = [
     WelcomeInst,
     PartOneInst,
     LinkingInst,
+    ActionInst,
+    ResultsInst,
 ]

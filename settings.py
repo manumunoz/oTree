@@ -178,12 +178,12 @@ SESSION_CONFIGS = [
     #     'num_demo_participants': 4,
     #     'app_sequence': ['networx_custom'],
     # },
-    {
-        'name': 'net_formation',
-        'display_name': "net_formation",
-        'num_demo_participants': 1,
-        'app_sequence': ['net_formation'],
-    },
+    # {
+    #     'name': 'net_formation',
+    #     'display_name': "net_formation",
+    #     'num_demo_participants': 1,
+    #     'app_sequence': ['net_formation'],
+    # },
     {
         'name': 'diversity',
         'display_name': "Diversity",

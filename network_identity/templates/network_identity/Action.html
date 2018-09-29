@@ -32,16 +32,16 @@
         <h4 class="text-center"> Action </h4>
       </div>
       <div class="col-sm-9 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
-           <p class="text-center"> There are <b style='color: #B3E5FC'>6 &#9711</b> and <b style='color: #B3E5FC'>5 &#9651</b> in your group. </p>
+           <p class="text-center"> In your group the inner symbols are: <b style='color: #B3E5FC'> {{ group.total_circles }} &#9711</b> and <b style='color: #B3E5FC'> {{ group.total_triangles }} &#9651</b>. </p>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-3 border border-dark text-white rounded p-3 mb-1" style='background-color: #607D8B;'>
         <p>Choose an action:</p>
         <div>
-            <button name="action" value="True" class="btn button1 btn-large"> Arriba </button>
+            <button name="action" value="1" class="btn button1 btn-large"> Arriba </button>
             <br><br>
-            <button name="action" value="False" class="btn button2 btn-large"> Abajo </button>
+            <button name="action" value="0" class="btn button2 btn-large"> Abajo </button>
         </div>
       </div>
       <div class="col-sm-9 border border-dark rounded p-3 mb-1" style='background-color: #F8F8FF;'>

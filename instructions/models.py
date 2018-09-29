@@ -17,6 +17,9 @@ class Constants(BaseConstants):
     num_rounds = 1
     min_pay = 10000
     names = 11
+    link_cost = 2
+    liked_gain = 6
+    disliked_gain = 4
 
 class Subsession(BaseSubsession):
     pass

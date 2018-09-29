@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
-        <h2> Phase 1: Connections </h2>
+        <h2> Phase 2: Action </h2>
       </div>
     </div>
 </div>
@@ -15,16 +15,16 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-12 border" style='background-color: #F8F8FF;'>
-        <p>
             <br>
-            In this phase you choose <b>whom you want to propose a connection to</b>. You can propose
-            between 0 and 10 connections (to all others in your group).
+            In this phase you will choose an action: <b style="color: #8E24AA">Up</b> or <b style="color: #43A047">Down</b>.
             <br><br>
-            If you propose to a participant who also proposes to you, then there will be an
-            <b>active</b> connection between the two of you.
+          You can get points for every participant choosing the <b>same</b> action as you (coordinate), but only if there
+          is an <b>active connection</b> between the two of you (you proposed to each other in Phase 1).
             <br><br>
-            In each round you will only participate with your active connections and you will pay a cost for each active
-            connection you have.
+          The number of points you earn depends on your <b>internal symbol</b> and the <b>action</b> you choose. This is
+            explained below.
+            <br>
+
         </p>
       </div>
     </div>
@@ -42,10 +42,32 @@
             <img width="100%"  src="{% static "instructions/Img_Inst_10_Link.jpg" %}"/>
       </div>
       <div class="col-sm-4 border border-dark text-white rounded" style='background-color: #455A64;'>
-          <p><b style='color: #B3E5FC'>#1.</b> The phase you are in.</p>
-          <p><b style='color: #B3E5FC'>#2.</b> The participants in your group with internal symbol &#9711 or &#9651</p>
-          <p style='color: #ffddf3'><b style='color: #B3E5FC'>#3.</b> You will have to click on the number for each player you want to propose a connection to. </p>
-          <p><b style='color: #B3E5FC'>#4.</b> You can see the label and symbols of each player in your group. Yours will be larger. </p>
+          <p><b style='color: #B3E5FC'>#1.</b> You will see which active connections you formed in Phase 1.
+              <br><br>
+              - A darker line from you with an arrow pointing to another participant is a connection you proposed
+              <br><br>
+              - A lighter line with an arrow pointing towards you is a connection that another participant proposed to you
+              <br><br>
+              -An <b style='color: #B3E5FC'>active connection</b> with another participant is formed if both of you proposed to each other
+          </p>
+          <p style='color: #ffffff'><b style='color: #B3E5FC'>#2.</b> You will have to click on the action you want to choose:
+              <b style='color: #E1BEE7'> Up </b> or <b style='color: #C8E6C9'> Down </b>
+          </p>
+          <!--<p>-->
+          <!--For each coordination you get:-->
+          <!--<br>-->
+           <!--If your internal symbol is <b style='color: #B3E5FC'> &#9711</b>:-->
+           <!--<br>-->
+              <!-- - <b>{{ Constants.liked_gain }}</b> if you choose <b style="color: #8E24AA">Up</b>-->
+           <!--<br>-->
+              <!-- - <b>{{ Constants.disliked_gain }}</b> if you choose <b style="color: #43A047">Down</b>-->
+           <!--<br><br>-->
+           <!--If your internal symbol is <b style='color: #B3E5FC'> &#9651</b>, for every coordination you earn:-->
+           <!--<br>-->
+              <!-- - <b>{{ Constants.liked_gain }}</b> if you choose <b style="color: #43A047">Down</b>-->
+           <!--<br>-->
+              <!-- - <b>{{ Constants.disliked_gain }}</b> if you choose <b style="color: #8E24AA">Up</b>-->
+          <!--</p>-->
       </div>
     </div>
     <div class="row">

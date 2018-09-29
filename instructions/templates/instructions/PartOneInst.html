@@ -17,69 +17,56 @@
       <div class="col-sm-12 border" style='background-color: #F8F8FF;'>
         <p>
             <br>
-            At the beginning of each round, all participants are randomly assigned to groups of size <b>{{ Constants.names }}</b>.
-            You will be in a group with the same people for all the experiment.
+            At the beginning of the experiment, all participants are randomly assigned to groups of size
+            <b>{{ Constants.names }}</b>. You will be in a group with the same people for all the experiment.
             <br><br>
-            Each participant is assigned a label (1 to 11), and an internal and an external symbol. You will be informed
-            of your label and your symbols on the top of the screen (see illustration below), which will not change during the
-            10 rounds of Part 1.
+            Each participant is assigned a label (1 to {{ Constants.names }}), and an internal and an external symbol (&#9711 or &#9651),
+            which will not change during the 10 rounds of Part 1.
+            <br><br>
+            You will see your label and your symbols on the header at the top of each screen. The example below is the
+            header for Player 1.
         </p>
           <img width="100%" src="{% static "instructions/Img_Inst_10_Header.jpg" %}"/>
           <br>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12 border" style='background-color: #ffffff;'>
         <p>
-            <b>Each round in Part 1 consists of 3 phases. This is illustrated below and explained in the
-                following screens.</b>
+            Each round in Part 1 consists of 3 phases (see below), which are explained in the following screens.
         </p>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-4 border " style='background-color: #ffffff;'>
-          <h4>1. Connections</h4>
+          <h5>1. Connections</h5>
           <p>Participants can propose connections to each other.</p>
           <br>
             <img width="85%" src="{% static "instructions/Img_Inst_7.jpeg" %}"/>
       </div>
       <div class="col-sm-4 border " style='background-color: #ffffff;'>
-          <h4>2. Action</h4>
+          <h5>2. Action</h5>
           <p>Each participant observes the connections made and choose an action: Up or Down.</p>
             <img width="85%" src="{% static "instructions/Img_Inst_8.jpeg" %}"/>
       </div>
       <div class="col-sm-4 border " style='background-color: #ffffff;'>
-          <h4>3. Results</h4>
-          <p>Participants observe who of their connections chose the same action, and earn points for it.</p>
+          <h5>3. Results</h5>
+          <p>Participants observe which of their connections chose the same action, and earn points for it.</p>
             <img width="85%" src="{% static "instructions/Img_Inst_9.jpeg" %}"/>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-12 border" style='background-color: #ffffff;'>
-          <p><br></p>
+      <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
+          <h4>Comprehension Question</h4>
+          <p style='color: #B3E5FC'>Please answer the following question:</p>
       </div>
     </div>
 </div>
 
 <div class="container">
     <div class="row">
-      <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
-          <h4>Comprehension Questions</h4>
-          <p><b style='color: #B3E5FC'>Please answer the following questions:</b></p>
+      <div class="col-sm-12 border" style='background-color: #F8F8FF;'>
           <p>
-            <b>1. How many participants are in your group?</b>
-            <br>
-            <small>{% formfield player.participants label="" %}</small>
-            <br>
-            <b>2. You will be assigned an internal and an external symbol. How often do your symbols change?</b>
+            <b>1. You will be assigned an internal and an external symbol. How often do your symbols change?</b>
             <br>
             <small>{% formfield player.change label="" %}</small>
-            <br>
-            <b>3. How many phases are in each round?</b>
-            <br>
-            <small>{% formfield player.phases label="" %}</small>
           </p>
-                    <br>
             <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Continue </button>
       </div>
     </div>
