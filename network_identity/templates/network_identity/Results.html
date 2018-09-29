@@ -31,28 +31,30 @@
         <h4 class="text-center"> Results </h4>
       </div>
       <div class="col-sm-9 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
-           <p class="text-center"> There are <b style='color: #B3E5FC'>6 &#9711</b> and <b style='color: #B3E5FC'>5 &#9651</b> in your group. </p>
+           <p class="text-center"> In your group the inner symbols are: <b style='color: #B3E5FC'> {{ group.total_circles }} &#9711</b> and <b style='color: #B3E5FC'> {{ group.total_triangles }} &#9651</b>. </p>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-3 border border-dark text-white rounded p-3 mb-1" style='background-color: #607D8B;'>
         <div>
             {% if player.action == 1 %}
-                You chose action
+                Your action
                 <h4 style="color: #E1BEE7">Arriba</h4>
             {% else %}
-                You chose action
+                Your action
                 <h4 style="color: #C8E6C9">Abajo</h4>
             {% endif %}
-            and coordinated with <b style='color: #B3E5FC'> X</b> of your <b style='color: #B3E5FC'> Y </b> active
-            connections.
 
-            <br><br>
+            Your active connections:
+                <h4 style='color: #B3E5FC'> {{ player.degree }}</h4>
 
-            You earn <b style='color: #B3E5FC'>$$$ </b> for your coordinations and pay a cost of
-            <b style='color: #B3E5FC'> C </b> for your active links. In this round you earn:
-            <br><br>
-            <h2 style='color: #B3E5FC'>$$$ points</h2>
+            Your coordinations (including yourself):
+                <h4 style='color: #B3E5FC'> {{ player.coordination_score }}</h4>
+            In this round you earn:
+                <h2 style='color: #B3E5FC'>{{ player.round_gains }} points</h2>
+
+            (<b style='color: #B3E5FC'> {{ player.coordination_gains }} </b> for your coordinations
+            minus <b style='color: #B3E5FC'> {{ player.linking_costs }} </b> for the cost of your active connections)
             <br><br>
                 <button type="otree-btn-next" class="btn button btn-md"> Continue </button>
         </div>
@@ -99,7 +101,7 @@
                 if (value.group === 'edges' && value.data.target == player_id) {
                     value.data.linkStyle = 'target'
                 }
-                if (value.group === 'nodes' && value.data.action == true) {
+                if (value.group === 'nodes' && value.data.action == 1) {
                     value.data.behavior = 'up'
                 }
                 else {
