@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
-          <h2> You are player <b style='color: #B3E5FC'> {{ player.name }}</b>.</h2>
+          <h2> You are player <b style='color: #B3E5FC'> {{ player.name }}</b></h2>
             <h6>
                 {% if player.chosen_type == 1 %}
                 Your internal symbol is <b style='color: #B3E5FC'>&#9711</b> and your external symbol is <b style='color: #B3E5FC'>&#9711</b>
@@ -29,7 +29,7 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-3 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
-        <h4 class="text-center"> Action </h4>
+          <h5 class="text-center"> Action <small style='color: #B3E5FC'>(Round {{ subsession.round_number }})</small></h5>
       </div>
       <div class="col-sm-9 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
            <p class="text-center"> In your group the inner symbols are: <b style='color: #B3E5FC'> {{ group.total_circles }} &#9711</b> and <b style='color: #B3E5FC'> {{ group.total_triangles }} &#9651</b>. </p>

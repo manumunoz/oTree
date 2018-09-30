@@ -26,9 +26,10 @@
 {% endblock %}
 
 {% block content %}
+<div class="container">
     <div class="row">
       <div class="col-sm-3 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
-        <h4 class="text-center"> Results </h4>
+          <h5 class="text-center"> Results <small style='color: #B3E5FC'>(Round {{ subsession.round_number }})</small></h5>
       </div>
       <div class="col-sm-9 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
            <p class="text-center"> In your group the inner symbols are: <b style='color: #B3E5FC'> {{ group.total_circles }} &#9711</b> and <b style='color: #B3E5FC'> {{ group.total_triangles }} &#9651</b>. </p>
@@ -51,7 +52,7 @@
             Your coordinations (including yourself):
                 <h4 style='color: #B3E5FC'> {{ player.coordination_score }}</h4>
             In this round you earn:
-                <h2 style='color: #B3E5FC'>{{ player.round_gains }} points</h2>
+                <h2 style='color: #B3E5FC'>{{ player.payoff }} </h2>
 
             (<b style='color: #B3E5FC'> {{ player.coordination_gains }} </b> for your coordinations
             minus <b style='color: #B3E5FC'> {{ player.linking_costs }} </b> for the cost of your active connections)

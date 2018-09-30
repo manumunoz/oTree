@@ -21,7 +21,7 @@ class Constants(BaseConstants):
     triangle = 0 # Minority
     names = ['1','2','3','4','5','6','7','8','9','10','11']
     # names_2 = ['5','7','9','11','2','4','6','8','10','1','3']
-    names = ['1', '2', '3']
+    # names = ['1', '2', '3']
     attribute = [0,1,1,0,1,0,1,1,1,0,0]
     attributes = {'1': 0, '2': 1, '3': 1, '4': 0, '5': 1, '6': 0, '7': 1, '8': 1, '9': 1, '10': 0, '11': 0}
     position = {'1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, '10': 10, '11': 11}
@@ -56,7 +56,6 @@ class Subsession(BaseSubsession):
                 p.chosen_type = 4
                 p.is_circle = 0
                 p.liked_action = 0
-
 
 
 class Group(BaseGroup):
@@ -159,6 +158,7 @@ class Player(BasePlayer):
     chosen_type = models.IntegerField() # combination of symbol and preference
     is_circle = models.IntegerField()
     action = models.IntegerField() # Reported belief on P3's verification
+    old_action = models.IntegerField() # Reported belief on P3's verification
     liked_action = models.IntegerField()
     degree = models.IntegerField()
     coordination_score = models.IntegerField()
@@ -167,45 +167,54 @@ class Player(BasePlayer):
     round_gains = models.IntegerField()
 
     def calculate_degree(self):
-        self.degree = self.link_with_1 + self.link_with_2 + self.link_with_3
-        # self.degree = self.link_with_1 + self.link_with_2 + self.link_with_3 + self.link_with_4 + self.link_with_5 + \
-        #               self.link_with_6 + self.link_with_7 + self.link_with_8 + self.link_with_9 + self.link_with_10 +\
-        #               self.link_with_11
+        # self.degree = self.link_with_1 + self.link_with_2 + self.link_with_3
+        self.degree = self.link_with_1 + self.link_with_2 + self.link_with_3 + self.link_with_4 + self.link_with_5 + \
+                      self.link_with_6 + self.link_with_7 + self.link_with_8 + self.link_with_9 + self.link_with_10 +\
+                      self.link_with_11
         self.linking_costs = self.degree * Constants.link_cost
 
     def calculate_coordinate(self):
+        # for i in range(1, Constants.players_per_group):
+        #     if self.action == getattr(self, 'action_' + i):
+        #         setattr(self, 'coordinate_' + i, 1)
         if self.action == self.action_1:
             self.coordinate_1=1
         if self.action == self.action_2:
             self.coordinate_2=1
         if self.action == self.action_3:
             self.coordinate_3=1
-        # if self.action == self.action_4:
-        #     self.coordinate_4=1
-        # if self.action == self.action_5:
-        #     self.coordinate_5=1
-        # if self.action == self.action_6:
-        #     self.coordinate_6=1
-        # if self.action == self.action_7:
-        #     self.coordinate_7=1
-        # if self.action == self.action_8:
-        #     self.coordinate_8=1
-        # if self.action == self.action_9:
-        #     self.coordinate_9=1
-        # if self.action == self.action_10:
-        #     self.coordinate_10=1
-        # if self.action == self.action_11:
-        #     self.coordinate_11=1
-        self.coordination_score = self.coordinate_1 + self.coordinate_2 + self.coordinate_3
-        # self.coordination_score = self.coordinate_1 + self.coordinate_2 + self.coordinate_3 + self.coordinate_4  + \
-        #                           self.coordinate_5 + self.coordinate_6 + self.coordinate_7 + self.coordinate_8 + \
-        #                           self.coordinate_9 + self.coordinate_10 + self.coordinate_11
+        if self.action == self.action_4:
+            self.coordinate_4=1
+        if self.action == self.action_5:
+            self.coordinate_5=1
+        if self.action == self.action_6:
+            self.coordinate_6=1
+        if self.action == self.action_7:
+            self.coordinate_7=1
+        if self.action == self.action_8:
+            self.coordinate_8=1
+        if self.action == self.action_9:
+            self.coordinate_9=1
+        if self.action == self.action_10:
+            self.coordinate_10=1
+        if self.action == self.action_11:
+            self.coordinate_11=1
+        # self.coordination_score = self.coordinate_1 + self.coordinate_2 + self.coordinate_3
+        self.coordination_score = self.coordinate_1 + self.coordinate_2 + self.coordinate_3 + self.coordinate_4  + \
+                                  self.coordinate_5 + self.coordinate_6 + self.coordinate_7 + self.coordinate_8 + \
+                                  self.coordinate_9 + self.coordinate_10 + self.coordinate_11
         if self.action == self.liked_action:
             self.coordination_gains = self.coordination_score * Constants.liked_gain
         else:
             self.coordination_gains = self.coordination_score * Constants.disliked_gain
         self.round_gains = self.coordination_gains - self.linking_costs
-        self.payoff = self.round_gains
+        if self.round_gains >= 0:
+            self.payoff = self.round_gains
+        else:
+            self.payoff = 0
+
+    def get_old_action(self):
+        self.old_action = self.in_round(self.round_number - 1).action
 
     # # Symbol Assignation
     # def assign_values(self):
