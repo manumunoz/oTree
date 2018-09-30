@@ -1,0 +1,191 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    <h1 style='color: #9933CC'> First Message <small style='color: #000000'>(Round {{ subsession.round_number }} of {{ Constants.num_rounds }})</small></h1>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 text-white border border-dark rounded p-3 mb-1" style="background-color:#000000;">
+            <p>
+                <br>
+            </p>
+            ----------------------------------
+             <h4 style='color: #B3E5FC'> Summary </h4>
+                # Coordinations in your group
+                    <b style='color: #e1bee7'> x </b>
+                <br>
+                # Coordinations in action Blue:
+                    <b style='color: #e1bee7'> x </b>
+                <br>
+                # Points in your group:
+                    <b style='color: #e1bee7'> x </b>
+                <br>
+                # Points for you:
+                    <b style='color: #e1bee7'> x </b>
+            </p>
+        </div>
+        <div class="col-md-4 text-white border border-dark rounded p-3 mb-1" style="background-color:#000000;">
+        <div id="cy"></div>
+            <div class="container ">
+                <div class="row">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 text-white border border-dark rounded p-3 mb-1" style="background-color:#000000;">
+            <p>
+            You are player <b style='color: #B3E5FC'> {{player.role}} </b>
+            <br><br>
+            Choose your first message
+            </p>
+            <input type="hidden" value="0" name="first" id="first"/>
+            <button name="first" value="1" class="btn btn-outline-warning">O</button>
+            <button name="first" value="2" class="btn btn-outline-success">G</button>
+            <button name="first" value="3" class="btn btn-outline-info">B</button>
+            <button name="first" value="4" class="btn btn-outline-danger">R</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.1.0/cytoscape.js"></script>
+    <script>
+        var jsonnet = JSON.parse('{{group.network_data|safe}}');
+        var player_id = {{ player.name }};
+        console.log(jsonnet);
+        var cy = window.cy = cytoscape({
+            container: document.getElementById('cy'),
+
+        });
+
+        // Add isMine = 'yes' to all player's node and edges
+        jsonnet.elements = jsonnet.elements.map(
+            function(value) {
+                if ( (value.group === 'nodes' && value.data.name == 1)
+                ) {
+                    value.data.role = 'up'
+                }
+                if ( (value.group === 'nodes' && value.data.name == 2)
+                ) {
+                    value.data.role = 'right'
+                }
+                if ( (value.group === 'nodes' && value.data.name == 3)
+                ) {
+                    value.data.role = 'down'
+                }
+                if ( (value.group === 'nodes' && value.data.name == 4)
+                ) {
+                    value.data.role = 'left'
+                }
+                if (value.group === 'nodes' && value.data.old_action == 1) {
+                    value.data.behavior = 'One'
+                }
+                if (value.group === 'nodes' && value.data.old_action == 2) {
+                    value.data.behavior = 'Two'
+                }
+                if (value.group === 'nodes' && value.data.old_action == 3) {
+                    value.data.behavior = 'Three'
+                }
+                if (value.group === 'nodes' && value.data.old_action == 4) {
+                    value.data.behavior = 'Four'
+                }
+                return value
+            });
+
+        console.log(jsonnet)
+        cy.json(jsonnet);
+
+        var layout = cy.layout({name: 'grid'});
+
+        layout.run();
+        cy.panBy('node');
+
+        cy.style()
+            // NODES ==============================================
+            .selector('node')
+            // .style('padding-relative-to', 'width')
+            .style('shape', 'ellipse')
+            .style('width', '30%')
+            .style('height', '30%')
+            .style('background-color', '#000000')
+            .style('border-width', '5')
+            .style('border-color', '#ffffff')
+            .style('font-size', '18pt')
+            .style('color','#ffffff')
+            .style('padding', '100%')
+            // Node Labels: Top
+            .selector('node[role="up"]')
+            .style('text-valign','top')
+            // Node Labels: Right
+            .selector('node[role="right"]')
+            .style('text-valign','top')
+            // .style('text-halign','right')
+            // Node Labels: Bottom
+            .selector('node[role="down"]')
+            .style('text-valign','top')
+            // Node Labels: Left
+            .selector('node[role="left"]')
+            .style('text-valign','top')
+            // ====================================================
+            // BEHAVIOR ===========================================
+            // Choice == 1
+            .selector('node[behavior="One"]')
+            .style('background-color', '#ffbb33')
+                // .style('background-color', '#E1BEE7')
+            // Choice == 2
+            .selector('node[behavior="Two"]')
+            .style('background-color', '#00C851')
+                // .style('background-color', '#C8E6C9')
+            // Choice == 3
+            .selector('node[behavior="Three"]')
+            .style('background-color', '#33b5e5')
+                // .style('background-color', '#E1BEE7')
+            // Choice == 4
+            .selector('node[behavior="Four"]')
+            .style('background-color', '#ff4444')
+                // .style('background-color', '#C8E6C9')
+            // ====================================================
+            .update() // update the elements in the graph with the new style
+        ;
+        cy.userZoomingEnabled(false);
+        cy.autoungrabify(true);
+    </script>
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        #cy {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        #white{
+            color: #ffffff;
+        }
+
+        .center {
+            text-align: center;
+        }
+        .button {
+            background-color: #455A64;
+            color: #B3E5FC;
+            border: 2px solid #B3E5FC
+        }
+        .button:hover {
+            background-color: #B3E5FC;
+            color: #000000;
+            border: 2px solid #3E2723
+        }
+        /*.button:active {*/
+          /*background-color: #B3E5FC;*/
+          /*box-shadow: 0 5px #666;*/
+          /*transform: translateY(4px);*/
+        /*}*/
+    </style>
+{% endblock %}

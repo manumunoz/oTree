@@ -142,6 +142,12 @@ SESSION_CONFIGS = [
         'num_demo_participants': 1,
         'app_sequence': ['instructions'],
     },
+    {
+        'name': 'group_spillover',
+        'display_name': "group_spillover",
+        'num_demo_participants': 4,
+        'app_sequence': ['group_spillover'],
+    },
     # {
     #     'name': 'network_identity2',
     #     'display_name': "network_identity2",
