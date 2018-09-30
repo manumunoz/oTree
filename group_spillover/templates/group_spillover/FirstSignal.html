@@ -10,14 +10,29 @@
     <div class="row">
         <div class="col-md-4 text-white border border-dark rounded p-3 mb-1" style="background-color:#000000;">
             <p>
+                 {% if subsession.round_number > 1 %}
+                    {% if group.old_coordination == 1 %}
+                        In the last round you coordinated on:
+                        {% if group.old_win == 1 %}
+                            <h4 style='color: #ffbb33'> O </h4>
+                        {% elif group.old_win == 2 %}
+                            <b style='color: #00C851'> G </b>
+                        {% elif group.old_win == 3 %}
+                            <b style='color: #33b5e5'> B </b>
+                        {% else %}
+                            <h4 style='color: #ff4444'> R </h4>
+                        {% endif %}
+                    {% else %}
+                        The coordination in the previous round was not successful
+                    {% endif %}
+                {% else %}
                 <br>
+
+                {% endif %}
             </p>
             ----------------------------------
-             <h4 style='color: #B3E5FC'> Summary </h4>
-                # Coordinations in your group
-                    <b style='color: #e1bee7'> x </b>
                 <br>
-                # Coordinations in action Blue:
+                # Coordinations in your group:
                     <b style='color: #e1bee7'> x </b>
                 <br>
                 # Points in your group:
@@ -25,6 +40,11 @@
                 <br>
                 # Points for you:
                     <b style='color: #e1bee7'> x </b>
+            <br>
+            ----------------------------------
+            <br>
+                Goal achieved: <b style='color: #e1bee7'> Yes </b>
+
             </p>
         </div>
         <div class="col-md-4 text-white border border-dark rounded p-3 mb-1" style="background-color:#000000;">
@@ -36,9 +56,9 @@
         </div>
         <div class="col-md-4 text-white border border-dark rounded p-3 mb-1" style="background-color:#000000;">
             <p>
-            You are player <b style='color: #B3E5FC'> {{player.role}} </b>
+            You are player: <b style='color: #e1bee7'> {{player.role}} </b>
             <br><br>
-            Choose your first message
+                Choose your <b style='color: #e1bee7'>first</b> message:
             </p>
             <input type="hidden" value="0" name="first" id="first"/>
             <button name="first" value="1" class="btn btn-outline-warning">O</button>
@@ -113,7 +133,7 @@
             .style('width', '30%')
             .style('height', '30%')
             .style('background-color', '#000000')
-            .style('border-width', '5')
+            .style('border-width', '2')
             .style('border-color', '#ffffff')
             .style('font-size', '18pt')
             .style('color','#ffffff')

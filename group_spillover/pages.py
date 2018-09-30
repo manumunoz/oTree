@@ -8,10 +8,18 @@ import json
 
 class BeforeSignalWP(WaitPage):
     def after_all_players_arrive(self):
+        for player in self.group.get_players():
+            if self.round_number > 1:
+                player.old_action = player.in_round(self.round_number - 1).action
+            else:
+                player.old_action = 0
         self.group.displaying_network()
-
-    # def vars_for_template(self):
-    #     self.player.vars_from_previous_round()
+        if self.round_number > 1:
+            self.group.old_coordination = self.group.in_round(self.round_number - 1).coordination
+            self.group.old_win = self.group.in_round(self.round_number - 1).win
+        else:
+            self.group.old_coordination = 0
+            self.group.old_win = 0
 
 
 class FirstSignal(Page):
@@ -56,6 +64,8 @@ class ResultsWaitPage(WaitPage):
         group.total_four = sum(fours)
 
         self.group.determine_win()
+        self.group.total_values()
+
 
         # cumulative_payoff = sum([p.payoff for p in self.player.in_all_rounds()])
         # Esta es para coordinación total y para coordinación por acción across periods

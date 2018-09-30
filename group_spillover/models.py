@@ -37,22 +37,17 @@ class Group(BaseGroup):
     total_two = models.IntegerField()
     total_three = models.IntegerField()
     total_four = models.IntegerField()
-    coordination = models.IntegerField()
+    coordination = models.IntegerField(initial=0)
+    total_coordination = models.IntegerField(initial=0)
+    old_coordination = models.IntegerField()
     network_data = models.LongStringField()
     win = models.IntegerField(initial=0)
-
-    # def summing_choices(self):
-    #     players = self.get_players()
-    #     ones = [p.action_one for p in players]
-    #     self.total_one = sum(ones)
-    #     twos = [p.action_two for p in players]
-    #     self.total_two = sum(twos)
-    #     threes = [p.action_two for p in players]
-    #     self.total_three = sum(threes)
-    #     fours = [p.action_two for p in players]
-    #     self.total_four = sum(fours)
-
-
+    old_win = models.IntegerField()
+    win_one = models.IntegerField(initial=0)
+    win_two = models.IntegerField(initial=0)
+    win_three = models.IntegerField(initial=0)
+    win_four = models.IntegerField(initial=0)
+    goal_achieved = models.IntegerField(initial=0)
 
     def determine_win(self):
         if self.total_one == 4:
@@ -63,8 +58,19 @@ class Group(BaseGroup):
             self.win = 3
         elif self.total_four == 4:
             self.win = 4
+        if self.win == 1:
+            self.win_one = 1
+        elif self.win == 2:
+            self.win_two = 1
+        elif self.win == 3:
+            self.win_three = 1
+        elif self.win == 4:
+            self.win_four = 1
+        if self.win != 0:
+            self.coordination = 1
 
-
+    def total_values(self):
+        self.total_coordination = sum([self.in_all_rounds().coordination])
 
     def displaying_network(self):
         nodes = [{'data': {'id': i, 'name': i, 'first': self.get_player_by_id(i).first, 'second': self.get_player_by_id(i).second,
@@ -139,11 +145,13 @@ class Player(BasePlayer):
             self.action_three = 0
             self.action_four = 1
 
-    def vars_from_previous_round(self):
-        if self.subsession.round_number > 1:
-            self.old_action = self.player.in_round(self.round_number - 1).action
-        else:
-            self.old_action = 0
+    def get_old_action(self):
+        self.old_action = self.in_round(self.round_number - 1).action
+        #
+        # if self.subsession.round_number > 1:
+        #     self.old_action = self.player.in_round(self.round_number - 1).action
+        # else:
+        #     self.old_action = 0
 
     name = models.StringField()
     friends = models.LongStringField()
