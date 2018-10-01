@@ -11,12 +11,12 @@ import itertools
 author = 'Manu Munoz'
 
 doc = """
-Group Spillovers
+Group Spillovers NO
 """
 
 
 class Constants(BaseConstants):
-    name_in_url = 'group_spillover'
+    name_in_url = 'group_spillover_no'
     names = ['1', '2', '3', '4']
     players_per_group = len(names)
     num_rounds = 2
@@ -132,6 +132,7 @@ class Group(BaseGroup):
 
         for player in [a, b, c, d]:
             player.total_points = sum([player.points for player in player.in_all_rounds()])
+
 
     def total_values(self):
         self.total_coordination = sum([g.coordination for g in self.in_all_rounds()])
