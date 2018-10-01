@@ -76,6 +76,7 @@ class ResultsWaitPage(WaitPage):
         self.group.set_coordination()
         self.group.total_points()
         self.group.total_values()
+        self.group.finalpay_value()
         self.group.payoff_value()
 
 

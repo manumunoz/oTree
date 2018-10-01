@@ -19,13 +19,13 @@ class Constants(BaseConstants):
     name_in_url = 'group_spillover_high'
     names = ['1', '2', '3', '4']
     players_per_group = len(names)
-    num_rounds = 2
+    num_rounds = 20
     highpay = 3
     lowpay = 1
     nopay = 0
     total_group_pay = 40 # Value in dollars for total group earnings
     total_group_no_pay = 0
-    goal_value = 1 # Number of coordinations needed to achieve the goal
+    goal_value = 12 # Number of coordinations needed to achieve the goal
 
 
 class Subsession(BaseSubsession):
@@ -147,12 +147,19 @@ class Group(BaseGroup):
         point = [p.points for p in players]
         self.group_points = sum(point)
 
-    def payoff_value(self):
+    def finalpay_value(self):
         for player in self.get_players():
             if self.round_number == Constants.num_rounds and self.goal_achieved == 1:
                 player.final_pay = (player.total_points * Constants.total_group_pay)/self.group_total_points
             else:
                 player.final_pay = 0
+
+    def payoff_value(self):
+        for player in self.get_players():
+            if self.round_number == Constants.num_rounds:
+                player.payoff = player.final_pay
+            else:
+                player.payoff = 0
 
 
     def displaying_network(self):
