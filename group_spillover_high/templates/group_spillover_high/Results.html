@@ -50,17 +50,16 @@
             </p>
             <p id="brown">
                 {% if group.goal_achieved == 1 %}
-                    Out of the  <b>{{ group.group_total_points }}</b> points from your group, you receive:
-                        <h3 id="brown"> {{ player.total_points }} points </h3>
+                    Out of the  <b>{{ group.group_total_points }}</b> points from your group, you receive <b> {{ player.total_points }} points </b>
                     <br>
-                    This means that from the <b>{{ Constants.total_group_pay }}</b> dollars group has earned,
-                    you earn:
-                        <h3 id="brown"> {{ player.final_pay }} </h3>
+                    So, from the <b> {{ Constants.total_group_pay }} </b> dollars your group has earned you will
+                receive <b> {{ player.final_pay }} </b>
                 {% else %}
-                    This means that your group has earned <b> {{ Constants.total_group_no_pay }} </b> dollars,
-                    and you will not receive any earnings from part 1
+                    So, your group has earned <b> {{ Constants.total_group_no_pay }} </b> dollars,
+                    and you will not receive any earnings
                 {% endif %}
             </p>
+            <br>
                 <button type="otree-btn-next" class="btn button btn-md"> Continue </button>
         </div>
     </div>
