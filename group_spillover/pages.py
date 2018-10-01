@@ -6,6 +6,8 @@ from collections import OrderedDict
 import json
 import itertools
 
+class Start(Page):
+    pass
 
 class BeforeSignalWP(WaitPage):
     def after_all_players_arrive(self):
@@ -76,8 +78,8 @@ class ResultsWaitPage(WaitPage):
         self.group.set_coordination()
         self.group.total_points()
         self.group.total_values()
+        self.group.finalpay_value()
         self.group.payoff_value()
-
 
 class Results(Page):
     def is_displayed(self):
@@ -85,12 +87,13 @@ class Results(Page):
 
 
 page_sequence = [
-    BeforeSignalWP,
-    FirstSignal,
-    BeforeSecondSignalWP,
-    SecondSignal,
-    BeforeActionlWP,
-    Action,
-    ResultsWaitPage,
-    Results
+    Start,
+    # BeforeSignalWP,
+    # FirstSignal,
+    # BeforeSecondSignalWP,
+    # SecondSignal,
+    # BeforeActionlWP,
+    # Action,
+    # ResultsWaitPage,
+    # Results
 ]
