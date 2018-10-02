@@ -19,7 +19,8 @@ class Constants(BaseConstants):
     name_in_url = 'group_spillover'
     names = ['1', '2', '3', '4']
     players_per_group = len(names)
-    num_rounds =20
+    num_rounds = 20
+    total_number_rounds = 20
     highpay = 3
     lowpay = 1
     nopay = 0

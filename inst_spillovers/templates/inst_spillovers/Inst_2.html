@@ -1,0 +1,89 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 border rounded p-1 mb-0" style="background-color:#3e2723">
+            <h1 id="lightbrown"> Instructions Part 1: Action Stage </h1>
+        </div>
+    </div>
+</div>{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Coordination Outcome -->
+    <div class="row">
+        <div class="col-md-12 border border-dark rounded p-3 mb-1" style="background-color:#d7ccc8">
+            <p>
+            After the communication stage ends, each participant will choose one of the four possible actions:
+                <br>
+                    <button type="button" class="btn btn-warning" disabled>O</button>
+                    <button type="button" class="btn btn-success" disabled>G</button>
+                    <button type="button" class="btn btn-info" disabled>B</button>
+                    <button type="button" class="btn btn-danger" disabled>R</button>
+                <br>
+                by clicking on the corresponding option.
+                <br><br>
+                This will be done on a screen similar to that used to send the messages. The main difference is that the
+                action a participant chooses will be displayed as the filling (inner color) of its symbol instead of the
+                border. It is the <b>action</b> you and the other three participants choose, <b>not</b> the messages sent,
+                what will determine your earnings in Part 1.
+                </p>
+                        <img width="100%" src="{% static "inst_spillovers/Screen_1.png" %}"/>
+
+                <br><br>
+                <p>
+                At the beginning of each round, in the <b>First message</b> screen, you will observe the actions chosen
+                    by each player in the previous round (see the first panel on the left in the image above).
+                <br><br>
+                In addition, in all stages you will see a summary of the results in your group (see the second panel on
+                    the center of the image above). This will be explained in detail in the following screens. For now,
+                    it is important to notice that this summary will inform you of the <b>total number</b> times you have
+                    chosen the same action as a group (<i>Total coordinations in group</i>), as well as how many times you
+                    have, as a group, coordinated on each particular action.
+                    <br><br>
+                    The action you coordinate on as well as the total number of times you coordinate on, as a group,
+                    will determine your earnings.
+            </p>
+            <button type="otree-btn-next" class="btn button btn-primary btn-md"> Continue </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+<!-- CSS -->
+    <style type="text/css">
+        #cy {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        #brown{
+            color: #3e2723;
+        }
+        #lightbrown{
+            color: #efebe9;
+        }
+        #white{
+            color: #ffffff;
+        }
+        #gray{
+            color: #424242;
+        }
+        .center {
+            text-align: center;
+        }
+        .button {
+            background-color: #3e2723;
+            color: #ffffff;
+            border: 2px solid #ffffff
+        }
+        .button:hover {
+            background-color: #d7ccc8;
+            color: #3e2723;
+            border: 2px solid #3e2723
+        }
+    </style>
+{% endblock %}

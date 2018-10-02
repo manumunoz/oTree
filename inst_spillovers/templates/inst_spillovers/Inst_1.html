@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 border rounded p-1 mb-0" style="background-color:#3e2723">
-            <h1 id="lightbrown"> Instructions: Part 1 </h1>
+            <h1 id="lightbrown"> Instructions Part 1: Communication Stage </h1>
         </div>
     </div>
 </div>{% endblock %}
@@ -46,19 +46,20 @@
                 by clicking on the corresponding option (see the third panel on the right). <i>The image illustrates
                 the second message screen, after all players have sent their first message.</i>
             </p>
-                    <img width="100%" src="{% static "group_spillover/Screen_1.png" %}"/>
+                    <img width="100%" src="{% static "inst_spillovers/Screen_1.png" %}"/>
 
             <br><br>
             <p>
-                The <b>messages</b> have the same names as the <b>actions</b> because they may indicate the action you intend to choose in
-                the <b>action stage</b>. However, you do not have to follow your message when choosing your action.
+                The <b>messages</b> have the same names and colors as the <b>actions</b> because they may indicate the
+                action you intend to choose in the <b>action stage</b>. However, you do not have to follow your messages
+                when choosing your action.
             <br><br>
             The message a participant sends will be displayed, for everyone to see, as the color of the border of its
                 symbol (see the first panel on the left). For example, player <b>1</b> sent message
-                <button type="button" class="btn btn-warning" disabled>O</button>, player <b>2</b> sent message
-                <button type="button" class="btn btn-success" disabled>G</button>,
-                player <b>3</b> sent message <button type="button" class="btn btn-info" disabled>B</button> and player
-                <b>4</b> sent message <button type="button" class="btn btn-danger" disabled>R</button>.
+                <button type="button" class="btn btn-danger" disabled>R</button>, player <b>2</b> sent message
+                <button type="button" class="btn btn-info" disabled>B</button>,
+                player <b>3</b> sent message <button type="button" class="btn btn-warning" disabled>O</button> and player
+                <b>4</b> sent message <button type="button" class="btn btn-success" disabled>G</button>.
                 <br>
             </p>
             <button type="otree-btn-next" class="btn button btn-primary btn-md"> Continue </button>

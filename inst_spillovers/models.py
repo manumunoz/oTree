@@ -16,11 +16,24 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
     show_up = 5
-
-
+    total_group_pay = 40 # Value in dollars for total group earnings
+    total_group_no_pay = 0
+    goal_value = 12 # Number of coordinations needed to achieve the goal
+    no_goal_value = 11
+    total_number_rounds = 20
 
 class Subsession(BaseSubsession):
-    pass
+    def creating_session(self):
+        treat = itertools.cycle([1, 2, 3])
+        # for p in self.get_players():
+        #     p.treat = next(treat)
+        for p in self.get_players():
+            if 'treatment' in self.session.config:
+                # demo mode
+                p.treat = self.session.config['treatment']
+            else:
+                # live experiment mode
+                p.treat = next(treat)
 
 
 class Group(BaseGroup):
@@ -28,4 +41,4 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    pass
+    treat = models.IntegerField() # Treatments from 1 to 3

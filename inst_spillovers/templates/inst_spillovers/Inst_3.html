@@ -1,0 +1,297 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 border rounded p-1 mb-0" style="background-color:#3e2723">
+            <h1 id="lightbrown"> Instructions Part 1: Earnings </h1>
+        </div>
+    </div>
+</div>{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Coordination Outcome -->
+    <div class="row">
+        <div class="col-md-12 border border-dark rounded p-3 mb-1" style="background-color:#d7ccc8">
+            <p>
+                You will accumulate points through the <b>20</b> rounds. Your points will be used in the calculation of
+                your final earnings, which is explained in details below.
+                <br><br>
+                In each round you will gain points only if all four participants choose the same action. The number of points
+                each participant can gain is illustrated in the table below.
+            </p>
+        {% if player.treat == 1 %}
+            <table id="payoffs" class="table table-bordered table-sm">
+                <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th colspan="4"><h5>Points each participant earns</h5></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td scope="row"><b>If all choose</b></td>
+                  <td><b>Player 1</b></td>
+                  <td><b>Player 2</b></td>
+                  <td><b>Player 3</b></td>
+                  <td><b>Player 4</b></td>
+                </tr>
+                <tr>
+                  <td scope="row"><button type="button" class="btn btn-warning" disabled>O</button></td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+                </tr>
+                <tr>
+                  <td scope="row"><button type="button" class="btn btn-success" disabled>G</button></td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <td scope="row"><button type="button" class="btn btn-info" disabled>B</button></td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <td scope="row"><button type="button" class="btn btn-danger" disabled>R</button></td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                </tbody>
+            </table>
+            <p>
+                There are four possible outcomes where you can gain points: If all chose:
+                <br>
+                <button type="button" class="btn-sm btn-warning" disabled>O</button> then players 1, 2, 3, and 4 gain
+                    <b>3 points</b>,
+                <br><br>
+                <button type="button" class="btn-sm btn-success" disabled>G</button> then players 1, 2, 3, and 4 gain
+                    <b>1 point</b>,
+                <br><br>
+                <button type="button" class="btn-sm btn-info" disabled>B</button> then players 1, 2, 3, and 4 gain
+                    <b>1 point</b>,
+                <br><br>
+                <button type="button" class="btn-sm btn-danger" disabled>R</button> then players 1, 2, 3, and 4 gain
+                    <b>1 point</b>,
+            </p>
+        {% elif player.treat == 2 %}
+            <table id="payoffs" class="table table-bordered table-sm">
+                <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th colspan="4"><h5>Points each participant earns</h5></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td scope="row"><b>If all choose</b></td>
+                  <td><b>Player 1</b></td>
+                  <td><b>Player 2</b></td>
+                  <td><b>Player 3</b></td>
+                  <td><b>Player 4</b></td>
+                </tr>
+                <tr>
+                  <td scope="row"><button type="button" class="btn btn-warning" disabled>O</button></td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <td scope="row"><button type="button" class="btn btn-success" disabled>G</button></td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <td scope="row"><button type="button" class="btn btn-info" disabled>B</button></td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <td scope="row"><button type="button" class="btn btn-danger" disabled>R</button></td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>3</td>
+                  <td>3</td>
+                </tr>
+                </tbody>
+            </table>
+            <p>
+                There are four possible outcomes where you can gain points: If all chose:
+                <br>
+                <button type="button" class="btn-sm btn-warning" disabled>O</button> then players 1 and 2 gain
+                    <b>3 points</b>, and players 3 and 4 gain <b>1 point</b>,
+                <br><br>
+                <button type="button" class="btn-sm btn-success" disabled>G</button> then players 1, 2, 3, and 4 gain
+                    <b>1 point</b>,
+                <br><br>
+                <button type="button" class="btn-sm btn-info" disabled>B</button> then players 1, 2, 3, and 4 gain
+                    <b>1 point</b>,
+                <br><br>
+                <button type="button" class="btn-sm btn-danger" disabled>R</button> then players 1 and 2 gain
+                    <b>1 point</b>, and players 3 and 4 gain <b>3 points</b>,
+            </p>
+        {% else %}
+            <table id="payoffs" class="table table-bordered table-sm">
+                <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th colspan="4"><h5>Points each participant earns</h5></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td scope="row"><b>If all choose</b></td>
+                  <td><b>Player 1</b></td>
+                  <td><b>Player 2</b></td>
+                  <td><b>Player 3</b></td>
+                  <td><b>Player 4</b></td>
+                </tr>
+                <tr>
+                  <td scope="row"><button type="button" class="btn btn-warning" disabled>O</button></td>
+                  <td>3</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <td scope="row"><button type="button" class="btn btn-success" disabled>G</button></td>
+                  <td>1</td>
+                  <td>3</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <td scope="row"><button type="button" class="btn btn-info" disabled>B</button></td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>3</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <td scope="row"><button type="button" class="btn btn-danger" disabled>R</button></td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>3</td>
+                </tr>
+                </tbody>
+            </table>
+            <p>
+                There are four possible outcomes where you can gain points: If all chose:
+                <br>
+                <button type="button" class="btn-sm btn-warning" disabled>O</button> then player 1 gains
+                    <b>3 points</b>, and players 2, 3 and 4 gain <b>1 point</b>,
+                <br><br>
+                <button type="button" class="btn-sm btn-success" disabled>G</button> then player 2 gains
+                    <b>3 points</b>, and players 1, 3 and 4 gain <b>1 point</b>,
+                <br><br>
+                <button type="button" class="btn-sm btn-info" disabled>B</button> then player 3 gains
+                    <b>3 points</b>, and players 1, 2 and 4 gain <b>1 point</b>,
+                <br><br>
+                <button type="button" class="btn-sm btn-danger" disabled>R</button> then player 4 gains
+                    <b>3 points</b>, and players 1, 2 and 3 gain <b>1 point</b>,
+            </p>
+        {% endif %}
+
+            <p>
+                If at least one player chooses a different action from the rest, each will gain <b>o</b> points in that
+                round. How much money you earn is explained below:
+                <br><br>
+            <b>1.</b>	Your group can earn a total of <b>{{ Constants.total_group_pay | c }}</b> if you coordinate, as a group,
+                in at least {{ Constants.goal_value }} of the {{ Constants.total_number_rounds }} rounds. Coordinating
+                on {{ Constants.no_goal_value }} rounds or less means you do not earn any money.
+                <br><br>
+            <b>2.</b>	If you coordinate on {{ Constants.goal_value }} rounds or more, you will earn a share of the
+                <b>{{ Constants.total_group_pay | c }}</b> given by the total points of all players in your group
+                (total group points) and your individual point: divide your individual points by the total group points
+                and multiply it by {{ Constants.total_group_pay | c }}.
+                </p>
+
+                <b>Ex. 1:</b> if the total group points are 240 and your individual points are 60, you will earn:
+                <b>(60/240)x40 = 10 dollars.</b>
+                <br>
+                <b>Ex. 2:</b> if the total group points are 100 and your individual points are 35, you will earn:
+                <b>(35/100)x40 = 5.83 dollars.</b>
+            <br><br>
+                <h5>Summary</h5>
+                <p>
+                You will participate in groups of 4. Each participant can send a message to the others, twice, and then
+                    choose an action. You will gain points depending solely on the action chosen. You only gain points
+                    if the four participants coordinate on the same action. If you coordinate in less than
+                    {{ Constants.goal_value }} rounds as a group you will not earn any money in Part 1. If you
+                    coordinate on {{ Constants.goal_value }} rounds or more, your earnings will be a share of the
+                    {{ Constants.total_group_pay | c }} assigned to your group. Your share is given by your individual
+                    points and the total group points.
+                <br><br>
+                If you have read the instructions carefully, press the button below. You can only participate in the study once
+                    you have answered all of the questions on the following screen correctly.
+                </p>
+
+            <button type="otree-btn-next" class="btn button btn-primary btn-md"> Continue </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+<!-- CSS -->
+    <style type="text/css">
+        #cy {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        #payoffs {
+            border-collapse: collapse;
+            width: 60%;
+        }
+        #payoffs td, #payoffs th{
+            border: 1px solid #3e2723;
+            padding: 2px;
+            text-align: center;
+        }
+        #payoffs th {
+            background-color: #3e2723;
+            color: white;
+        }
+        #brown{
+            color: #3e2723;
+        }
+        #lightbrown{
+            color: #efebe9;
+        }
+        #white{
+            color: #ffffff;
+        }
+        #gray{
+            color: #424242;
+        }
+        .center {
+            text-align: center;
+        }
+        .button {
+            background-color: #3e2723;
+            color: #ffffff;
+            border: 2px solid #ffffff
+        }
+        .button:hover {
+            background-color: #d7ccc8;
+            color: #3e2723;
+            border: 2px solid #3e2723
+        }
+    </style>
+{% endblock %}
