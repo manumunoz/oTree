@@ -20,14 +20,14 @@ class Constants(BaseConstants):
     names = ['1', '2', '3', '4']
     players_per_group = len(names)
     num_rounds = 20
-    total_number_rounds = 20
+    total_number_rounds = 2
     highpay = 3
     lowpay = 1
     nopay = 0
     show_up = 5
     total_group_pay = 40 # Value in dollars for total group earnings
     total_group_no_pay = 0
-    goal_value = 12 # Number of coordinations needed to achieve the goal
+    goal_value = 1 # Number of coordinations needed to achieve the goal
     instructions_template = 'group_spillover/Instructions.html'
 
 
@@ -50,7 +50,7 @@ class Subsession(BaseSubsession):
                 if p.id_in_group == 1 or p.id_in_group == 2:
                     p.favorite = 1
                 else:
-                    p.favorite = 2
+                    p.favorite = 4
             else:
                 if p.id_in_group == 1:
                     p.favorite = 1

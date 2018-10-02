@@ -7,13 +7,25 @@ class Start(Page):
     pass
 
 
+class Inst1_WP(WaitPage):
+    def after_all_players_arrive(self):
+        pass
+
 class Inst_1(Page):
     pass
 
 
+class Inst2_WP(WaitPage):
+    def after_all_players_arrive(self):
+        pass
+
 class Inst_2(Page):
     pass
 
+
+class Inst3_WP(WaitPage):
+    def after_all_players_arrive(self):
+        pass
 
 class Inst_3(Page):
     pass

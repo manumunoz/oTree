@@ -7,11 +7,6 @@ import json
 import itertools
 
 
-class Start(Page):
-    def is_displayed(self):
-        return self.round_number == 1
-
-
 class BeforeSignalWP(WaitPage):
     def after_all_players_arrive(self):
         for player in self.group.get_players():
@@ -98,7 +93,6 @@ class Results(Page):
 
 
 page_sequence = [
-    Start,
     BeforeSignalWP,
     FirstSignal,
     BeforeSecondSignalWP,
