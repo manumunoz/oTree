@@ -163,8 +163,9 @@ class Group(BaseGroup):
 
 
     def displaying_network(self):
-        nodes = [{'data': {'id': i, 'name': i, 'first': self.get_player_by_id(i).first, 'second': self.get_player_by_id(i).second,
-                           'action': self.get_player_by_id(i).action, 'old_action': self.get_player_by_id(i).old_action},  'group': 'nodes'} for i in Constants.names]
+        nodes = [{'data': {'id': i, 'name': i, 'first': self.get_player_by_id(i).first,
+                           'second': self.get_player_by_id(i).second, 'action': self.get_player_by_id(i).action,
+                           'old_action': self.get_player_by_id(i).old_action}, 'group': 'nodes'} for i in Constants.names]
         edges = []
         elements = nodes + edges
         style = [{'selector': 'node', 'style': {'content': 'data(name)'}}]
@@ -185,7 +186,7 @@ class Player(BasePlayer):
     old_total_points = models.IntegerField(initial=0)
     is_winner = models.BooleanField()
     favorite = models.IntegerField()
-    final_pay = models.CurrencyField()
+    final_pay = models.IntegerField()
 
     # def payoff_value(self):
     #     if self.round_number == Constants.num_rounds and self.group.goal_achieved == 1:

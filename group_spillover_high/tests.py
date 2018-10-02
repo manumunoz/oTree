@@ -4,6 +4,7 @@ from ._builtin import Bot
 from .models import Constants
 import random
 
+
 class PlayerBot(Bot):
     def play_round(self):
         yield (pages.FirstSignal, {'first': random.randint(1, 4)})

@@ -4,8 +4,11 @@ from ._builtin import Bot
 from .models import Constants
 import random
 
+
 class PlayerBot(Bot):
     def play_round(self):
+        if self.round_number == 1:
+            yield (pages.Start)
         yield (pages.FirstSignal, {'first': random.randint(1, 4)})
         yield (pages.SecondSignal, {'second': random.randint(1, 4)})
         if self.round_number <= 4:

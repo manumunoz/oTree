@@ -133,7 +133,6 @@ class Group(BaseGroup):
         for player in [a, b, c, d]:
             player.total_points = sum([player.points for player in player.in_all_rounds()])
 
-
     def total_values(self):
         self.total_coordination = sum([g.coordination for g in self.in_all_rounds()])
         if self.total_coordination >= Constants.goal_value:
@@ -160,7 +159,6 @@ class Group(BaseGroup):
                 player.payoff = player.final_pay
             else:
                 player.payoff = 0
-
 
     def displaying_network(self):
         nodes = [{'data': {'id': i, 'name': i, 'first': self.get_player_by_id(i).first, 'second': self.get_player_by_id(i).second,

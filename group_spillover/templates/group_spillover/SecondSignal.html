@@ -5,8 +5,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 border rounded p-1 mb-0" style="background-color:#3e2723">
-            <h1 id="lightbrown"> You are player <b id="white"> {{player.role}}</b> -
-                <small id="lightbrown">(This is round {{ subsession.round_number }} of {{ Constants.num_rounds }})</small></h1>
+            <h1 id="lightbrown"> You are player <b id="white"> {{player.role}}</b>
+                <small id="lightbrown">(Round {{ subsession.round_number }} of {{ Constants.num_rounds }})</small></h1>
         </div>
     </div>
 </div>
@@ -18,11 +18,11 @@
     <!-- Network -->
         <div class="col-md-4 border border-dark rounded p-3 mb-1" style="background-color:#efebe9">
             <p>
-                <h4 id="brown">First message:</h4>
+                <h4 id="brown">1. Visual (last decision):</h4>
             </p>
-            <p id="brown">
-                The color shows the message sent
-            </p>
+            <h6 id="brown">
+                The color shows the <b>first</b> message sent by each player
+            </h6>
         <div id="cy"></div>
             <div class="container ">
                 <div class="row">
@@ -30,36 +30,49 @@
             </div>
         </div>
     <!-- Summary -->
-        <div class="col-md-4 text-black border border-dark rounded p-3 mb-1" style="background-color:#d7ccc8">
+        <div class="col-md-4 border border-dark rounded p-3 mb-1" style="background-color:#d7ccc8">
             <p>
-                <h4 id="brown">Summary:</h4>
+                <h4 id="brown">2. Summary of results:</h4>
             </p>
-             <p id="brown">
-                - Coordinations in group:
-                    <b style='color: #5d4037'> {{ group.old_total_coordination }} </b>
-                <br>
-                - Goal achieved:
+            <p id="brown">
+                <h6 id="brown">
+                Goal achieved:
                 {% if group.goal_achieved == 1 %}
                 <b style='color: #5d4037'> Yes </b>
                 {% else %}
                 <b style='color: #5d4037'> No </b>
                 {% endif %}
-                <br>
-                - Points in group:
+                </h6>
+                <h6 id="brown">
+                Total coordinations in group: <b style='color: #5d4037'> {{ group.old_total_coordination }} </b>
+                </h6>
+                <h6 id="brown">
+                Coordinations by action:
+                </h6>
+                <button type="button" class="btn btn-warning" disabled>{{ group.total_win_one }}</button>
+                <button type="button" class="btn btn-success" disabled>{{ group.total_win_two }}</button>
+                <button type="button" class="btn btn-info" disabled>{{ group.total_win_three }}</button>
+                <button type="button" class="btn btn-danger" disabled>{{ group.total_win_four }}</button>
+                <br><br>
+                <h6 id="brown">
+                Total points in group:
                     <b style='color: #5d4037'> {{ group.old_group_total_points }} </b>
-                <br>
-                - Your points:
+                </h6>
+                <h6 id="brown">
+                Your points:
                     <b style='color: #5d4037'> {{ player.old_total_points }} </b>
+                </h6>
             </p>
         </div>
     <!-- Choice -->
-        <div class="col-md-4 text-white border border-dark rounded p-3 mb-1" style="background-color:#3e2723">
+        <div class="col-md-4 border border-dark rounded p-3 mb-1" style="background-color:#3e2723">
             <p>
-                <h4 id="lightbrown"> Second Message </h4>
+                <h4 id="lightbrown">3. Decision: 2nd message</h4>
             </p>
-            <p id="lightbrown">
-                Click on the message you want to send:
-            </p>
+            <h6 id="lightbrown">
+                Click on the <b>second message</b> you want to send:
+            </h6>
+            <br>
             <input type="hidden" value="0" name="second" id="second"/>
             <button name="second" value="1" class="btn btn-outline-warning">O</button>
             <button name="second" value="2" class="btn btn-outline-success">G</button>

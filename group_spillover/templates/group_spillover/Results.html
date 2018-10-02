@@ -4,9 +4,9 @@
 {% block title %}
 <div class="container">
     <div class="row">
-        <div class="col-md-12 border rounded p-1 mb-0" style="background-color:#3e2723">
-            <h1 id="lightbrown"> You are player <b id="white"> {{player.role}}</b> -
-                <small id="lightbrown">(This is round {{ subsession.round_number }} of {{ Constants.num_rounds }})</small></h1>
+        <div class="col-md-12 border rounded p-1 mb-0" style="background-color:#212121">
+            <h1 id="gray"> You are player <b id="gray"> {{player.role}}</b> -
+                <small id="white">Final Results</small></h1>
         </div>
     </div>
 </div>
@@ -15,9 +15,9 @@
 {% block content %}
 <div class="container">
     <div class="row">
-    <!-- Network -->
-        <div class="col-md-12 border border-dark rounded p-3 mb-1" style="background-color:#d7ccc8">
-            <h4 id="brown">
+    <!-- Message -->
+        <div class="col-md-12 border border-dark rounded p-3 mb-1" style="background-color:#757575">
+            <h4 id="black">
                 {% if group.goal_achieved == 1 %}
                     Your group achieved {{ group.total_coordination }} coordinations.
                     Congratulations, you reached the goal!
@@ -30,36 +30,82 @@
     </div>
     <div class="row">
     <!-- Network -->
-        <div class="col-md-4 border border-dark rounded p-3 mb-1" style="background-color:#efebe9">
+        <div class="col-md-4 border border-dark rounded p-3 mb-1" style="background-color:#fafafa">
             <p>
-                <h4 id="brown">Action in this last round:</h4>
+                <h4 id="highlight">1. Visual (last decision):</h4>
             </p>
-            <p id="brown">
-                The color shows the <b style='color: #3e2723'> action </b> chosen
-            </p>
+            <h6 id="highlight">
+                The color shows the <b id="highlight"> action </b> chosen in the last round by each player
+            </h6>
             <div id="cy"></div>
-                <div class="container ">
-                    <div class="row">
-                    </div>
+            <div class="container ">
+                <div class="row">
                 </div>
+            </div>
         </div>
     <!-- Summary -->
-        <div class="col-md-8 border border-dark rounded p-3 mb-1" style="background-color:#efebe9">
+        <div class="col-md-4 border border-dark rounded p-3 mb-1" style="background-color:#bdbdbd">
             <p>
-                <h4 id="brown">Summary:</h4>
+                <h4 id="highlight">2. Summary of results:</h4>
             </p>
-            <p id="brown">
+            <p id="highlight">
+                <h6 id="highlight">
+                Goal achieved:
                 {% if group.goal_achieved == 1 %}
-                    Out of the  <b>{{ group.group_total_points }}</b> points from your group, you receive <b> {{ player.total_points }} points </b>
-                    <br>
-                    So, from the <b> {{ Constants.total_group_pay }} </b> dollars your group has earned you will
-                receive <b> {{ player.final_pay }} </b>
+                <b id="highlight"> Yes </b>
                 {% else %}
-                    So, your group has earned <b> {{ Constants.total_group_no_pay }} </b> dollars,
-                    and you will not receive any earnings
+                <b id="highlight"> No </b>
                 {% endif %}
+                </h6>
+                <h6 id="highlight">
+                Total coordinations in group: <b id="highlight"> {{ group.total_coordination }} </b>
+                </h6>
+                <h6 id="highlight">
+                Coordinations by action:
+                </h6>
+                <button type="button" class="btn btn-warning" disabled>{{ group.total_win_one }}</button>
+                <button type="button" class="btn btn-success" disabled>{{ group.total_win_two }}</button>
+                <button type="button" class="btn btn-info" disabled>{{ group.total_win_three }}</button>
+                <button type="button" class="btn btn-danger" disabled>{{ group.total_win_four }}</button>
+                <br><br>
+                <h6 id="highlight">
+                Total points in group:
+                    <b id="highlight"> {{ group.group_total_points }} </b>
+                </h6>
+                <h6 id="highlight">
+                Your points:
+                    <b id="highlight"> {{ player.total_points }} </b>
+                </h6>
             </p>
+        </div>
+    <!-- Choice -->
+        <div class="col-md-4 border border-dark rounded p-3 mb-1" style="background-color:#212121">
+            <p>
+                <h4 id="gray">3. Your earnings</h4>
+            </p>
+            {% if group.goal_achieved == 1 %}
+            <h6 id="gray">
+               Your group earned: <b>{{ Constants.total_group_pay | c }} </b>
+            </h6>
             <br>
+            <h6 id="gray">
+               For part 1, you will receive:
+            </h6>
+            <h4>
+                <b id="gray"> {{ player.payoff }} </b>
+            </h4>
+            {% else %}
+            <h6 id="gray">
+               Your group earned:
+                <br><br>
+                <b> {{ Constants.total_group_no_pay | c }} </b>
+            </h6>
+            <br>
+            <h6 id="gray">
+               For part 1, you will not receive any earnings
+            </h6>
+            {% endif %}
+            <br><br>
                 <button type="otree-btn-next" class="btn button btn-md"> Continue </button>
         </div>
     </div>
@@ -67,6 +113,7 @@
 {% endblock %}
 
 {% block scripts %}
+<!-- JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.1.0/cytoscape.js"></script>
     <script>
         var jsonnet = JSON.parse('{{group.network_data|safe}}');
@@ -128,9 +175,9 @@
             .style('height', '30%')
             .style('background-color', '#efebe9')
             .style('border-width', '2')
-            .style('border-color', '#000000')
+            .style('border-color', '#3e2723')
             .style('font-size', '18pt')
-            .style('color','#000000')
+            .style('color','#3e2723')
             .style('padding', '100%')
             // Node Labels: Top
             .selector('node[role="up"]')
@@ -172,6 +219,7 @@
 {% endblock %}
 
 {% block styles %}
+<!-- CSS -->
     <style type="text/css">
         #cy {
             width: 100%;
@@ -179,29 +227,38 @@
             display: block;
         }
         #brown{
-            color: #3e2723;
+            color: #4a148c;
         }
         #lightbrown{
-            color: #efebe9;
+            color: #f3e5f5;
         }
         #white{
             color: #ffffff;
         }
+        #black{
+            color: #000000;
+        }
+        #highlight{
+            color:#212121;
+        }
         #gray{
+            color: #e0e0e0;
+        }
+        #darkgray{
             color: #424242;
         }
         .center {
             text-align: center;
         }
         .button {
-            background-color: #3e2723;
-            color: #efebe9;
-            border: 2px solid #3e2723
+            background-color: #212121;
+            color: #ffffff;
+            border: 2px solid #ffffff
         }
         .button:hover {
-            background-color: #efebe9;
-            color: #3e2723;
-            border: 2px solid #3e2723
+            background-color: #bdbdbd;
+            color: #000000;
+            border: 2px solid #ffffff
         }
     </style>
 {% endblock %}

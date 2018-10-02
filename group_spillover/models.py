@@ -19,15 +19,14 @@ class Constants(BaseConstants):
     name_in_url = 'group_spillover'
     names = ['1', '2', '3', '4']
     players_per_group = len(names)
-    num_rounds = 2
+    num_rounds =1
     highpay = 3
     lowpay = 1
     nopay = 0
     total_group_pay = 40 # Value in dollars for total group earnings
     total_group_no_pay = 0
-    goal_value = 1 # Number of coordinations needed to achieve the goal
-    instructions_template= 'group_spillover/Instructions.html'
-
+    goal_value = 2 # Number of coordinations needed to achieve the goal
+    instructions_template = 'group_spillover/Instructions.html'
 
 
 class Subsession(BaseSubsession):
@@ -90,6 +89,14 @@ class Group(BaseGroup):
     group_points = models.IntegerField(initial=0)
     group_total_points = models.IntegerField(initial=0)
     old_group_total_points = models.IntegerField(initial=0)
+    total_win_one = models.IntegerField(initial=0)
+    total_win_two = models.IntegerField(initial=0)
+    total_win_three = models.IntegerField(initial=0)
+    total_win_four = models.IntegerField(initial=0)
+    old_total_win_one = models.IntegerField(initial=0)
+    old_total_win_two = models.IntegerField(initial=0)
+    old_total_win_three = models.IntegerField(initial=0)
+    old_total_win_four = models.IntegerField(initial=0)
 
     def determine_win(self):
         if self.total_one == 4:
@@ -142,6 +149,10 @@ class Group(BaseGroup):
         else:
             self.goal_achieved = 0
         self.group_total_points = sum([g.group_points for g in self.in_all_rounds()])
+        self.total_win_one = sum([g.win_one for g in self.in_all_rounds()])
+        self.total_win_two = sum([g.win_two for g in self.in_all_rounds()])
+        self.total_win_three = sum([g.win_three for g in self.in_all_rounds()])
+        self.total_win_four = sum([g.win_four for g in self.in_all_rounds()])
 
     def total_points(self):
         players = self.get_players()
@@ -161,7 +172,6 @@ class Group(BaseGroup):
                 player.payoff = player.final_pay
             else:
                 player.payoff = 0
-
 
     def displaying_network(self):
         nodes = [{'data': {'id': i, 'name': i, 'first': self.get_player_by_id(i).first, 'second': self.get_player_by_id(i).second,
@@ -186,13 +196,7 @@ class Player(BasePlayer):
     old_total_points = models.IntegerField(initial=0)
     is_winner = models.BooleanField()
     favorite = models.IntegerField()
-    final_pay = models.CurrencyField()
-
-    # def payoff_value(self):
-    #     if self.round_number == Constants.num_rounds and self.group.goal_achieved == 1:
-    #         self.final_pay = (self.total_points * Constants.total_group_pay)/self.group.group_total_points
-    #     else:
-    #         self.final_pay = 0
+    final_pay = models.FloatField()
 
     first = models.PositiveIntegerField(
         choices=[
@@ -235,6 +239,11 @@ class Player(BasePlayer):
         else:
             self.action_four = 1
 
+    # def set_payoffs(self):
+    #     if self.round_number == Constants.num_rounds:
+    #         self.payoff = self.final_pay
+    #     else:
+    #         self.payoff = 0
 
     name = models.StringField()
     friends = models.LongStringField()
