@@ -4,10 +4,10 @@ from otree.api import (
 )
 
 
-author = 'Your name here'
+author = 'Manu Munoz'
 
 doc = """
-Your app description
+inst_spillovers
 """
 
 
@@ -15,6 +15,8 @@ class Constants(BaseConstants):
     name_in_url = 'inst_spillovers'
     players_per_group = None
     num_rounds = 1
+    show_up = 5
+
 
 
 class Subsession(BaseSubsession):

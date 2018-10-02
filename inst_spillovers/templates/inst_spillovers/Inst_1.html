@@ -1,0 +1,104 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 border rounded p-1 mb-0" style="background-color:#3e2723">
+            <h1 id="lightbrown"> Instructions: Part 1 </h1>
+        </div>
+    </div>
+</div>{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Coordination Outcome -->
+    <div class="row">
+        <div class="col-md-12 border border-dark rounded p-3 mb-1" style="background-color:#d7ccc8">
+            <p>
+            <b>At the beginning of this part, the computer randomly forms groups of four participants. You will interact
+                with the same other participants throughout Part 1 and Part 2. Part 1 consists of 20 rounds.</b>
+            <br>
+            </p>
+            <h4>Decisions in each round</h4>
+            <p>
+                Before Part 1 starts, each participant will be randomly assigned a label: <b>1, 2, 3, or 4</b>. You will
+                see your label on the top in every screen. Every participant's label is fixed throughout the experiment.
+                <br><br>
+                In each round there are two stages: a <b>communication</b> stage, which consist of <b>2 decision-turns</b>,
+                and an <b>action</b> stage, which consists of a <b>single</b> decision-turn.
+                Your earnings will depend only on the action you and the other three participants choose and not on either
+                of the messages sent in the communication stage. This will be explained in detail as follows.
+            </p>
+
+            <h5>Communication stage</h5>
+            <p>
+            In the communication stage, preceding the action stage, each participant will be asked to send messages to the
+                other three. There are two identical decision-turns in the communication stage: <b>First</b> and
+                <b>Second</b> message. In each of them, you will observe a screen as illustrated in the image below.
+                You can each choose one of four possible messages:
+                <br>
+                    <button type="button" class="btn btn-warning" disabled>O</button>
+                    <button type="button" class="btn btn-success" disabled>G</button>
+                    <button type="button" class="btn btn-info" disabled>B</button>
+                    <button type="button" class="btn btn-danger" disabled>R</button>
+                <br>
+                by clicking on the corresponding option (see the third panel on the right). <i>The image illustrates
+                the second message screen, after all players have sent their first message.</i>
+            </p>
+                    <img width="100%" src="{% static "group_spillover/Screen_1.png" %}"/>
+
+            <br><br>
+            <p>
+                The <b>messages</b> have the same names as the <b>actions</b> because they may indicate the action you intend to choose in
+                the <b>action stage</b>. However, you do not have to follow your message when choosing your action.
+            <br><br>
+            The message a participant sends will be displayed, for everyone to see, as the color of the border of its
+                symbol (see the first panel on the left). For example, player <b>1</b> sent message
+                <button type="button" class="btn btn-warning" disabled>O</button>, player <b>2</b> sent message
+                <button type="button" class="btn btn-success" disabled>G</button>,
+                player <b>3</b> sent message <button type="button" class="btn btn-info" disabled>B</button> and player
+                <b>4</b> sent message <button type="button" class="btn btn-danger" disabled>R</button>.
+                <br>
+            </p>
+            <button type="otree-btn-next" class="btn button btn-primary btn-md"> Continue </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+<!-- CSS -->
+    <style type="text/css">
+        #cy {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        #brown{
+            color: #3e2723;
+        }
+        #lightbrown{
+            color: #efebe9;
+        }
+        #white{
+            color: #ffffff;
+        }
+        #gray{
+            color: #424242;
+        }
+        .center {
+            text-align: center;
+        }
+        .button {
+            background-color: #3e2723;
+            color: #ffffff;
+            border: 2px solid #ffffff
+        }
+        .button:hover {
+            background-color: #d7ccc8;
+            color: #3e2723;
+            border: 2px solid #3e2723
+        }
+    </style>
+{% endblock %}

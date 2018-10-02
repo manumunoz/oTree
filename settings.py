@@ -141,32 +141,18 @@ SESSION_CONFIGS = [
         'app_sequence': ['instructions'],
     },
     {
+        'name': 'inst_spillovers',
+        'display_name': "inst_spillovers",
+        'num_demo_participants': 1,
+        'app_sequence': ['inst_spillovers'],
+    },
+    {
         'name': 'group_spillover',
         'display_name': "group_spillover",
         'num_demo_participants': 4,
         'app_sequence': ['group_spillover'],
     },
-    {
-        'name': 'group_spillover_no',
-        'display_name': "group_spillover_no",
-        'num_demo_participants': 4,
-        'app_sequence': ['group_spillover_no'],
-        'treatment': 1,
-    },
-    {
-        'name': 'group_spillover_low',
-        'display_name': "group_spillover_low",
-        'num_demo_participants': 4,
-        'app_sequence': ['group_spillover_low'],
-        'treatment': 2,
-    },
-    {
-        'name': 'group_spillover_high',
-        'display_name': "group_spillover_high",
-        'num_demo_participants': 4,
-        'app_sequence': ['group_spillover_high'],
-        'treatment': 3,
-    },
+
     # {
     #     'name': 'network_identity2',
     #     'display_name': "network_identity2",

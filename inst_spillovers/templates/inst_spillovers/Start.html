@@ -1,0 +1,85 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 border rounded p-1 mb-0" style="background-color:#3e2723">
+            <h1 id="lightbrown"> Welcome </h1>
+        </div>
+    </div>
+</div>{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Coordination Outcome -->
+    <div class="row">
+        <div class="col-md-12 border border-dark rounded p-3 mb-1" style="background-color:#d7ccc8">
+            <p>
+                <b>Please read the instructions carefully. After you finish reading them you will be asked some comprehension
+                questions to verify that you understand the instructions. You can only participate in the study once you
+                    have answered all of the questions correctly.</b>
+                <br><br>
+                You are participating in a study on economic decision making and will be asked to make a number of decisions.
+                    For your participation you will receive a show-up fee of <b>{{ Constants.show_up | c }}</b>. Please read these instructions carefully as
+                    they describe how you can earn additional money.  The instructions are the same for all participants in
+                    this session.
+                <br><br>
+                All the interactions take place through the computers. Please do not talk or communicate with other participants
+                    in any other way. If you have a question, raise your hand and one of us will help you.
+                <br><br>
+                This study is anonymous. That is, your identity will not be revealed to others and the identity of others will
+                    not be revealed to you.
+                <br><br>
+                During the study you will be able to earn money. This will be explained in detail below. You will be paid your
+                    earnings in cash.
+                <br><br>
+                This study is divided in two parts. First, we describe the instructions for Part 1. After Part 1 is concluded,
+                    you will receive instructions for Part 2.
+                <br><br>
+                Your final earnings will be the sum of your earnings in Part 1 and Part 2.
+            </p>
+            <button type="otree-btn-next" class="btn button btn-primary btn-md"> Continue </button>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block styles %}
+<!-- CSS -->
+    <style type="text/css">
+        #cy {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        #brown{
+            color: #3e2723;
+        }
+        #lightbrown{
+            color: #efebe9;
+        }
+        #white{
+            color: #ffffff;
+        }
+        #gray{
+            color: #424242;
+        }
+        .center {
+            text-align: center;
+        }
+        .button {
+            background-color: #3e2723;
+            color: #ffffff;
+            border: 2px solid #ffffff
+        }
+        .button:hover {
+            background-color: #d7ccc8;
+            color: #3e2723;
+            border: 2px solid #3e2723
+        }
+    </style>
+{% endblock %}
