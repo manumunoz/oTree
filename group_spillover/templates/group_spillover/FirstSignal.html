@@ -38,6 +38,9 @@
             <br>
             {% endif %}
             </h4>
+            <h5 id="brown">
+                You earn <b>{{ player.old_points }}</b> points from the previous round.
+            </h5>
         </div>
     </div>
     {% else %}
@@ -73,10 +76,10 @@
             <p id="brown">
                 <h6 id="brown">
                 Goal achieved:
-                {% if group.goal_achieved == 1 %}
-                <b style='color: #5d4037'> Yes </b>
+                {% if group.old_goal_achieved != 0 %}
+                    <b style='color: #5d4037'> Yes </b>
                 {% else %}
-                <b style='color: #5d4037'> No </b>
+                    <b style='color: #5d4037'> No </b>
                 {% endif %}
                 </h6>
                 <h6 id="brown">
@@ -95,7 +98,7 @@
                     <b style='color: #5d4037'> {{ group.old_group_total_points }} </b>
                 </h6>
                 <h6 id="brown">
-                Your points:
+                Your total points:
                     <b style='color: #5d4037'> {{ player.old_total_points }} </b>
                 </h6>
             </p>

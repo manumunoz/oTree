@@ -17,15 +17,18 @@ class BeforeSignalWP(WaitPage):
         for player in self.group.get_players():
             if self.round_number > 1:
                 player.old_action = player.in_round(self.round_number - 1).action
+                player.old_points = player.in_round(self.round_number - 1).points
                 player.old_total_points = player.in_round(self.round_number - 1).total_points
             else:
                 player.old_action = 0
+                player.old_points = 0
                 player.old_total_points = 0
 
         self.group.displaying_network()
         if self.round_number > 1:
             self.group.old_coordination = self.group.in_round(self.round_number - 1).coordination
             self.group.old_total_coordination = self.group.in_round(self.round_number - 1).total_coordination
+            self.group.old_goal_achieved = self.group.in_round(self.round_number - 1).goal_achieved
             self.group.old_win = self.group.in_round(self.round_number - 1).win
             self.group.old_total_win_one = self.group.in_round(self.round_number - 1).total_win_one
             self.group.old_total_win_two = self.group.in_round(self.round_number - 1).total_win_two
@@ -35,6 +38,7 @@ class BeforeSignalWP(WaitPage):
         else:
             self.group.old_coordination = 0
             self.group.old_total_coordination = 0
+            self.group.old_goal_achieved = 0
             self.group.old_group_total_points = 0
             self.group.old_win = 0
             self.group.old_total_win_one = 0
@@ -89,6 +93,7 @@ class ResultsWaitPage(WaitPage):
         self.group.set_coordination()
         self.group.total_points()
         self.group.total_values()
+        self.group.goal_achievement()
         self.group.finalpay_value()
         self.group.payoff_value()
 

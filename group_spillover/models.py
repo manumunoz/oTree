@@ -88,6 +88,7 @@ class Group(BaseGroup):
     win_three = models.IntegerField(initial=0)
     win_four = models.IntegerField(initial=0)
     goal_achieved = models.IntegerField(initial=0)
+    old_goal_achieved = models.IntegerField(initial=0)
     group_points = models.IntegerField(initial=0)
     group_total_points = models.IntegerField(initial=0)
     old_group_total_points = models.IntegerField(initial=0)
@@ -146,15 +147,17 @@ class Group(BaseGroup):
 
     def total_values(self):
         self.total_coordination = sum([g.coordination for g in self.in_all_rounds()])
-        if self.total_coordination >= Constants.goal_value:
-            self.goal_achieved = 1
-        else:
-            self.goal_achieved = 0
         self.group_total_points = sum([g.group_points for g in self.in_all_rounds()])
         self.total_win_one = sum([g.win_one for g in self.in_all_rounds()])
         self.total_win_two = sum([g.win_two for g in self.in_all_rounds()])
         self.total_win_three = sum([g.win_three for g in self.in_all_rounds()])
         self.total_win_four = sum([g.win_four for g in self.in_all_rounds()])
+
+    def goal_achievement(self):
+        if self.total_coordination >= Constants.goal_value:
+            self.goal_achieved = 1
+        else:
+            self.goal_achieved = 0
 
     def total_points(self):
         players = self.get_players()
@@ -194,6 +197,7 @@ class Player(BasePlayer):
     action_three = models.IntegerField(initial=0)
     action_four = models.IntegerField(initial=0)
     points = models.IntegerField()
+    old_points = models.IntegerField(initial=0)
     total_points = models.IntegerField(initial=0)
     old_total_points = models.IntegerField(initial=0)
     is_winner = models.BooleanField()
