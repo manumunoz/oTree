@@ -14,7 +14,8 @@ inst_spillovers
 
 class Constants(BaseConstants):
     name_in_url = 'inst_spillovers'
-    players_per_group = None
+    names = ['1', '2', '3', '4']
+    players_per_group = len(names)
     num_rounds = 1
     show_up = 5
     total_group_pay = 40 # Value in dollars for total group earnings

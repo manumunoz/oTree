@@ -1,0 +1,60 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 border rounded p-1 mb-0" style="background-color:#3e2723">
+            <h1 id="lightbrown"> You are player <b id="white"> {{player.role}}</b> in your group
+               </h1>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+    <!-- Network -->
+        <div class="col-md-12 border border-dark rounded p-3 mb-1" style="background-color:#efebe9">
+            <h4>Please click on Continue to begin the experiment</h4>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block styles %}
+    <style type="text/css">
+        #cy {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        #brown{
+            color: #3e2723;
+        }
+        #lightbrown{
+            color: #efebe9;
+        }
+        #white{
+            color: #ffffff;
+        }
+        #gray{
+            color: #424242;
+        }
+        .center {
+            text-align: center;
+        }
+        .button {
+            background-color: #455A64;
+            color: #B3E5FC;
+            border: 2px solid #B3E5FC
+        }
+        .button:hover {
+            background-color: #B3E5FC;
+            color: #000000;
+            border: 2px solid #3E2723
+        }
+    </style>
+{% endblock %}

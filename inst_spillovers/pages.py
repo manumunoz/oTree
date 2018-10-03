@@ -7,25 +7,22 @@ class Start(Page):
     pass
 
 
-class Inst1_WP(WaitPage):
-    def after_all_players_arrive(self):
-        pass
+class WaitPage1(WaitPage):
+    pass
 
 class Inst_1(Page):
     pass
 
 
-class Inst2_WP(WaitPage):
-    def after_all_players_arrive(self):
-        pass
+class WaitPage2(WaitPage):
+    pass
 
 class Inst_2(Page):
     pass
 
 
-class Inst3_WP(WaitPage):
-    def after_all_players_arrive(self):
-        pass
+class WaitPage3(WaitPage):
+    pass
 
 class Inst_3(Page):
     pass
@@ -33,7 +30,10 @@ class Inst_3(Page):
 
 page_sequence = [
     Start,
+    WaitPage1,
     Inst_1,
+    WaitPage2,
     Inst_2,
+    WaitPage3,
     Inst_3,
 ]

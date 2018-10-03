@@ -27,8 +27,8 @@ class Constants(BaseConstants):
     show_up = 5
     total_group_pay = 40 # Value in dollars for total group earnings
     total_group_no_pay = 0
-    goal_value = 1 # Number of coordinations needed to achieve the goal
-    instructions_template = 'group_spillover/Instructions.html'
+    goal_value = 12 # Number of coordinations needed to achieve the goal
+    # instructions_template = 'group_spillover/Instructions.html'
 
 
 class Subsession(BaseSubsession):
