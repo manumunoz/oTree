@@ -99,6 +99,7 @@ class Results(Page):
 
 
 page_sequence = [
+    Start,
     BeforeSignalWP,
     FirstSignal,
     BeforeSecondSignalWP,
