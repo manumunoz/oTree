@@ -14,58 +14,75 @@
 {% block content %}
 <div class="container">
     <div class="row">
-      <div class="col-sm-12 border" style='background-color: #F8F8FF;'>
+      <div class="col-sm-12 border rounded" style='background-color: #F8F8FF;'>
         <p>
             <br>
-            At the beginning of the experiment, all participants are randomly assigned to groups of size
-            <b>{{ Constants.names }}</b>. You will be in a group with the same people for all the experiment.
+            You will participate with <b>{{ Constants.others }}</b> others. At the beginning of the experiment, each
+            participant is randomly assigned to one of two groups: <i>circles</i> or <i>triangles</i>.
+            Participants in each group are assigned an internal and an external symbol (&#9711 or &#9651) and a label
+            (1 to {{ Constants.names }}). Your group and symbols will <b>not change</b> during the 10 rounds of Part 1,
+            but you will be assigned a <b>different</b> label in every round.
             <br><br>
-            Each participant is assigned a label (1 to {{ Constants.names }}), and an internal and an external symbol (&#9711 or &#9651),
-            which will not change during the 10 rounds of Part 1.
-            <br><br>
-            You will see your label and your symbols on the header at the top of each screen. The example below is the
-            header for Player 1.
+            You will see your label and your group (as well as your symbols) on the header of each screen in every round.
+            The header below is an example for a player with label <b>3</b> who is assigned to group  <b>circle</b>.
         </p>
-          <img width="100%" src="{% static "instructions/Img_Inst_10_Header.jpg" %}"/>
+          <img width="100%" src="{% static "instructions/Img_Inst_10_Header.png" %}"/>
           <br>
         <p>
-            Each round in Part 1 consists of 3 phases (see below), which are explained in the following screens.
+            Each round in Part 1 consists of 3 phases, which are explained in the following screens
         </p>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-4 border " style='background-color: #ffffff;'>
-          <h5>1. Connections</h5>
-          <p>Participants can propose connections to each other.</p>
-          <br>
-            <img width="85%" src="{% static "instructions/Img_Inst_7.jpeg" %}"/>
+      <div class="col-sm-2 border text-white rounded" style='background-color: #ffffff;'>
+            <img width="100%" src="{% static "instructions/Img_Inst_7.jpeg" %}"/>
       </div>
-      <div class="col-sm-4 border " style='background-color: #ffffff;'>
-          <h5>2. Action</h5>
-          <p>Each participant observes the connections made and choose an action: Up or Down.</p>
-            <img width="85%" src="{% static "instructions/Img_Inst_8.jpeg" %}"/>
-      </div>
-      <div class="col-sm-4 border " style='background-color: #ffffff;'>
-          <h5>3. Results</h5>
-          <p>Participants observe which of their connections chose the same action, and earn points for it.</p>
-            <img width="85%" src="{% static "instructions/Img_Inst_9.jpeg" %}"/>
+      <div class="col-sm-10 border rounded" style='background-color: #F8F8FF;'>
+        <h5>Phase 1. Connections</h5>
+        <p>
+          Participants can propose connections to each other.
+        </p>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
-          <h4>Comprehension Question</h4>
-          <p style='color: #B3E5FC'>Please answer the following question:</p>
+      <div class="col-sm-2 border text-white rounded" style='background-color: #ffffff;'>
+            <img width="100%" src="{% static "instructions/Img_Inst_8.jpeg" %}"/>
+      </div>
+      <div class="col-sm-10 border rounded" style='background-color: #F8F8FF;'>
+        <h5>Phase 2. Actions</h5>
+        <p>
+          Each participant observes the connections made and choose an action: Up or Down.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2 border text-white rounded" style='background-color: #ffffff;'>
+            <img width="100%" src="{% static "instructions/Img_Inst_9.jpeg" %}"/>
+      </div>
+      <div class="col-sm-10 border rounded" style='background-color: #F8F8FF;'>
+        <h5>Phase 3. Results</h5>
+        <p>
+            Participants observe which of their connections chose the same action, and earn points for it.
+        </p>
       </div>
     </div>
 </div>
 
 <div class="container">
     <div class="row">
-      <div class="col-sm-12 border" style='background-color: #F8F8FF;'>
+      <div class="col-sm-12 border rounded" style='background-color: #ffffff;'>
+          <br>
+          <h4>Before you continue, please answer the comprehension question: </h4>
+          <br>
           <p>
             <b>1. You will be assigned an internal and an external symbol. How often do your symbols change?</b>
             <br>
-            <small>{% formfield player.change label="" %}</small>
+            <small>{% formfield player.q1_symbol label="" %}</small>
+          </p>
+          <p>
+            <b>2. You will be assigned a label from 1 to {{ Constants.names }}. How often does your label change?</b>
+            <br>
+            <small>{% formfield player.q2_label label="" %}</small>
           </p>
             <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Continue </button>
       </div>

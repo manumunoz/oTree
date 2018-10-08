@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
-        <h2> Phase 2: Action </h2>
+          <h2> Instructions Phase 2: <i style='color: #B3E5FC'>Action </i></h2>
       </div>
     </div>
 </div>
@@ -15,81 +15,78 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-12 border" style='background-color: #F8F8FF;'>
-            <br>
-            In this phase you will choose an action: <b style="color: #8E24AA">Up</b> or <b style="color: #43A047">Down</b>.
-            <br><br>
-          You can get points for every participant choosing the <b>same</b> action as you (coordinate), but only if there
-          is an <b>active connection</b> between the two of you (you proposed to each other in Phase 1).
-            <br><br>
-          The number of points you earn depends on your <b>internal symbol</b> and the <b>action</b> you choose. This is
-            explained below.
-            <br>
-
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
         <p>
             <br>
-            You will see a screen as illustrated on the left. The numbers explain what each element means.
+            In this phase you will see the active connections you and the other participants formed in Phase 1 (Your
+            connections are darker than the connections of other participants to make it easier for you to see them).
+            You will choose an action: <b style="color: #8E24AA">Up</b> or <b style="color: #43A047">Down</b>. You will earn points for each
+            of your active connections choosing the <b>same</b> action as you (coordinate). The number of points you
+            earn depends on your <b>group</b> and the action you choose. This is explained as follows.
+            <br><br>
+            The image below illustrates the screen you will see in Phase 2. The numbers explain what each element means.
         </p>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-8 border " style='background-color: #ffffff;'>
+      <div class="col-sm-8 border rounded" style='background-color: #ffffff;'>
           <br>
-            <img width="100%"  src="{% static "instructions/Img_Inst_10_Link.jpg" %}"/>
+            <img width="100%"  src="{% static "instructions/Img_Inst_12_Choice.png" %}"/>
       </div>
-      <div class="col-sm-4 border border-dark text-white rounded" style='background-color: #455A64;'>
-          <p><b style='color: #B3E5FC'>#1.</b> You will see which active connections you formed in Phase 1.
-              <br><br>
-              - A darker line from you with an arrow pointing to another participant is a connection you proposed
-              <br><br>
-              - A lighter line with an arrow pointing towards you is a connection that another participant proposed to you
-              <br><br>
-              -An <b style='color: #B3E5FC'>active connection</b> with another participant is formed if both of you proposed to each other
-          </p>
-          <p style='color: #ffffff'><b style='color: #B3E5FC'>#2.</b> You will have to click on the action you want to choose:
-              <b style='color: #E1BEE7'> Up </b> or <b style='color: #C8E6C9'> Down </b>
-          </p>
-          <!--<p>-->
-          <!--For each coordination you get:-->
-          <!--<br>-->
-           <!--If your internal symbol is <b style='color: #B3E5FC'> &#9711</b>:-->
-           <!--<br>-->
-              <!-- - <b>{{ Constants.liked_gain }}</b> if you choose <b style="color: #8E24AA">Up</b>-->
-           <!--<br>-->
-              <!-- - <b>{{ Constants.disliked_gain }}</b> if you choose <b style="color: #43A047">Down</b>-->
-           <!--<br><br>-->
-           <!--If your internal symbol is <b style='color: #B3E5FC'> &#9651</b>, for every coordination you earn:-->
-           <!--<br>-->
-              <!-- - <b>{{ Constants.liked_gain }}</b> if you choose <b style="color: #43A047">Down</b>-->
-           <!--<br>-->
-              <!-- - <b>{{ Constants.disliked_gain }}</b> if you choose <b style="color: #8E24AA">Up</b>-->
-          <!--</p>-->
+      <div class="col-sm-4  border rounded" style='background-color: #F8F8FF;'>
+          <br>
+          <p><b>1.</b> The network of connections formed in Phase 1:
+            <ul>
+              <li>An arrow <b>from</b> you <b>to</b> another participant is a connection you proposed</li>
+              <li>An arrow <b>to</b> you <b>from</b> another participant is a connection proposed to you</li>
+              <li>When <b>both</b> arrows are present there is an <b>active connection</b> with the other participant</li>
+            </ul>
+              </p>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
-          <h4>Comprehension Question</h4>
-          <p style='color: #B3E5FC'>Please answer the following question:</p>
+      <div class="col-sm-12  border rounded" style='background-color: #F8F8FF;'>
+          <p><b>2. Actions:</b> To choose an action <b style="color: #8E24AA">Up</b> or <b style="color: #43A047">Down</b> click on the
+              corresponding button. Depending on your symbol and the decisions made by the your active connections you can earn points as
+              follows:
+            <br><br>
+              <b>If your group is <b>&#9711</b> and you:</b>
+            <ul>
+                <li>choose <b style="color: #8E24AA">Up</b>, you get <b>{{ Constants.liked_gain }}</b> points for each
+                    active connection choosing <b style="color: #8E24AA">Up</b></li>
+                <li>choose <b style="color: #43A047">Down</b>, you get <b>{{ Constants.disliked_gain }}</b> points for each active
+                    connection choosing <b style="color: #43A047">Down</b></li>
+            </ul>
+              <b>If your group is <b>&#9651</b>:</b>
+            <ul>
+                <li>choose <b style="color: #43A047">Down</b>, you get <b>{{ Constants.liked_gain }}</b> points for each active
+                    connection choosing <b style="color: #43A047">Down</b></li>
+                <li>choose <b style="color: #8E24AA">Up</b>, you get <b>{{ Constants.disliked_gain }}</b> points for
+                    each active connection choosing <b style="color: #8E24AA">Up</b></li>
+            </ul>
+          </p>
       </div>
     </div>
 </div>
 <div class="container">
     <div class="row">
-      <div class="col-sm-12 border" style='background-color: #F8F8FF;'>
+      <div class="col-sm-12 border rounded" style='background-color: #ffffff;'>
+          <br>
+          <h4>Before you continue, please answer the comprehension questions: </h4>
+          <br>
           <p>
-            <b>1. You will be assigned an internal and an external symbol. How often do your symbols change?</b>
+            <b>1. In the image above, how many active connections does player 3 formed?</b>
             <br>
-            <small>{% formfield player.change label="" %}</small>
+            <small>{% formfield player.q5_count label="" %}</small>
+          </p>
+          <p>
+            <b>1. In the image above, what is the total cost player 3 has to pay for his connections?</b>
+            <br>
+            <small>{% formfield player.q6_pay label="" %}</small>
           </p>
             <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Continue </button>
       </div>
     </div>
 </div>
-
 {% endblock %}
 
 {% block styles %}

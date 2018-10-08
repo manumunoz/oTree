@@ -8,41 +8,48 @@ class WelcomeInst(Page):
 
 class PartOneInst(Page):
     form_model = 'player'
-    form_fields = ['change']
+    form_fields = ['q1_symbol','q2_label']
 
-    def change_error_message(self, value):
-        # print('value is', value)
+    def q1_symbol_error_message(self, value):
         if value != 1:
             return 'In Part 1 your symbols are fixed for all 10 rounds'
 
+    def q2_label_error_message(self, value):
+        if value != 2:
+            return 'In Part 1 your label is randomly assigned in each round'
 
 class LinkingInst(Page):
     form_model = 'player'
-    form_fields = ['change']
+    form_fields = ['q3_cost','q4_active']
 
-    def change_error_message(self, value):
-        print('value is', value)
+    def q3_cost_error_message(self, value):
         if value != 1:
-            return 'In Part 1 your symbols are fixed for all 10 rounds'
-# proposals: directed but only count if reciprocal
+            return 'You will pay a cost when you propose a connection to another participant, no matter what the he/she does'
+
+    def q4_active_error_message(self, value):
+        if value != 3:
+            return 'Active connections require being proposed by both participants'
 
 class ActionInst(Page):
     form_model = 'player'
-    form_fields = ['change']
+    form_fields = ['q5_count','q6_pay']
 
-    def change_error_message(self, value):
-        print('value is', value)
-        if value != 1:
-            return 'In Part 1 your symbols are fixed for all 10 rounds'
+    def q5_count_error_message(self, value):
+        if value != 3:
+            return 'Active connections require being proposed by both participants'
+
+    def q6_pay_error_message(self, value):
+        if value != 2:
+            return 'The cost is paid only for the connections proposed to others'
 
 # action: two options and you earn points depending on your choice and the choice of your connections.
 # You are not affected by someone else's choice of she is not a connection
 
 class ResultsInst(Page):
     form_model = 'player'
-    form_fields = ['change']
+    form_fields = ['q_results']
 
-    def change_error_message(self, value):
+    def q_results_error_message(self, value):
         print('value is', value)
         if value != 1:
             return 'In Part 1 your symbols are fixed for all 10 rounds'

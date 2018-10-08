@@ -14,22 +14,22 @@
 {% block content %}
 <div class="container">
     <div class="row">
-      <div class="col-sm-3 border text-white " style='background-color: #ffffff;'>
-            <img width="140" height="100" src="{% static "instructions/Img_Inst_1.jpeg" %}"/>
+      <div class="col-sm-2 border text-white rounded" style='background-color: #ffffff;'>
+            <img width="100%" src="{% static "instructions/Img_Inst_1.jpeg" %}"/>
       </div>
-      <div class="col-sm-9 border" style='background-color: #F8F8FF;'>
+      <div class="col-sm-10 border rounded" style='background-color: #F8F8FF;'>
         <p>
             <br>
-           For participating in this experiment you will receive a minimum payment of {{ Constants.min_pay }} pesos.
+           For participating in this experiment you will receive a minimum payment of <b>{{ Constants.min_pay }}</b> Euros.
             Please read carefully these instructions to find out how you can earn <b>additional money</b>.
         </p>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-3 border text-white " style='background-color: #ffffff;'>
-            <img width="140" height="100" src="{% static "instructions/Img_Inst_2.jpeg" %}"/>
+      <div class="col-sm-2 border text-white rounded" style='background-color: #ffffff;'>
+            <img width="100%" src="{% static "instructions/Img_Inst_2.jpeg" %}"/>
       </div>
-      <div class="col-sm-9 border" style='background-color: #F8F8FF;'>
+      <div class="col-sm-10 border rounded" style='background-color: #F8F8FF;'>
         <p>
             <br>
             All interactions take place through the computers. So, please do not talk or communicate with the other
@@ -38,10 +38,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-3 border text-white " style='background-color: #ffffff;'>
-            <img width="140" height="100"  src="{% static "instructions/Img_Inst_3.jpeg" %}"/>
+      <div class="col-sm-2 border text-white rounded" style='background-color: #ffffff;'>
+            <img width="100%" src="{% static "instructions/Img_Inst_3.jpeg" %}"/>
       </div>
-      <div class="col-sm-9 border" style='background-color: #F8F8FF;'>
+      <div class="col-sm-10 border rounded" style='background-color: #F8F8FF;'>
         <p>
             <br>
             If you have any question please raise your hand and an experimentalist will come and answer your question privately.
@@ -49,10 +49,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-3 border text-white " style='background-color: #ffffff;'>
-            <img width="140" height="100"  src="{% static "instructions/Img_Inst_4.jpeg" %}"/>
+      <div class="col-sm-2 border text-white rounded" style='background-color: #ffffff;'>
+            <img width="100%" src="{% static "instructions/Img_Inst_4.jpeg" %}"/>
       </div>
-      <div class="col-sm-9 border" style='background-color: #F8F8FF;'>
+      <div class="col-sm-10 border rounded" style='background-color: #F8F8FF;'>
         <p>
             <br>
             This experiment is <b>anonymous</b>. Therefore, your identity will not be revealed to the other participants
@@ -61,31 +61,31 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-3 border text-white " style='background-color: #ffffff;'>
-            <img width="140" height="100"  src="{% static "instructions/Img_Inst_5.jpeg" %}"/>
+      <div class="col-sm-2 border text-white rounded" style='background-color: #ffffff;'>
+          <br>
+            <img width="100%" src="{% static "instructions/Img_Inst_6.jpeg" %}"/>
       </div>
-      <div class="col-sm-9 border" style='background-color: #F8F8FF;'>
+      <div class="col-sm-10 border rounded" style='background-color: #F8F8FF;'>
         <p>
             <br>
-            In this experiment you can earn points, which will be converted into Colombian pesos at the end of the
-            experiment. We will use the following exchange rate: <b>50 points = 3000 pesos</b>. You will receive your
-            earnings in cash.
+            The experiment has <b>2 parts</b> of 10 rounds each (20 in total). You will first read the instructions for
+            Part 1. Once part 1 is over you will read the instructions for Part 2. In both parts you will interact
+            with the same other {{ Constants.others }} participants.
         </p>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-3 border text-white " style='background-color: #ffffff;'>
+      <div class="col-sm-2 border text-white rounded" style='background-color: #ffffff;'>
           <br>
-            <img width="140" height="100"  src="{% static "instructions/Img_Inst_6.jpeg" %}"/>
+            <img width="100%" src="{% static "instructions/Img_Inst_5.jpeg" %}"/>
       </div>
-      <div class="col-sm-9 border" style='background-color: #F8F8FF;'>
+      <div class="col-sm-10 border rounded" style='background-color: #F8F8FF;'>
         <p>
             <br>
-            The experiment has <b>2 parts</b>. You will first read the instructions for Part 1. Once part 1 is over you
-            will read the instructions for Part 2.
-            <br><br>
-            Each part lasts 10 rounds (20 in total). The total number of points you get in the 20 rounds will determine
-            your final earnings. In both parts you will participate with the same group.
+            At the end of the experiment the computer will randomly select one round from Part 1 and one round from Part
+            2. The total points you earned in the two selected rounds will determine your payment. We will convert the
+            points into Euros using the following exchange rate: <b>{{ Constants.exchange }} points = 1 Euro</b>. You
+            will receive your earnings in cash.
         </p>
             <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Continue </button>
       </div>

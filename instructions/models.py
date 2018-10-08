@@ -15,11 +15,13 @@ class Constants(BaseConstants):
     name_in_url = 'instructions'
     players_per_group = None
     num_rounds = 1
-    min_pay = 10000
-    names = 11
+    min_pay = 5
+    names = 7
+    others = names - 1
     link_cost = 2
     liked_gain = 6
     disliked_gain = 4
+    exchange = 2
 
 class Subsession(BaseSubsession):
     pass
@@ -30,18 +32,8 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    test1=models.IntegerField()
 
-    participants = models.PositiveIntegerField(
-        choices=[
-            [1, 'Only myself'],
-            [2, '11 including myself'],
-            [3, '6 including myself']
-        ],
-        widget=widgets.RadioSelect
-    )
-
-    change = models.PositiveIntegerField(
+    q1_symbol = models.PositiveIntegerField(
         choices=[
             [1, 'They are fixed and do not change'],
             [2, 'The computer changes them in every round'],
@@ -50,11 +42,56 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect
     )
 
-    phases = models.PositiveIntegerField(
+    q2_label = models.PositiveIntegerField(
         choices=[
-            [1, '1 Phase'],
-            [2, '2 Phases'],
-            [3, '3 Phases']
+            [1, 'It is fixed and does not change'],
+            [2, 'The computer changes it in every round'],
+            [3, 'I can change it in every round'],
+        ],
+        widget=widgets.RadioSelect
+    )
+
+    q3_cost = models.PositiveIntegerField(
+        choices=[
+            [1, 'When I propose a connection to another participant regardless of he/she proposing a connection to me'],
+            [2, 'When another participant proposes a connection to me regardless of me proposing a connection to him/her'],
+            [3, 'When I propose a connection to a participant who also proposes a connection to me']
+        ],
+        widget=widgets.RadioSelect
+    )
+
+    q4_active = models.PositiveIntegerField(
+        choices=[
+            [1, 'When I propose a connection to another participant regardless of he/she proposing a connection to me'],
+            [2, 'When another participant proposes a connection to me regardless of me proposing a connection to him/her'],
+            [3, 'When I propose a connection to a participant who also proposes a connection to me']
+        ],
+        widget=widgets.RadioSelect
+    )
+
+    q5_count = models.PositiveIntegerField(
+        choices=[
+            [1, '5'],
+            [2, '4'],
+            [3, '3']
+        ],
+        widget=widgets.RadioSelect
+    )
+
+    q6_pay = models.PositiveIntegerField(
+        choices=[
+            [1, '3 active connections with others x 2 points = 6 points'],
+            [2, '4 proposed connection to others  x 2 points = 8 points'],
+            [3, '4 proposed connection from others  x 2 points = 8 points']
+        ],
+        widget=widgets.RadioSelect
+    )
+
+    q_results = models.PositiveIntegerField(
+        choices=[
+            [1, 'When I propose a connection to another participant'],
+            [2, 'When another participant proposes a connection to me'],
+            [3, 'When I propose a connection to a participant who also proposes a connection to me']
         ],
         widget=widgets.RadioSelect
     )

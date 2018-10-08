@@ -37,6 +37,8 @@
     </div>
     <div class="row">
       <div class="col-sm-3 border border-dark text-white rounded p-3 mb-1" style='background-color: #607D8B;'>
+          Your active connections:
+            <h4 style='color: #B3E5FC'> {{ player.degree }}</h4>
         <p>Choose an action:</p>
         <div>
             <button name="action" value="1" class="btn button1 btn-large"> Arriba </button>
@@ -87,8 +89,8 @@
                     value.data.linkStyle = 'target'
                 }
                 if ( (value.group === 'nodes' && value.data.name == 1) || (value.group === 'nodes' && value.data.name == 2) ||
-                        (value.group === 'nodes' && value.data.name == 3) || (value.group === 'nodes' && value.data.name == 10) ||
-                        (value.group === 'nodes' && value.data.name == 11)
+                        (value.group === 'nodes' && value.data.name == 3) || (value.group === 'nodes' && value.data.name == 7) ||
+                        (value.group === 'nodes' && value.data.name == 6)
                 ) {
                     value.data.vertPos = 'top'
                 }
@@ -96,8 +98,7 @@
                     value.data.vertPos = 'bottom'
                 }
                 if ( (value.group === 'nodes' && value.data.name == 1) || (value.group === 'nodes' && value.data.name == 2) ||
-                        (value.group === 'nodes' && value.data.name == 3) || (value.group === 'nodes' && value.data.name == 4) ||
-                        (value.group === 'nodes' && value.data.name == 5) || (value.group === 'nodes' && value.data.name == 6)
+                        (value.group === 'nodes' && value.data.name == 3) || (value.group === 'nodes' && value.data.name == 4)
                 ) {
                     value.data.horPos = 'right'
                 }

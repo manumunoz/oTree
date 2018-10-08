@@ -19,15 +19,14 @@ class Constants(BaseConstants):
 
     circle = 1 # Majority
     triangle = 0 # Minority
-    names = ['1','2','3','4','5','6','7','8','9','10','11']
-    # names_2 = ['5','7','9','11','2','4','6','8','10','1','3']
+    names = ['1','2','3','4','5','6','7']
     # names = ['1', '2', '3']
-    attribute = [0,1,1,0,1,0,1,1,1,0,0]
-    attributes = {'1': 0, '2': 1, '3': 1, '4': 0, '5': 1, '6': 0, '7': 1, '8': 1, '9': 1, '10': 0, '11': 0}
-    position = {'1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, '10': 10, '11': 11}
+    attribute = [1,0,1,0,1,1,0]
+    attributes = {'1': 1, '2': 0, '3': 1, '4': 0, '5': 1, '6': 1, '7': 0}
     link_cost = 2
     liked_gain = 6
     disliked_gain = 4
+    personal = 1
     # visible = 1
     # invisible = 0
     players_per_group = len(names)
@@ -67,7 +66,7 @@ class Group(BaseGroup):
 
     def displaying_network(self):
         nodes = [{'data': {'id': i, 'name': i, 'action': self.get_player_by_id(i).action, 'shape': self.get_player_by_id(i).chosen_type,
-                           'attribute': Constants.attributes[i], 'position': Constants.position[i]},  'group': 'nodes'} for i in Constants.names]
+                           'attribute': Constants.attributes[i]}, 'group': 'nodes'} for i in Constants.names]
         edges = []
         elements = nodes + edges
         style = [{'selector': 'node', 'style': {'content': 'data(name)'}}]
@@ -77,7 +76,7 @@ class Group(BaseGroup):
 
     def forming_network(self):
         nodes = [{'data': {'id': i, 'name': i, 'action': self.get_player_by_id(i).action, 'shape': self.get_player_by_id(i).chosen_type,
-                           'attribute': Constants.attributes[i], 'position': Constants.position[i]}, 'group': 'nodes'} for i in Constants.names]
+                           'attribute': Constants.attributes[i]}, 'group': 'nodes'} for i in Constants.names]
         edges = []
         for p in self.get_players():
             friends = json.loads(p.friends)
@@ -112,18 +111,14 @@ class Group(BaseGroup):
                 setattr(player_to, 'prop_from_' + player_from.name, kiubo_prop_from) # la añado a prop_from_X
                 setattr(player_to, 'link_with_' + player_from.name, kiubo_link)
 
-    # def calculate_actions(self):
-    #     for player in self.get_players():
-    #         for partner in self.get_players():
-    #             choice = 0
-    #             action_up = 0
-    #             if player.name != partner.name: # si no soy yo mismo
-    #                 action_up = partner.action
-    #                 if action_up == 1:
-    #                     choice = 1
-    #                 else:
-    #                     choice = 0
-    #             setattr(player, 'action_' + partner.name, choice) # la añado a prop_from_X
+    def calculate_degree(self):
+        for player in self.get_players():
+            player.degree = player.link_with_1 + player.link_with_2 + player.link_with_3 + player.link_with_4 + player.link_with_5 + \
+                            player.link_with_6 + player.link_with_7
+
+    def linking_costs(self):
+        for player in self.get_players():
+            player.linking_costs = player.degree * Constants.link_cost
 
     def calculate_actions(self):
         for player in self.get_players():
@@ -134,6 +129,62 @@ class Group(BaseGroup):
                 else:
                     choice = 0
                 setattr(player, 'action_' + partner.name, choice) # la añado a prop_from_X
+
+    def sum_coordinations(self):
+        for player in self.get_players():
+            if player.action == player.action_1 and player.link_with_1 == 1:
+                player.coordinate_1 = 1
+            else:
+                player.coordinate_1 = 0
+            if player.action == player.action_2 and player.link_with_2 == 1:
+                player.coordinate_2 = 1
+            else:
+                player.coordinate_2 = 0
+            if player.action == player.action_3 and player.link_with_3 == 1:
+                player.coordinate_3 = 1
+            else:
+                player.coordinate_3 = 0
+
+            if player.action == player.action_4 and player.link_with_4 == 1:
+                player.coordinate_4 = 1
+            else:
+                player.coordinate_4 = 0
+            if player.action == player.action_5 and player.link_with_5 == 1:
+                player.coordinate_5 = 1
+            else:
+                player.coordinate_5 = 0
+            if player.action == player.action_6 and player.link_with_6 == 1:
+                player.coordinate_6 = 1
+            else:
+                player.coordinate_6 = 0
+            if player.action == player.action_7 and player.link_with_7 == 1:
+                player.coordinate_7 = 1
+            else:
+                player.coordinate_7 = 0
+
+    def coordination_score(self):
+        for player in self.get_players():
+            player.coordination_score = Constants.personal + player.coordinate_1 + player.coordinate_2 + \
+                                        player.coordinate_3 + player.coordinate_4 + player.coordinate_5 + \
+                                        player.coordinate_6 + player.coordinate_7
+
+    def values_coordination(self):
+        for player in self.get_players():
+            if player.action == player.liked_action:
+                player.coordination_gains = player.coordination_score * Constants.liked_gain
+            else:
+                player.coordination_gains = player.coordination_score * Constants.disliked_gain
+
+    def round_gains(self):
+        for player in self.get_players():
+            player.round_gains = player.coordination_gains - player.linking_costs
+
+    def round_payoffs(self):
+        for player in self.get_players():
+            if player.round_gains > 0:
+                player.payoff = player.round_gains
+            else:
+                player.payoff = 0
 
     def summing_types(self):
         players = self.get_players()
@@ -148,12 +199,9 @@ class Group(BaseGroup):
         self.total_down = len(Constants.names) - self.total_up
 
 
-# noinspection PyPackageRequirements
 class Player(BasePlayer):
     given_symbol = models.BooleanField()
-    # chosen_symbol = models.BooleanField()
     given_preference = models.BooleanField() # circle or triangle assigned exogenously
-    # chosen_preference = models.BooleanField()  # circle or triangle chosen endogenously
     given_type = models.IntegerField() # combination of symbol and preference
     chosen_type = models.IntegerField() # combination of symbol and preference
     is_circle = models.IntegerField()
@@ -165,70 +213,6 @@ class Player(BasePlayer):
     coordination_gains = models.IntegerField()
     linking_costs = models.IntegerField()
     round_gains = models.IntegerField()
-
-    def calculate_degree(self):
-        # self.degree = self.link_with_1 + self.link_with_2 + self.link_with_3
-        self.degree = self.link_with_1 + self.link_with_2 + self.link_with_3 + self.link_with_4 + self.link_with_5 + \
-                      self.link_with_6 + self.link_with_7 + self.link_with_8 + self.link_with_9 + self.link_with_10 +\
-                      self.link_with_11
-        self.linking_costs = self.degree * Constants.link_cost
-
-    def calculate_coordinate(self):
-        # for i in range(1, Constants.players_per_group):
-        #     if self.action == getattr(self, 'action_' + i):
-        #         setattr(self, 'coordinate_' + i, 1)
-        if self.action == self.action_1:
-            self.coordinate_1=1
-        if self.action == self.action_2:
-            self.coordinate_2=1
-        if self.action == self.action_3:
-            self.coordinate_3=1
-        if self.action == self.action_4:
-            self.coordinate_4=1
-        if self.action == self.action_5:
-            self.coordinate_5=1
-        if self.action == self.action_6:
-            self.coordinate_6=1
-        if self.action == self.action_7:
-            self.coordinate_7=1
-        if self.action == self.action_8:
-            self.coordinate_8=1
-        if self.action == self.action_9:
-            self.coordinate_9=1
-        if self.action == self.action_10:
-            self.coordinate_10=1
-        if self.action == self.action_11:
-            self.coordinate_11=1
-        # self.coordination_score = self.coordinate_1 + self.coordinate_2 + self.coordinate_3
-        self.coordination_score = self.coordinate_1 + self.coordinate_2 + self.coordinate_3 + self.coordinate_4  + \
-                                  self.coordinate_5 + self.coordinate_6 + self.coordinate_7 + self.coordinate_8 + \
-                                  self.coordinate_9 + self.coordinate_10 + self.coordinate_11
-        if self.action == self.liked_action:
-            self.coordination_gains = self.coordination_score * Constants.liked_gain
-        else:
-            self.coordination_gains = self.coordination_score * Constants.disliked_gain
-        self.round_gains = self.coordination_gains - self.linking_costs
-        if self.round_gains >= 0:
-            self.payoff = self.round_gains
-        else:
-            self.payoff = 0
-
-    def get_old_action(self):
-        self.old_action = self.in_round(self.round_number - 1).action
-
-    # # Symbol Assignation
-    # def assign_values(self):
-    #     self.given_symbol = bool(Constants.attribute[self.id_in_group - 1])
-    #     self.given_preference = bool(Constants.attribute[self.id_in_group - 1])
-    #
-    # # Given-Type Assignation
-    # def assign_types(self):
-    #     if self.given_symbol == 1 and self.given_preference == 1:
-    #         self.given_type = 1  # circle-circle
-    #         self.chosen_type = 1
-    #     else:
-    #         self.given_type = 4 # triangle-triangle
-    #         self.chosen_type = 4
 
     # ONLY FOR PART 2!!!
     # # Chosen-Type Assignation if INCONSISTENT (should be different if consistent || invisible)
