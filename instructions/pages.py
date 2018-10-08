@@ -3,6 +3,9 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 
+class StartInst(Page):
+    pass
+
 class WelcomeInst(Page):
     pass
 
@@ -48,21 +51,16 @@ class ActionInst(Page):
 
 class ResultsInst(Page):
     form_model = 'player'
-    form_fields = ['q_results']
+    form_fields = ['q7_points','q8_payoffs']
 
-    def q_results_error_message(self, value):
-        print('value is', value)
+    def q7_points_error_message(self, value):
         if value != 1:
             return 'In Part 1 your symbols are fixed for all 10 rounds'
 
-# You get points of you choose the same as your connections (coordinate) and you loose points if you loose points if
-# you miscoordinate. Circles earn 4 or 2, etc
+    def q8_payoffs_error_message(self, value):
+        if value != 1:
+            return 'In Part 1 your symbols are fixed for all 10 rounds'
 
-class ExamplesInst(Page):
-    pass
-
-# Case 1:
-# Case 2:
 
 class SummaryInst(Page):
     pass
@@ -71,9 +69,11 @@ class SummaryInst(Page):
 
 
 page_sequence = [
+    StartInst,
     WelcomeInst,
     PartOneInst,
     LinkingInst,
     ActionInst,
     ResultsInst,
+    SummaryInst,
 ]

@@ -13,68 +13,88 @@
 
 {% block content %}
 <div class="container">
-    <!--<div class="row">-->
-      <!--<div class="col-sm-12 border" style='background-color: #F8F8FF;'>-->
-            <!--<br>-->
-            <!--In this phase you will be informed of your earnings for the round.-->
-            <!--<br>-->
-        <!--</p>-->
-      <!--</div>-->
-    <!--</div>-->
     <div class="row">
-      <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
+      <div class="col-sm-12 border" style='background-color: #F8F8FF;'>
         <p>
             <br>
-            You will see a screen as illustrated on the left. The numbers explain what each element means.
+            In this phase you will see the the actions chosen by your active connections and you will be informed of the
+            points you have in this round for each of your active connections choosing the same action as you.
+            <br><br>
+            The image below illustrates the screen you will see in Phase 3. The numbers explain what each element means.
         </p>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-8 border " style='background-color: #ffffff;'>
+      <div class="col-sm-8 border rounded" style='background-color: #ffffff;'>
           <br>
-            <img width="100%"  src="{% static "instructions/Img_Inst_10_Link.jpg" %}"/>
+            <img width="100%"  src="{% static "instructions/Img_Inst_13_Results.png" %}"/>
       </div>
-      <div class="col-sm-4 border border-dark text-white rounded" style='background-color: #455A64;'>
-          <p>
-              <b style='color: #B3E5FC'>#1.</b> Your action, number of active connections and number of coordinations
+      <div class="col-sm-4  border rounded" style='background-color: #F8F8FF;'>
+          <br>
+          <p><b>1.</b> The actions chosen in Phase 2, illustrated in the border of each participant's external symbol
+            <ul>
+              <li><b style="color: #8E24AA">Purple</b> if action <b style="color: #8E24AA">Up</b></li>
+              <li><b style="color: #43A047">Green</b> if action <b style="color: #43A047">Down</b></li>
+            </ul>
           </p>
-          <p><b style='color: #B3E5FC'>#2.</b> The action chosen by each of your active connections is illustrated by the color of
-              its border: <b style='color: #E1BEE7'>Up </b> or <b style='color: #C8E6C9'>Down</b>.
-          </p>
-          <p>
-              <b style='color: #B3E5FC'>#3.</b> Your earnings in the round. For each of your active connections choosing
-              the same as you (coordination) you get:
-          <br><br>
-           <b style='color: #B3E5FC'> If your internal symbol is  &#9711</b>:
-           <br>
-               - <b>{{ Constants.liked_gain }}</b> points if you choose <b style="color: #E1BEE7">Up</b>
-           <br>
-               - <b>{{ Constants.disliked_gain }}</b> points if you choose <b style="color: #C8E6C9">Down</b>
-           <br><br>
-           <b style='color: #B3E5FC'> If your internal symbol is  &#9651</b>:
-           <br>
-               - <b>{{ Constants.liked_gain }}</b> points if you choose <b style="color: #C8E6C9">Down</b>
-           <br>
-               - <b>{{ Constants.disliked_gain }}</b> points if you choose <b style="color: #E1BEE7">Up</b>
-              <br><br>
-              - You pay <b>{{ Constants.link_cost }}</b> points for each of your active connections.
+          <p><b>2.</b> Summary of your choices and results:
+          <ul>
+              <li>The action you chose</li>
+              <li>Number of active connections</li>
+              <li>Active connections you coordinate with</li>
+              <li>Points you get (<i>points earned minus costs</i>)</li>
+              <li><i>In case your points (gains minus costs) are negative, you will earn 0 points in that round</i></li>
+          <ul>
           </p>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
-          <h4>Comprehension Question</h4>
-          <p style='color: #B3E5FC'>Please answer the following question:</p>
-      </div>
+        <div class="col-sm-8 border rounded" style='background-color: #F8F8FF;'>
+            <h5>These 2 examples illustrate the way points are calculated</h5>
+            <p>
+            <b>Example 1: </b> You are player 3, you are assigned to the group circle, you proposed 4 connections,
+                formed 3 active connections, chose <b style="color: #8E24AA">Up</b> and 1 of your active connections
+                chose <b style="color: #8E24AA">Up</b> as well (2 chose <b style="color: #43A047">Down</b>).
+                Therefore, you earn 6 points for coordinating with yourself (you always coordinates with yourself), and 6
+                (6x1=6) points for choosing the same with 1 other active connection. 12 points in total. From that amount,
+                you subtract the cost of your 4 proposed connections 8 (4x2=8) points. Your earnings in the round are 12-8=4
+                points in total.</p>
+        </div>
+        <div class="col-sm-4 border rounded" style='background-color: #F8F8FF;'>
+                <img width="100%"  src="{% static "instructions/Img_Inst_13_Results_U.jpg" %}"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" style='background-color: #F8F8FF;'>
+            <p>
+            <br>
+                <b>Example 2: </b> You are player 3, you are assigned to the group circle, you proposed 4 connections, formed 3 active connections, chose <b style="color: #43A047">Down</b>
+                and 2 of your active connections chose <b style="color: #43A047">Down</b> as well (1 chose <b style="color: #8E24AA">Up</b>).
+                Therefore, you earn 4 points for coordinating with yourself (you always coordinates with yourself), and 8
+                (4x2=8) points for choosing the same with 2 other active connection. 12 points in total. From that amount,
+                you subtract the cost of your 4 proposed connections 8 (4x2=8) points. Your earnings in the round are 12-8=4
+                points in total.</p>
+        </div>
+        <div class="col-sm-4 border rounded" style='background-color: #F8F8FF;'>
+                <img width="100%"  src="{% static "instructions/Img_Inst_13_Results_D.jpg" %}"/>
+        </div>
     </div>
 </div>
 <div class="container">
     <div class="row">
-      <div class="col-sm-12 border" style='background-color: #F8F8FF;'>
+      <div class="col-sm-12 border rounded" style='background-color: #ffffff;'>
+          <br>
+          <h4>Before you continue, please answer the comprehension questions: </h4>
+          <br>
           <p>
-            <b>1. You will be assigned an internal and an external symbol. How often do your symbols change?</b>
+            <b>1. In the image above, how many active connections does player 3 formed?</b>
             <br>
-            <small>{% formfield player.q_results label="" %}</small>
+            <small>{% formfield player.q7_points label="" %}</small>
+          </p>
+          <p>
+            <b>2. In the image above, what is the total cost player 3 has to pay for his connections?</b>
+            <br>
+            <small>{% formfield player.q8_payoffs label="" %}</small>
           </p>
             <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Continue </button>
       </div>

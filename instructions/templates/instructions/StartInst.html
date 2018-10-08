@@ -1,0 +1,48 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
+        <h2> Welcome to this study </h2>
+      </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 border rounded" style='background-color: #ffffff;'>
+        <h5>
+            <br>
+           Please click on the "Start" button to begin your participation in the experiment.
+        </h5>
+            <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Start </button>
+            <br><br>
+      </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        .button {
+            background-color: #455A64;
+            color: #B3E5FC;
+            border: 2px solid #B3E5FC
+        }
+        .button:hover {
+            background-color: #B3E5FC;
+            color: #000000;
+            border: 2px solid #3E2723
+        }
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+{% endblock %}

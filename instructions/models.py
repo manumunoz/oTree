@@ -22,6 +22,8 @@ class Constants(BaseConstants):
     liked_gain = 6
     disliked_gain = 4
     exchange = 2
+    instructions_template= 'instructions/Instructions.html'
+
 
 class Subsession(BaseSubsession):
     pass
@@ -87,7 +89,16 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect
     )
 
-    q_results = models.PositiveIntegerField(
+    q7_points = models.PositiveIntegerField(
+        choices=[
+            [1, 'When I propose a connection to another participant'],
+            [2, 'When another participant proposes a connection to me'],
+            [3, 'When I propose a connection to a participant who also proposes a connection to me']
+        ],
+        widget=widgets.RadioSelect
+    )
+
+    q8_payoffs = models.PositiveIntegerField(
         choices=[
             [1, 'When I propose a connection to another participant'],
             [2, 'When another participant proposes a connection to me'],

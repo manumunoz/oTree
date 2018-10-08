@@ -1,0 +1,35 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+    {% include Constants.instructions_template %}
+
+          <br>
+
+            <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Continue </button>
+
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        .button {
+            background-color: #455A64;
+            color: #B3E5FC;
+            border: 2px solid #B3E5FC
+        }
+        .button:hover {
+            background-color: #B3E5FC;
+            color: #000000;
+            border: 2px solid #3E2723
+        }
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+{% endblock %}
