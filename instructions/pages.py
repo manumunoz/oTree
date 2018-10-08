@@ -6,6 +6,7 @@ from .models import Constants
 class WelcomeInst(Page):
     pass
 
+
 class PartOneInst(Page):
     form_model = 'player'
     form_fields = ['q1_symbol','q2_label']
@@ -17,6 +18,7 @@ class PartOneInst(Page):
     def q2_label_error_message(self, value):
         if value != 2:
             return 'In Part 1 your label is randomly assigned in each round'
+
 
 class LinkingInst(Page):
     form_model = 'player'
@@ -30,6 +32,7 @@ class LinkingInst(Page):
         if value != 3:
             return 'Active connections require being proposed by both participants'
 
+
 class ActionInst(Page):
     form_model = 'player'
     form_fields = ['q5_count','q6_pay']
@@ -42,8 +45,6 @@ class ActionInst(Page):
         if value != 2:
             return 'The cost is paid only for the connections proposed to others'
 
-# action: two options and you earn points depending on your choice and the choice of your connections.
-# You are not affected by someone else's choice of she is not a connection
 
 class ResultsInst(Page):
     form_model = 'player'
