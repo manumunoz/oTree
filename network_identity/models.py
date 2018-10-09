@@ -21,8 +21,8 @@ class Constants(BaseConstants):
     triangle = 0 # Minority
     names = ['1','2','3','4','5','6','7']
     # names = ['1', '2', '3']
-    attribute = [1,0,1,0,1,1,0]
-    attributes = {'1': 1, '2': 0, '3': 1, '4': 0, '5': 1, '6': 1, '7': 0}
+    attribute = [1,4,1,4,1,1,4]
+    attributes = {'1': 1, '2': 4, '3': 1, '4': 4, '5': 1, '6': 1, '7': 4}
     link_cost = 2
     liked_gain = 6
     disliked_gain = 4
@@ -43,18 +43,15 @@ class Subsession(BaseSubsession):
             for i, p in enumerate(g.get_players()):
                 p.name = cur_names[i]
         for p in self.get_players():
-            p.given_symbol = bool(Constants.attribute[p.id_in_group - 1])
-            p.given_preference = bool(Constants.attribute[p.id_in_group - 1])
-            if p.given_symbol == 1 and p.given_preference == 1:
-                p.given_type = 1  # circle-circle
-                p.chosen_type = 1
-                p.is_circle = 1
-                p.liked_action = 1
-            else:
-                p.given_type = 4 # triangle-triangle
-                p.chosen_type = 4
-                p.is_circle = 0
-                p.liked_action = 0
+            p.given_type = int(Constants.attribute[p.id_in_group - 1])
+            # if p.given_type == 1: # circle-circle
+            #     p.chosen_type = 1
+            #     p.is_circle = 1
+            #     p.liked_action = 1
+            # else: # triangle-triangle
+            #     p.chosen_type = 4
+            #     p.is_circle = 0
+            #     p.liked_action = 0
 
 
 class Group(BaseGroup):
@@ -65,8 +62,8 @@ class Group(BaseGroup):
     network_data = models.LongStringField()
 
     def displaying_network(self):
-        nodes = [{'data': {'id': i, 'name': i, 'action': self.get_player_by_id(i).action, 'shape': self.get_player_by_id(i).chosen_type,
-                           'attribute': Constants.attributes[i]}, 'group': 'nodes'} for i in Constants.names]
+        nodes = [{'data': {'id': i, 'name': i, 'action': self.get_player_by_id(i).action,
+                           'shape': self.get_player_by_id(i).chosen_type}, 'group': 'nodes'} for i in Constants.names]
         edges = []
         elements = nodes + edges
         style = [{'selector': 'node', 'style': {'content': 'data(name)'}}]
@@ -75,8 +72,8 @@ class Group(BaseGroup):
                                         })
 
     def forming_network(self):
-        nodes = [{'data': {'id': i, 'name': i, 'action': self.get_player_by_id(i).action, 'shape': self.get_player_by_id(i).chosen_type,
-                           'attribute': Constants.attributes[i]}, 'group': 'nodes'} for i in Constants.names]
+        nodes = [{'data': {'id': i, 'name': i, 'action': self.get_player_by_id(i).action,
+                           'shape': self.get_player_by_id(i).chosen_type}, 'group': 'nodes'} for i in Constants.names]
         edges = []
         for p in self.get_players():
             friends = json.loads(p.friends)
@@ -93,6 +90,23 @@ class Group(BaseGroup):
         self.network_data = json.dumps({'elements': elements,
                                         'style': style,
                                         })
+
+    def choosing_types(self):
+        for player in self.get_players():
+            if player.given_type == 1:
+                player.chosen_type = 1
+                player.is_circle = 1
+                player.liked_action = 1
+            else:
+                player.chosen_type = 4
+                player.is_circle = 0
+                player.liked_action = 0
+
+    def summing_types(self):
+        players = self.get_players()
+        circles = [p.is_circle for p in players]
+        self.total_circles = sum(circles)
+        self.total_triangles = len(Constants.names)-self.total_circles
 
     def calculate_props_from_and_links(self):
         for player_to in self.get_players():
@@ -113,12 +127,14 @@ class Group(BaseGroup):
 
     def calculate_degree(self):
         for player in self.get_players():
+            player.out_degree = player.prop_to_1 + player.prop_to_2 + player.prop_to_3 + player.prop_to_4 + player.prop_to_5\
+                                + player.prop_to_6 + player.prop_to_7
             player.degree = player.link_with_1 + player.link_with_2 + player.link_with_3 + player.link_with_4 + player.link_with_5 + \
                             player.link_with_6 + player.link_with_7
 
     def linking_costs(self):
         for player in self.get_players():
-            player.linking_costs = player.degree * Constants.link_cost
+            player.linking_costs = player.out_degree * Constants.link_cost
 
     def calculate_actions(self):
         for player in self.get_players():
@@ -186,12 +202,6 @@ class Group(BaseGroup):
             else:
                 player.payoff = 0
 
-    def summing_types(self):
-        players = self.get_players()
-        circles = [p.is_circle for p in players]
-        self.total_circles = sum(circles)
-        self.total_triangles = len(Constants.names)-self.total_circles
-
     def summing_choices(self):
         players = self.get_players()
         action_up = [p.action for p in players]
@@ -208,6 +218,7 @@ class Player(BasePlayer):
     action = models.IntegerField() # Reported belief on P3's verification
     old_action = models.IntegerField() # Reported belief on P3's verification
     liked_action = models.IntegerField()
+    out_degree = models.IntegerField()
     degree = models.IntegerField()
     coordination_score = models.IntegerField()
     coordination_gains = models.IntegerField()

@@ -8,13 +8,10 @@ import json
 
 class BeforeFormationWP(WaitPage):
     def after_all_players_arrive(self):
+        self.group.choosing_types()
         self.group.displaying_network()
         self.group.summing_types()
-        # for player in self.group.get_players():
-        #     if self.round_number > 1:
-        #         player.old_action = player.in_round(self.round_number - 1).action
-        #     else:
-        #         player.old_action = 0
+
 
 class Formation(Page):
     form_model = 'player'
@@ -24,6 +21,7 @@ class Formation(Page):
 
     def before_next_page(self):
         self.player.friends = json.dumps([i.name for i in self.player.get_others_in_group() if getattr(self.player, i.name)])
+
 
 class BeforeActionWP(WaitPage):
     def after_all_players_arrive(self):
