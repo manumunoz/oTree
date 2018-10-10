@@ -55,18 +55,18 @@ class Player(BasePlayer):
 
     q3_cost = models.PositiveIntegerField(
         choices=[
-            [1, 'When I propose a connection to another participant regardless of he/she proposing a connection to me'],
-            [2, 'When another participant proposes a connection to me regardless of me proposing a connection to him/her'],
-            [3, 'When I propose a connection to a participant who also proposes a connection to me']
+            [1, 'When I propose a connection to another player regardless of he/she proposing a connection to me'],
+            [2, 'When another player proposes a connection to me regardless of me proposing a connection to him/her'],
+            [3, 'When I propose a connection to a player who also proposes a connection to me']
         ],
         widget=widgets.RadioSelect
     )
 
     q4_active = models.PositiveIntegerField(
         choices=[
-            [1, 'When I propose a connection to another participant regardless of he/she proposing a connection to me'],
-            [2, 'When another participant proposes a connection to me regardless of me proposing a connection to him/her'],
-            [3, 'When I propose a connection to a participant who also proposes a connection to me']
+            [1, 'When I propose a connection to another player regardless of he/she proposing a connection to me'],
+            [2, 'When another player proposes a connection to me regardless of me proposing a connection to him/her'],
+            [3, 'When I propose a connection to a player who also proposes a connection to me']
         ],
         widget=widgets.RadioSelect
     )
@@ -91,18 +91,18 @@ class Player(BasePlayer):
 
     q7_points = models.PositiveIntegerField(
         choices=[
-            [1, 'When I propose a connection to another participant'],
-            [2, 'When another participant proposes a connection to me'],
-            [3, 'When I propose a connection to a participant who also proposes a connection to me']
+            [1, 'a'],
+            [2, 'b'],
+            [3, 'c']
         ],
         widget=widgets.RadioSelect
     )
 
     q8_payoffs = models.PositiveIntegerField(
         choices=[
-            [1, 'When I propose a connection to another participant'],
-            [2, 'When another participant proposes a connection to me'],
-            [3, 'When I propose a connection to a participant who also proposes a connection to me']
+            [1, 'x'],
+            [2, 'y'],
+            [3, 'z']
         ],
         widget=widgets.RadioSelect
     )

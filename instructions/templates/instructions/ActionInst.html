@@ -17,11 +17,8 @@
       <div class="col-sm-12 border" style='background-color: #F8F8FF;'>
         <p>
             <br>
-            In this phase you will see the active connections you and the other participants formed in Phase 1 (Your
-            connections are darker than the connections of other participants to make it easier for you to see them).
-            You will choose an action: <b style="color: #8E24AA">Up</b> or <b style="color: #43A047">Down</b>. You will earn points for each
-            of your active connections choosing the <b>same</b> action as you (coordinate). The number of points you
-            earn depends on your <b>group</b> and the action you choose. This is explained as follows.
+            In the second phase, you will see the connections proposed and active connections formed, and you will choose
+            an action: <b style="color: #8E24AA">Up</b> or <b style="color: #43A047">Down</b> (see below).
             <br><br>
             The image below illustrates the screen you will see in Phase 2. The numbers explain what each element means.
         </p>
@@ -36,9 +33,9 @@
           <br>
           <p><b>1.</b> The network of connections formed in Phase 1:
             <ul>
-              <li>An arrow <b>from</b> you <b>to</b> another participant is a connection you proposed</li>
-              <li>An arrow <b>to</b> you <b>from</b> another participant is a connection proposed to you</li>
-              <li>When <b>both</b> arrows are present there is an <b>active connection</b> with the other participant</li>
+          <li>A <span id="light">light arrow</span> from you to another player is a connection <b>you proposed</b></li>
+          <li>A <span id="dark">dark arrow</span> to you from another player is a connection <b>proposed to you</b></li>
+              <li>When <b>both</b> arrows are present you have an <b>active connection</b> with the other player</li>
             </ul>
               </p>
       </div>
@@ -46,8 +43,8 @@
     <div class="row">
       <div class="col-sm-12  border rounded" style='background-color: #F8F8FF;'>
           <p><b>2. Actions:</b> To choose an action <b style="color: #8E24AA">Up</b> or <b style="color: #43A047">Down</b> click on the
-              corresponding button. Depending on your symbol and the decisions made by the your active connections you can earn points as
-              follows:
+              corresponding button. You will earn points depending on your group and the decisions made by your active
+              connections, independently of your connections' group. This is as follows:
             <br><br>
               <b>If your group is <b>&#9711</b> and you:</b>
             <ul>
@@ -84,6 +81,7 @@
             <small>{% formfield player.q6_pay label="" %}</small>
           </p>
             <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Continue </button>
+          <br><br>
       </div>
     </div>
 </div>
@@ -105,6 +103,14 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
+        }
+        #dark{
+            color: #ffffff;
+            background-color: #455A64;
+        }
+        #light{
+            color: #ffffff;
+            background-color: #78909C;
         }
     </style>
 {% endblock %}
