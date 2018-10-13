@@ -131,14 +131,14 @@ SESSION_CONFIGS = [
     {
         'name': 'network_identity_p2',
         'display_name': "network_identity_p2",
-        'num_demo_participants': 3,
+        'num_demo_participants': 7,
         'app_sequence': ['network_identity_p2'],
         'treatment': 1,
     },
     {
         'name': 'network_identity',
         'display_name': "network_identity",
-        'num_demo_participants': 3,
+        'num_demo_participants': 7,
         'app_sequence': ['network_identity'],
     },
     {

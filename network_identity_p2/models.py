@@ -21,8 +21,8 @@ class Constants(BaseConstants):
 
     circle = 1 # Majority
     triangle = 0 # Minority
-    # names = ['1','2','3','4','5','6','7']
-    names = ['1', '2', '3']
+    names = ['1','2','3','4','5','6','7']
+    # names = ['1', '2', '3']
     attribute = [1,4,1,4,1,1,4]
     attributes = {'1': 1, '2': 4, '3': 1, '4': 4, '5': 1, '6': 1, '7': 4}
     link_cost = 2
@@ -149,12 +149,12 @@ class Group(BaseGroup):
 
     def calculate_degree(self):
         for player in self.get_players():
-            # player.out_degree = player.prop_to_1 + player.prop_to_2 + player.prop_to_3 + player.prop_to_4 + player.prop_to_5\
-            #                     + player.prop_to_6 + player.prop_to_7
-            # player.degree = player.link_with_1 + player.link_with_2 + player.link_with_3 + player.link_with_4 + player.link_with_5 + \
-            #                 player.link_with_6 + player.link_with_7
-            player.out_degree = player.prop_to_1 + player.prop_to_2 + player.prop_to_3
-            player.degree = player.link_with_1 + player.link_with_2 + player.link_with_3
+            player.out_degree = player.prop_to_1 + player.prop_to_2 + player.prop_to_3 + player.prop_to_4 + player.prop_to_5\
+                                + player.prop_to_6 + player.prop_to_7
+            player.degree = player.link_with_1 + player.link_with_2 + player.link_with_3 + player.link_with_4 + player.link_with_5 + \
+                            player.link_with_6 + player.link_with_7
+            # player.out_degree = player.prop_to_1 + player.prop_to_2 + player.prop_to_3
+            # player.degree = player.link_with_1 + player.link_with_2 + player.link_with_3
 
 
     def linking_costs(self):
@@ -185,30 +185,30 @@ class Group(BaseGroup):
                 player.coordinate_3 = 1
             else:
                 player.coordinate_3 = 0
-            # if player.action == player.action_4 and player.link_with_4 == 1:
-            #     player.coordinate_4 = 1
-            # else:
-            #     player.coordinate_4 = 0
-            # if player.action == player.action_5 and player.link_with_5 == 1:
-            #     player.coordinate_5 = 1
-            # else:
-            #     player.coordinate_5 = 0
-            # if player.action == player.action_6 and player.link_with_6 == 1:
-            #     player.coordinate_6 = 1
-            # else:
-            #     player.coordinate_6 = 0
-            # if player.action == player.action_7 and player.link_with_7 == 1:
-            #     player.coordinate_7 = 1
-            # else:
-            #     player.coordinate_7 = 0
+            if player.action == player.action_4 and player.link_with_4 == 1:
+                player.coordinate_4 = 1
+            else:
+                player.coordinate_4 = 0
+            if player.action == player.action_5 and player.link_with_5 == 1:
+                player.coordinate_5 = 1
+            else:
+                player.coordinate_5 = 0
+            if player.action == player.action_6 and player.link_with_6 == 1:
+                player.coordinate_6 = 1
+            else:
+                player.coordinate_6 = 0
+            if player.action == player.action_7 and player.link_with_7 == 1:
+                player.coordinate_7 = 1
+            else:
+                player.coordinate_7 = 0
 
     def coordination_score(self):
         for player in self.get_players():
-            # player.coordination_score = Constants.personal + player.coordinate_1 + player.coordinate_2 + \
-            #                             player.coordinate_3 + player.coordinate_4 + player.coordinate_5 + \
-            #                             player.coordinate_6 + player.coordinate_7
             player.coordination_score = Constants.personal + player.coordinate_1 + player.coordinate_2 + \
-                                        player.coordinate_3
+                                        player.coordinate_3 + player.coordinate_4 + player.coordinate_5 + \
+                                        player.coordinate_6 + player.coordinate_7
+            # player.coordination_score = Constants.personal + player.coordinate_1 + player.coordinate_2 + \
+            #                             player.coordinate_3
 
     def values_coordination(self):
         for player in self.get_players():
