@@ -95,7 +95,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.1.0/cytoscape.js"></script>
     <script>
         var jsonnet = JSON.parse('{{group.network_data|safe}}');
-        var player_id = {{ player.name }};
+        var player_name = {{ player.name }};
         console.log(jsonnet);
         var cy = window.cy = cytoscape({
             container: document.getElementById('cy'),
@@ -105,18 +105,18 @@
         // Add isMine = 'yes' to all player's node and edges
         jsonnet.elements = jsonnet.elements.map(
             function(value) {
-                if ( (value.group === 'nodes' && value.data.name == player_id) ||
-                     (value.group === 'edges' && (value.data.source == player_id || value.data.target == player_id))
+                if ( (value.group === 'nodes' && value.data.name == player_name) ||
+                     (value.group === 'edges' && (value.data.source == player_name || value.data.target == player_name))
                 ) {
                     value.data.isMine = 'yes'
                 }
                 else {
                     value.data.isMine = 'no'
                 }
-                if (value.group === 'edges' && value.data.source == player_id) {
+                if (value.group === 'edges' && value.data.source == player_name) {
                     value.data.linkStyle = 'source'
                 }
-                if (value.group === 'edges' && value.data.target == player_id) {
+                if (value.group === 'edges' && value.data.target == player_name) {
                     value.data.linkStyle = 'target'
                 }
                 if (value.group === 'nodes' && value.data.action == 1) {
