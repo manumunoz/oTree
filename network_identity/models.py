@@ -15,7 +15,7 @@ Network Identity
 
 class Constants(BaseConstants):
     name_in_url = 'network_identity'
-    num_rounds = 1
+    num_rounds = 3
 
     circle = 1 # Majority
     triangle = 0 # Minority
@@ -60,6 +60,13 @@ class Group(BaseGroup):
     total_up = models.IntegerField()
     total_down = models.IntegerField()
     network_data = models.LongStringField()
+
+    def assign_random_names(self):
+        name_indexes = random.sample(range(7), 7)
+        i = 0;
+        for p in self.get_players():
+            p.name = Constants.names[name_indexes[i]]
+            i += 1
 
     def displaying_network(self):
         nodes = [{'data': {'id': i, 'name': i, 'action': self.get_player_by_id(i).action,

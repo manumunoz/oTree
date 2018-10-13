@@ -138,7 +138,7 @@ SESSION_CONFIGS = [
     {
         'name': 'network_identity',
         'display_name': "network_identity",
-        'num_demo_participants': 3,
+        'num_demo_participants': 7,
         'app_sequence': ['network_identity'],
     },
     {
