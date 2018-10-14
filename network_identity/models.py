@@ -37,11 +37,13 @@ class Subsession(BaseSubsession):
         num_players_err = 'Too many participants for such a short name list'
         # the following may create issues with mTurk sessions where num participants is doubled
         assert len(Constants.names) <= self.session.num_participants, num_players_err
+        '''
         for g in self.get_groups():
             cur_names = Constants.names.copy()
             # random.shuffle(cur_names)
             for i, p in enumerate(g.get_players()):
                 p.name = cur_names[i]
+        '''
         for p in self.get_players():
             p.given_type = int(Constants.attribute[p.id_in_group - 1])
             # if p.given_type == 1: # circle-circle
@@ -61,16 +63,24 @@ class Group(BaseGroup):
     total_down = models.IntegerField()
     network_data = models.LongStringField()
 
-    def assign_random_names(self):
+    def assign_random_names_and_positions(self):
         name_indexes = random.sample(range(7), 7)
-        i = 0;
+        positions = random.sample(range(7), 7)
+        i = 0
         for p in self.get_players():
             p.name = Constants.names[name_indexes[i]]
+            p.position = positions[i] + 1
             i += 1
 
+    def generate_nodes(self):
+        players = self.get_players()
+        players.sort(key=lambda x: x.position)
+        return [{'data': {'id': p.name, 'name': p.name, 'action': p.action,
+                           'shape': p.chosen_type}, 'group': 'nodes'}
+                for p in players]
+
     def displaying_network(self):
-        nodes = [{'data': {'id': i, 'name': i, 'action': self.get_player_by_id(i).action,
-                           'shape': self.get_player_by_id(i).chosen_type}, 'group': 'nodes'} for i in Constants.names]
+        nodes = self.generate_nodes()
         edges = []
         elements = nodes + edges
         style = [{'selector': 'node', 'style': {'content': 'data(name)'}}]
@@ -79,8 +89,7 @@ class Group(BaseGroup):
                                         })
 
     def forming_network(self):
-        nodes = [{'data': {'id': i, 'name': i, 'action': self.get_player_by_id(i).action,
-                           'shape': self.get_player_by_id(i).chosen_type}, 'group': 'nodes'} for i in Constants.names]
+        nodes = self.generate_nodes()
         edges = []
         for p in self.get_players():
             friends = json.loads(p.friends)
@@ -250,6 +259,7 @@ class Player(BasePlayer):
 
     name = models.StringField()
     friends = models.LongStringField()
+    position = models.IntegerField()
 
 
 for i in Constants.names:
