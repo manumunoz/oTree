@@ -9,12 +9,12 @@ import json
 author = 'Manu Munoz'
 
 doc = """
-Network Identity
+Identity Switch - Networks: P1
 """
 
 
 class Constants(BaseConstants):
-    name_in_url = 'network_identity'
+    name_in_url = 'id_switch_p1'
     num_rounds = 10
 
     circle = 1 # Majority

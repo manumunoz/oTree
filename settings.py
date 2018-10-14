@@ -129,6 +129,12 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
+        'name': 'switch_p1',
+        'display_name': "switch_p1",
+        'num_demo_participants': 7,
+        'app_sequence': ['switch_p1'],
+    },
+    {
         'name': 'network_identity_p2',
         'display_name': "network_identity_p2",
         'num_demo_participants': 7,
