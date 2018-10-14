@@ -94,7 +94,8 @@ class Group(BaseGroup):
         for p in self.get_players():
             friends = json.loads(p.friends)
             edges.extend(
-                [{'data': {'id': p.name + i, 'source': p.name, 'target': i}, 'group': 'edges'} for i in friends])
+                [{'data': {'id': p.name + '_' + str(i), 'source': p.name, 'target': i}, 'group': 'edges'}
+                 for i in friends])
 
             # Copio el valor de las propuestas recogido en las variables con numbre (1,2,3,...) a
             # proo_to_1, prop_to_2, ...
