@@ -31,13 +31,13 @@
       </div>
       <div class="col-sm-4  border rounded" style='background-color: #F8F8FF;'>
           <br>
-          <p><b>1.</b> The border of each player's external symbol shows the action that player chose.
+          <p><b id="item">1.</b> The border of each player's external symbol shows the action that player chose.
             <ul>
               <li><b style="color: #8E24AA">Purple</b> if the action is <b style="color: #8E24AA">Up</b></li>
               <li><b style="color: #43A047">Green</b> if the action is <b style="color: #43A047">Down</b></li>
             </ul>
           </p>
-          <p><b>2.</b> Summary of the choices you made and the points you get.
+          <p><b id="item">2.</b> Summary of the choices you made and the points you get.
               <br>
               <small>To calculate your points count
               how many of your active connections you coordinate with (including yourself), multiply that number by 4 or
@@ -123,6 +123,11 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
+        }
+        #item{
+            color: #000000;
+            background-color: #FFEB3B;
+            border: 1px solid #000000
         }
     </style>
 {% endblock %}

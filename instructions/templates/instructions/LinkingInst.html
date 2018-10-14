@@ -40,11 +40,11 @@
       </div>
       <div class="col-sm-4  border rounded" style='background-color: #F8F8FF;'>
           <br>
-          <p><b>1.</b> The phase and round you are in.</p>
-          <p><b>2.</b> The number of players with internal symbol &#9711 or &#9651</p>
-          <p><b>3.</b> The label and symbols of each player. Yours will be larger
+          <p><b id="item">1.</b> The phase and round you are in.</p>
+          <p><b id="item">2.</b> The number of players with internal symbol &#9711 or &#9651</p>
+          <p><b id="item">3.</b> The label and symbols of each player. Yours will be larger
               <small>[Eg. In the illustration you would be player 3]</small>. </p>
-          <p><b>4. Proposals:</b> To propose a connection, check the box next to a player’s label. Once you
+          <p><b><span id="item">4.</span> Proposals:</b> To propose a connection, check the box next to a player’s label. Once you
               checked all the proposals you want to make, click on the <b>Continue</b> button.</p>
       </div>
     </div>
@@ -91,6 +91,11 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
+        }
+        #item{
+            color: #000000;
+            background-color: #FFEB3B;
+            border: 1px solid #000000
         }
     </style>
 {% endblock %}
