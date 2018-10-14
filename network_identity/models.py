@@ -15,7 +15,7 @@ Network Identity
 
 class Constants(BaseConstants):
     name_in_url = 'network_identity'
-    num_rounds = 3
+    num_rounds = 10
 
     circle = 1 # Majority
     triangle = 0 # Minority
