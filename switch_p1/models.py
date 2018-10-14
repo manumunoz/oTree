@@ -76,7 +76,7 @@ class Group(BaseGroup):
         players = self.get_players()
         players.sort(key=lambda x: x.position)
         return [{'data': {'id': p.name, 'name': p.name, 'action': p.action,
-                           'shape': p.chosen_type}, 'group': 'nodes'}
+                           'shape': p.chosen_type, 'location': p.position}, 'group': 'nodes'}
                 for p in players]
 
     def displaying_network(self):

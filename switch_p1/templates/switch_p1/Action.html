@@ -92,17 +92,17 @@
                 if (value.group === 'edges' && value.data.target == player_id) {
                     value.data.linkStyle = 'target'
                 }
-                if ( (value.group === 'nodes' && value.data.name == 1) || (value.group === 'nodes' && value.data.name == 2) ||
-                        (value.group === 'nodes' && value.data.name == 3) || (value.group === 'nodes' && value.data.name == 7) ||
-                        (value.group === 'nodes' && value.data.name == 6)
+                if ( (value.group === 'nodes' && value.data.location == 1) || (value.group === 'nodes' && value.data.location == 2) ||
+                        (value.group === 'nodes' && value.data.location == 3) || (value.group === 'nodes' && value.data.location == 7) ||
+                        (value.group === 'nodes' && value.data.location == 6)
                 ) {
                     value.data.vertPos = 'top'
                 }
                 else {
                     value.data.vertPos = 'bottom'
                 }
-                if ( (value.group === 'nodes' && value.data.name == 1) || (value.group === 'nodes' && value.data.name == 2) ||
-                        (value.group === 'nodes' && value.data.name == 3) || (value.group === 'nodes' && value.data.name == 4)
+                if ( (value.group === 'nodes' && value.data.location == 1) || (value.group === 'nodes' && value.data.location == 2) ||
+                        (value.group === 'nodes' && value.data.location == 3) || (value.group === 'nodes' && value.data.location == 4)
                 ) {
                     value.data.horPos = 'right'
                 }
@@ -242,5 +242,4 @@
         border: 2px solid #43A047
     }
     </style>
-
 {% endblock %}
