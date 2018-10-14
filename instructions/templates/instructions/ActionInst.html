@@ -31,7 +31,7 @@
       </div>
       <div class="col-sm-4  border rounded" style='background-color: #F8F8FF;'>
           <br>
-          <p><b>1.</b> The network of connections formed in Phase 1:
+          <p><b id="item">1.</b> The network of connections formed in Phase 1:
             <ul>
           <li>A <span id="light">light arrow</span> from you to another player is a connection <b>you proposed</b></li>
           <li>A <span id="dark">dark arrow</span> to you from another player is a connection <b>proposed to you</b></li>
@@ -42,7 +42,7 @@
     </div>
     <div class="row">
       <div class="col-sm-12  border rounded" style='background-color: #F8F8FF;'>
-          <p><b>2. Actions:</b> To choose an action <b style="color: #8E24AA">Up</b> or <b style="color: #43A047">Down</b> click on the
+          <p><b><span id="item">2.</span> Actions:</b> To choose an action <b style="color: #8E24AA">Up</b> or <b style="color: #43A047">Down</b> click on the
               corresponding button. You will earn points depending on your group and the decisions made by your active
               connections, independently of your connections' group. This is as follows:
             <br><br>
@@ -111,6 +111,11 @@
         #light{
             color: #ffffff;
             background-color: #78909C;
+        }
+        #item{
+            color: #000000;
+            background-color: #FFEB3B;
+            border: 1px solid #000000
         }
     </style>
 {% endblock %}
