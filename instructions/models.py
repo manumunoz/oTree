@@ -38,8 +38,8 @@ class Player(BasePlayer):
     q1_symbol = models.PositiveIntegerField(
         choices=[
             [1, 'They are fixed and do not change'],
-            [2, 'The computer changes them in every round'],
-            [3, 'I can change them in every round'],
+            [2, 'The computer changes them in each round'],
+            [3, 'I can change them in each round'],
         ],
         widget=widgets.RadioSelect
     )
@@ -47,26 +47,26 @@ class Player(BasePlayer):
     q2_label = models.PositiveIntegerField(
         choices=[
             [1, 'It is fixed and does not change'],
-            [2, 'The computer changes it in every round'],
-            [3, 'I can change it in every round'],
+            [2, 'The computer changes it in each round'],
+            [3, 'I can change it in each round'],
         ],
         widget=widgets.RadioSelect
     )
 
     q3_cost = models.PositiveIntegerField(
         choices=[
-            [1, 'When I propose a connection to another player regardless of he/she proposing a connection to me'],
-            [2, 'When another player proposes a connection to me regardless of me proposing a connection to him/her'],
-            [3, 'When I propose a connection to a player who also proposes a connection to me']
+            [1, 'When I propose a relation to another player regardless of he/she proposing a relation to me'],
+            [2, 'When another player proposes a relation to me regardless of me proposing a relation to him/her'],
+            [3, 'When I propose a relation to a player who also proposes a relation to me']
         ],
         widget=widgets.RadioSelect
     )
 
     q4_active = models.PositiveIntegerField(
         choices=[
-            [1, 'When I propose a connection to another player regardless of he/she proposing a connection to me'],
-            [2, 'When another player proposes a connection to me regardless of me proposing a connection to him/her'],
-            [3, 'When I propose a connection to a player who also proposes a connection to me']
+            [1, 'When I propose a relation to another player regardless of he/she proposing a relation to me'],
+            [2, 'When another player proposes a relation to me regardless of me proposing a relation to him/her'],
+            [3, 'When I propose a relation to a player who also proposes a relation to me']
         ],
         widget=widgets.RadioSelect
     )
@@ -82,9 +82,9 @@ class Player(BasePlayer):
 
     q6_pay = models.PositiveIntegerField(
         choices=[
-            [1, '3 active connections with others x 2 points = 6 points'],
-            [2, '4 proposed connection to others  x 2 points = 8 points'],
-            [3, '4 proposed connection from others  x 2 points = 8 points']
+            [1, '3 active relation with others x 2 points = 6 points'],
+            [2, '4 proposed relation to others  x 2 points = 8 points'],
+            [3, '4 proposed relation from others  x 2 points = 8 points']
         ],
         widget=widgets.RadioSelect
     )

@@ -8,20 +8,16 @@
           <h2> You are player <b style='color: #B3E5FC'> {{ player.name }}</b>.</h2>
             <h6>
                 {% if player.chosen_type == 1 %}
-                You are in group: <i style='color: #B3E5FC'>circle</i>. Your internal symbol is
-                <b style='color: #B3E5FC'>&#9711</b> and your external symbol is <b style='color: #B3E5FC'>&#9711</b>
+                Your group is <b id='blue'>&#9679</b> and your appearance <b id='blue'>&#9711</b>
 
                 {% elif player.chosen_type == 2 %}
-                You are in group: <i style='color: #B3E5FC'>circle</i>. Your internal symbol is
-                <b style='color: #B3E5FC'>&#9711</b> and your external symbol is <b style='color: #B3E5FC'>&#9651</b>
+                Your group is <b id='blue'>&#9679</b> and your appearance <b id='blue'>&#9651</b>
 
                 {% elif player.chosen_type == 3 %}
-                You are in group: <i style='color: #B3E5FC'>triangle</i>. Your internal symbol is
-                <b style='color: #B3E5FC'>&#9651</b> and your external symbol is <b style='color: #B3E5FC'>&#9711</b>
+                Your group is <b id='blue'>&#9650</b> and your appearance <b id='blue'>&#9711</b>
 
                 {% else %}
-                You are in group: <i style='color: #B3E5FC'>triangle</i>. Your internal symbol is
-                <b style='color: #B3E5FC'>&#9651</b> and your external symbol is <b style='color: #B3E5FC'>&#9651</b>
+                Your group is <b id='blue'>&#9650</b> and your appearance <b id='blue'>&#9651</b>
                 {% endif %}
             </h6>
       </div>
@@ -33,51 +29,60 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-3 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
-          <h5 class="text-center"> Results <small style='color: #B3E5FC'>(Round {{ subsession.round_number }})</small></h5>
+          <h5 class="text-center"> Results <small id='blue'>(Round {{ subsession.round_number }})</small></h5>
       </div>
       <div class="col-sm-9 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
-           <p class="text-center"> In this round the players' inner symbols are: <b style='color: #B3E5FC'> {{ group.total_circles }}
-               &#9711</b> and <b style='color: #B3E5FC'> {{ group.total_triangles }} &#9651</b>. </p>
+           <p class="text-center">
+               In this round there are <b id='blue'> {{ group.total_circles }} &#9679</b> and <b id='blue'>
+               {{ group.total_triangles }} &#9650</b>.
+           </p>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-3 border border-dark text-white rounded p-3 mb-1" style='background-color: #607D8B;'>
         <div>
             {% if player.action == 1 %}
-                You chose action:
-                <b style="color: #E1BEE7">Up</b>
+                You chose option:
+                <span id="highlight">Up</span>
             {% else %}
-                You chose action:
-                <b style="color: #C8E6C9">Down</b>
+                You chose option:
+                <span id="highlight">Down</span>
             {% endif %}
 
             <br><br>
 
-            You made <b style='color: #B3E5FC'> {{ player.out_degree }} </b> proposals and formed
-            <b style='color: #B3E5FC'> {{ player.degree }}</b> active connection
+            You made <span id="blue"> {{ player.out_degree }} </span> proposals
             <br>
-            <small>[cost:<b style='color: #B3E5FC'> {{ player.linking_costs }} </b> points.]</small>
+            <small>[<span id="blue">cost:</span>  {{ Constants.link_cost }} x {{ player.out_degree}} =
+                {{ player.linking_costs }} points.]</small>
 
             <br><br>
 
-            You have <b style='color: #B3E5FC'> {{ player.coordination_score }}</b> coordination (counting yourself)
+            You formed <span id="blue"> {{ player.degree }}</span> active relations and have
+            <span id="blue"> {{ player.coordination_score }}</span> coordination <small>(counting yourself)</small>
             <br>
-            <small>[gains:<b style='color: #B3E5FC'> {{ player.coordination_gains }} </b> points]</small>
+            {% if player.action == player.liked_action %}
+            <small>[<span id="blue">gains:</span> {{ Constants.liked_gain }} x {{ player.coordination_score }} =
+                {{ player.coordination_gains }} points]</small>
+            {% else %}
+            <small>[<span id="blue">gains:</span> {{ Constants.disliked_gain }} x {{ player.coordination_score }} =
+                {{ player.coordination_gains }} points]</small>
+            {% endif %}
 
             <br><br>
 
             In this round you earn:
-                <h3 style='color: #B3E5FC'>{{ player.round_gains }} points</h3>
+                <h3 id="highlight">{{ player.round_gains }} points</h3>
 
-            <small>[{{ player.coordination_gains }} - {{ player.linking_costs }} = <b style='color: #B3E5FC'>
-                {{ player.round_gains }} points</b>]</small>
+            <small>[<span id="blue">gains-costs:</span> {{ player.coordination_gains }} - {{ player.linking_costs }} =
+                {{ player.round_gains }} points]</small>
 
             <br><br>
                 <button type="otree-btn-next" class="btn button btn-md"> Continue </button>
         </div>
       </div>
       <div class="col-sm-9 border border-dark rounded p-3 mb-1" style='background-color: #F8F8FF;'>
-        <b style="color: #455A64">Actions chosen in phase 2:</b>
+        <b style="color: #455A64">Options chosen in Stage 2:</b>
           <div id="cy"></div>
             <div class="container ">
                 <div class="row">
@@ -171,7 +176,7 @@
             .style("curve-style", 'bezier')
             .style('target-distance-from-node', '8px')
             .style('width', '4')
-            // My Links: In-degree
+            // My Links: Out-degree
             .selector('edge[linkStyle="source"]')
             .style("target-arrow-color", "#455A64")
             .style('line-color', '#78909C')
@@ -236,12 +241,10 @@
             // BEHAVIOR ===========================================
             // Choice == 1
             .selector('node[behavior="up"]')
-            .style('border-color', '#8E24AA')
-                // .style('background-color', '#E1BEE7')
+            .style('border-color', '#E91E63')
             // Choice == 0
             .selector('node[behavior="down"]')
-            .style('border-color', '#43A047')
-                // .style('background-color', '#C8E6C9')
+            .style('border-color', '#009688')
             // ====================================================
             .update() // update the elements in the graph with the new style
         ;
@@ -268,5 +271,17 @@
             color: #000000;
             border: 2px solid #3E2723
         }
+        #blue{
+            color: #B3E5FC
+        }
+        {% if player.action == 1 %}
+        #highlight{
+            color: #F8BBD0
+        }
+        {% else %}
+        #highlight{
+            color: #B2DFDB
+        }
+        {% endif %}
     </style>
 {% endblock %}

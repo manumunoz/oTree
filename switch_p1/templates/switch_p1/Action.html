@@ -6,22 +6,18 @@
     <div class="row">
       <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
           <h2> You are player <b style='color: #B3E5FC'> {{ player.name }}</b>.</h2>
-            <h6>
+             <h6>
                 {% if player.chosen_type == 1 %}
-                You are in group: <i style='color: #B3E5FC'>circle</i>. Your internal symbol is
-                <b style='color: #B3E5FC'>&#9711</b> and your external symbol is <b style='color: #B3E5FC'>&#9711</b>
+                Your group is <b id='blue'>&#9679</b> and your appearance <b id='blue'>&#9711</b>
 
                 {% elif player.chosen_type == 2 %}
-                You are in group: <i style='color: #B3E5FC'>circle</i>. Your internal symbol is
-                <b style='color: #B3E5FC'>&#9711</b> and your external symbol is <b style='color: #B3E5FC'>&#9651</b>
+                Your group is <b id='blue'>&#9679</b> and your appearance <b id='blue'>&#9651</b>
 
                 {% elif player.chosen_type == 3 %}
-                You are in group: <i style='color: #B3E5FC'>triangle</i>. Your internal symbol is
-                <b style='color: #B3E5FC'>&#9651</b> and your external symbol is <b style='color: #B3E5FC'>&#9711</b>
+                Your group is <b id='blue'>&#9650</b> and your appearance <b id='blue'>&#9711</b>
 
                 {% else %}
-                You are in group: <i style='color: #B3E5FC'>triangle</i>. Your internal symbol is
-                <b style='color: #B3E5FC'>&#9651</b> and your external symbol is <b style='color: #B3E5FC'>&#9651</b>
+                Your group is <b id='blue'>&#9650</b> and your appearance <b id='blue'>&#9651</b>
                 {% endif %}
             </h6>
       </div>
@@ -33,16 +29,18 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-3 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
-          <h5 class="text-center"> Action <small style='color: #B3E5FC'>(Round {{ subsession.round_number }})</small></h5>
+          <h5 class="text-center"> Options <small id='blue'>(Round {{ subsession.round_number }})</small></h5>
       </div>
       <div class="col-sm-9 border border-dark text-white rounded mb-1" style='background-color: #607D8B;'>
-           <p class="text-center"> In this round the players' inner symbols are: <b style='color: #B3E5FC'> {{ group.total_circles }}
-               &#9711</b> and <b style='color: #B3E5FC'> {{ group.total_triangles }} &#9651</b>. </p>
+           <p class="text-center">
+               In this round there are <b id='blue'> {{ group.total_circles }} &#9679</b> and <b id='blue'>
+               {{ group.total_triangles }} &#9650</b>.
+           </p>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-3 border border-dark text-white rounded p-3 mb-1" style='background-color: #607D8B;'>
-        <p>Choose an action:</p>
+        <p>Pick an option:</p>
         <div>
             <button name="action" value="1" class="btn button1 btn-large"> Up </button>
             <br><br>
@@ -50,7 +48,7 @@
         </div>
       </div>
       <div class="col-sm-9 border border-dark rounded p-3 mb-1" style='background-color: #F8F8FF;'>
-        <b style="color: #455A64">Connections proposed in phase 1:</b>
+        <b style="color: #455A64">Relations proposed in Stage 1:</b>
         <div id="cy"></div>
             <div class="container ">
                 <div class="row">
@@ -138,7 +136,7 @@
             .style("curve-style", 'bezier')
             .style('target-distance-from-node', '8px')
             .style('width', '4')
-            // My Links: In-degree
+            // My Links: Out-degree
             .selector('edge[linkStyle="source"]')
             .style("target-arrow-color", "#455A64")
             .style('line-color', '#78909C')
@@ -222,24 +220,27 @@
             display: block;
         }
     .button1 {
-        background-color: #8E24AA;
+        background-color: #E91E63;
         color: #ffffff;
         border: 2px solid #ffffff
     }
     .button1:hover {
         background-color: #ffffff;
-        color: #8E24AA;
-        border: 2px solid #8E24AA
+        color: #E91E63;
+        border: 2px solid #E91E63
     }
     .button2 {
-        background-color: #43A047;
+        background-color: #009688;
         color: #ffffff;
         border: 2px solid #ffffff
     }
     .button2:hover {
         background-color: #ffffff;
-        color: #43A047;
-        border: 2px solid #43A047
+        color: #009688;
+        border: 2px solid #009688
+    }
+    #blue{
+        color: #B3E5FC
     }
     </style>
 {% endblock %}

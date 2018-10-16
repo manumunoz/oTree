@@ -14,53 +14,227 @@
 {% block content %}
 <div class="container">
     <div class="row">
-      <div class="col-sm-12 border" style='background-color: #F8F8FF;'>
+      <div class="col-sm-4 border" style='background-color: #F8F8FF;'>
         <p>
             <br>
-            In the second phase, you will see the connections proposed and active connections formed, and you will choose
-            an action: <b style="color: #8E24AA">Up</b> or <b style="color: #43A047">Down</b> (see below).
+            <b id="item">1.</b> In the <b>Action</b> phase, you will choose between actions <b style="color: #8E24AA">Up</b>
+            or <b style="color: #43A047">Down</b> and get points for each of your <b>active</b> connections choosing
+            <b>the same</b> action as you.
             <br><br>
-            The image below illustrates the screen you will see in Phase 2. The numbers explain what each element means.
+            <b id="item">2.</b> You have an <b>active</b> connection with a player when you proposed a connection to him/her (<span id="light">light arrow</span>
+            from you to that player) and he/she proposed a connection to you (<span id="dark">dark arrow</span> from that player to you).
+            <br><br>
+            You will earn points depending on your group, the action you choose and the action your <b>active</b>
+          connections choose, as shown below:
         </p>
       </div>
-    </div>
-    <div class="row">
       <div class="col-sm-8 border rounded" style='background-color: #ffffff;'>
           <br>
             <img width="100%"  src="{% static "instructions/Img_Inst_12_Choice.png" %}"/>
       </div>
-      <div class="col-sm-4  border rounded" style='background-color: #F8F8FF;'>
-          <br>
-          <p><b id="item">1.</b> The network of connections formed in Phase 1:
+    </div>
+    <div class="row">
+      <div class="col-sm-6 border rounded" style='background-color: #F8F8FF;'>
+        <p>
+            <b>If your group is <b>&#9679</b> and you:</b>
             <ul>
-          <li>A <span id="light">light arrow</span> from you to another player is a connection <b>you proposed</b></li>
-          <li>A <span id="dark">dark arrow</span> to you from another player is a connection <b>proposed to you</b></li>
-              <li>When <b>both</b> arrows are present you have an <b>active connection</b> with the other player</li>
+                <li>choose <b style="color: #8E24AA">Up</b>, you get <b>{{ Constants.liked_gain }}</b> points for each
+                    active of your connections choosing <b style="color: #8E24AA">Up</b> and <b>0</b> points for any of
+                    your active connections choosing <b style="color: #43A047">Down</b> (see Table 1) </li>
+          <br>
+                <li>choose <b style="color: #43A047">Down</b>, you get <b>{{ Constants.disliked_gain }}</b> points for each
+                    of your active connections choosing <b style="color: #43A047">Down</b> and <b>0</b> points for any of
+                    your active connections choosing <b style="color: #8E24AA">Up</b> (see Table 2) </li>
             </ul>
-              </p>
+          </p>
+      </div>
+      <div class="col-sm-3 border rounded" style='background-color: #F8F8FF;'>
+        <p>
+            <b>Table 1</b>
+          </p>
+            <table class="table table-sm table-bordered table-hover">
+              <thead style='background-color: #455A64; color: #ffffff'>
+                <tr>
+                  <th scope="col"># active choosing <span style="color: #E1BEE7">Up</span></th>
+                  <th scope="col">Your points</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">0</th>
+                  <td>6</td>
+                </tr>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>18</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>24</td>
+                </tr>
+                <tr>
+                  <th scope="row">4</th>
+                  <td>30</td>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+                  <td>36</td>
+                </tr>
+                <tr>
+                  <th scope="row">6</th>
+                  <td>42</td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+      <div class="col-sm-3 border rounded" style='background-color: #F8F8FF;'>
+        <p>
+            <b>Table 2</b>
+          </p>
+            <table class="table table-sm table-bordered table-hover">
+              <thead style='background-color: #455A64; color: #ffffff'>
+                <tr>
+                  <th scope="col"># active choosing <span style="color: #C8E6C9">Down</span></th>
+                  <th scope="col">Your points</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">0</th>
+                  <td>4</td>
+                </tr>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>8</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>16</td>
+                </tr>
+                <tr>
+                  <th scope="row">4</th>
+                  <td>20</td>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+                  <td>24</td>
+                </tr>
+                <tr>
+                  <th scope="row">6</th>
+                  <td>28</td>
+                </tr>
+              </tbody>
+            </table>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-12  border rounded" style='background-color: #F8F8FF;'>
-          <p><b><span id="item">2.</span> Actions:</b> To choose an action <b style="color: #8E24AA">Up</b> or <b style="color: #43A047">Down</b> click on the
-              corresponding button. You will earn points depending on your group and the decisions made by your active
-              connections, independently of your connections' group. This is as follows:
-            <br><br>
-              <b>If your group is <b>&#9711</b> and you:</b>
-            <ul>
-                <li>choose <b style="color: #8E24AA">Up</b>, you get <b>{{ Constants.liked_gain }}</b> points for each
-                    active connection choosing <b style="color: #8E24AA">Up</b></li>
-                <li>choose <b style="color: #43A047">Down</b>, you get <b>{{ Constants.disliked_gain }}</b> points for each active
-                    connection choosing <b style="color: #43A047">Down</b></li>
-            </ul>
-              <b>If your group is <b>&#9651</b> and you:</b>
+      <div class="col-sm-6 border rounded" style='background-color: #F8F8FF;'>
+        <p>
+              <b>If your group is <b>&#9650</b> and you:</b>
             <ul>
                 <li>choose <b style="color: #43A047">Down</b>, you get <b>{{ Constants.liked_gain }}</b> points for each active
-                    connection choosing <b style="color: #43A047">Down</b></li>
+                    connection choosing <b style="color: #43A047">Down</b> and <b>0</b> for your active
+                    connections choosing <b style="color: #8E24AA">Up</b> (see Table 3) </li>
+          <br>
                 <li>choose <b style="color: #8E24AA">Up</b>, you get <b>{{ Constants.disliked_gain }}</b> points for
-                    each active connection choosing <b style="color: #8E24AA">Up</b></li>
+                    each active connection choosing <b style="color: #8E24AA">Up</b> and <b>0</b> for your active
+                    connections choosing <b style="color: #43A047">Down</b> (see Table 4)</li>
             </ul>
           </p>
+      </div>
+    <div class="col-sm-3 border rounded" style='background-color: #F8F8FF;'>
+        <p>
+            <b>Table 3</b>
+          </p>
+            <table class="table table-sm table-bordered table-hover">
+              <thead style='background-color: #455A64; color: #ffffff'>
+                <tr>
+                  <th scope="col"># active choosing <span style="color: #C8E6C9">Down</span></th>
+                  <th scope="col">Your points </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">0</th>
+                  <td>6</td>
+                </tr>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>18</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>24</td>
+                </tr>
+                <tr>
+                  <th scope="row">4</th>
+                  <td>30</td>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+                  <td>36</td>
+                </tr>
+                <tr>
+                  <th scope="row">6</th>
+                  <td>42</td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+      <div class="col-sm-3 border rounded" style='background-color: #F8F8FF;'>
+        <p>
+            <b>Table 4</b>
+          </p>
+        <table class="table table-sm table-bordered table-hover">
+              <thead style='background-color: #455A64; color: #ffffff'>
+                <tr>
+                  <th scope="col"># active choosing <span style="color: #E1BEE7">Up</span></th>
+                  <th scope="col">Your points</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">0</th>
+                  <td>6</td>
+                </tr>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>18</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>24</td>
+                </tr>
+                <tr>
+                  <th scope="row">4</th>
+                  <td>30</td>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+                  <td>36</td>
+                </tr>
+                <tr>
+                  <th scope="row">6</th>
+                  <td>42</td>
+                </tr>
+              </tbody>
+            </table>
       </div>
     </div>
 </div>

@@ -14,24 +14,70 @@
 {% block content %}
 <div class="container">
     <div class="row">
-      <div class="col-sm-12 border" style='background-color: #F8F8FF;'>
+      <div class="col-sm-9 border rounded" style='background-color: #F8F8FF;'>
         <p>
             <br>
-            In the first phase, you can choose <b>whom you want to propose a connection to</b>. You can propose between
-            <b>0</b> and <b>{{ Constants.others }}</b> connections. You will pay a cost of <b>{{ Constants.link_cost }}
-            points</b> for each connection <b>you propose</b>.
+            In the <b>Connections</b> phase, you will choose which players you want to participate with in the current round.
+            You do this by <b>proposing a connection to each of them</b>. You can propose between <b>0</b> and
+            <b>{{ Constants.others }}</b> connections (see below).
 
             <br><br>
 
-            If you propose a connection to a player who also proposes to you, this represents an <b>active</b>
-            connection between the two of you. In Phase 2 (Action) you will <b>only</b> interact with those players
-            with whom you have an active connection.
+            You will pay a cost of <b>{{ Constants.link_cost }} points</b> for each connection <b>you propose</b>, as
+            illustrated in the table (you will have a copy of this table in the summary available in each screen).
+
+            <br><br>
+
+            If you propose a connection to a player who also proposes to you, there will be an <b>active</b>
+            connection between the two of you. In the <b>Action</b> phase, you will <b>only</b> participate with those players
+            with whom you have an <b>active</b> connection.
 
             <br><br>
 
             The image below illustrates the screen you will see in Phase 1. The numbers explain what each element means.
         </p>
       </div>
+      <div class="col-sm-3 border rounded" style='background-color: #F8F8FF;'>
+          <br>
+            <table class="table table-sm table-bordered table-hover">
+              <thead style='background-color: #455A64; color: #ffffff'>
+                <tr>
+                  <th scope="col"># proposals</th>
+                  <th scope="col">Total cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">0</th>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>2</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>4</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>6</td>
+                </tr>
+                <tr>
+                  <th scope="row">4</th>
+                  <td>8</td>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <th scope="row">6</th>
+                  <td>12</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
     </div>
     <div class="row">
       <div class="col-sm-8 border rounded" style='background-color: #ffffff;'>
@@ -41,7 +87,7 @@
       <div class="col-sm-4  border rounded" style='background-color: #F8F8FF;'>
           <br>
           <p><b id="item">1.</b> The phase and round you are in.</p>
-          <p><b id="item">2.</b> The number of players with internal symbol &#9711 or &#9651</p>
+          <p><b id="item">2.</b> The number of players in each group (&#9679 or &#9650)</p>
           <p><b id="item">3.</b> The label and symbols of each player. Yours will be larger
               <small>[Eg. In the illustration you would be player 3]</small>. </p>
           <p><b><span id="item">4.</span> Proposals:</b> To propose a connection, check the box next to a player’s label. Once you
