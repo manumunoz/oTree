@@ -135,6 +135,13 @@ SESSION_CONFIGS = [
         'app_sequence': ['switch_p1'],
     },
     {
+        'name': 'switch_p2',
+        'display_name': "switch_p2",
+        'num_demo_participants': 7,
+        'app_sequence': ['switch_p2'],
+        'treatment': 1,
+    },
+    {
         'name': 'network_identity_p2',
         'display_name': "network_identity_p2",
         'num_demo_participants': 7,

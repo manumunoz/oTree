@@ -5,19 +5,17 @@ from otree.api import (
 import random
 from collections import OrderedDict
 import json
-import itertools
-
 
 author = 'Manu Munoz'
 
 doc = """
-Network Identity P2
+Identity Switch - Networks: P2
 """
 
 
 class Constants(BaseConstants):
-    name_in_url = 'network_identity_p2'
-    num_rounds = 3
+    name_in_url = 'id_switch_p2'
+    num_rounds = 10
 
     circle = 1 # Majority
     triangle = 0 # Minority
@@ -35,30 +33,30 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
     def creating_session(self):
-        treat = itertools.cycle([1, 2, 3]) #1: Full, 2:Sticky, 3:Blind
-        # for p in self.get_players():
-        #     p.treat = next(treat)
-        for p in self.get_players():
-            if 'treatment' in self.session.config:
-                # demo mode
-                p.treat = self.session.config['treatment']
-            else:
-                # live experiment mode
-                p.treat = next(treat)
         num_players_err = 'Too many participants for such a short name list'
         # the following may create issues with mTurk sessions where num participants is doubled
         assert len(Constants.names) <= self.session.num_participants, num_players_err
+        '''
         for g in self.get_groups():
             cur_names = Constants.names.copy()
             # random.shuffle(cur_names)
             for i, p in enumerate(g.get_players()):
                 p.name = cur_names[i]
+        '''
         for p in self.get_players():
             p.given_type = int(Constants.attribute[p.id_in_group - 1])
             if p.given_type == 1: # circle-circle
                 p.was_circle = 1
             else: # triangle-triangle
                 p.was_circle = 0
+            # if p.given_type == 1: # circle-circle
+            #     p.chosen_type = 1
+            #     p.is_circle = 1
+            #     p.liked_action = 1
+            # else: # triangle-triangle
+            #     p.chosen_type = 4
+            #     p.is_circle = 0
+            #     p.liked_action = 0
 
 
 class Group(BaseGroup):
@@ -70,10 +68,24 @@ class Group(BaseGroup):
     total_down = models.IntegerField()
     network_data = models.LongStringField()
 
+    def assign_random_names_and_positions(self):
+        name_indexes = random.sample(range(7), 7)
+        positions = random.sample(range(7), 7)
+        i = 0
+        for p in self.get_players():
+            p.name = Constants.names[name_indexes[i]]
+            p.position = positions[i] + 1
+            i += 1
+
+    def generate_nodes(self):
+        players = self.get_players()
+        players.sort(key=lambda x: x.position)
+        return [{'data': {'id': p.name, 'name': p.name, 'action': p.action, 'given': p.given_type,
+                           'shape': p.chosen_type, 'location': p.position, 'treat': p.treat}, 'group': 'nodes'}
+                for p in players]
+
     def displaying_network(self):
-        nodes = [{'data': {'id': i, 'name': i, 'action': self.get_player_by_id(i).action, 'given': self.get_player_by_id(i).given_type,
-                           'treat': self.get_player_by_id(i).treat, 'shape': self.get_player_by_id(i).chosen_type},
-                  'group': 'nodes'} for i in Constants.names]
+        nodes = self.generate_nodes()
         edges = []
         elements = nodes + edges
         style = [{'selector': 'node', 'style': {'content': 'data(name)'}}]
@@ -82,14 +94,13 @@ class Group(BaseGroup):
                                         })
 
     def forming_network(self):
-        nodes = [{'data': {'id': i, 'name': i, 'action': self.get_player_by_id(i).action, 'given': self.get_player_by_id(i).given_type,
-                           'treat': self.get_player_by_id(i).treat, 'shape': self.get_player_by_id(i).chosen_type},
-                  'group': 'nodes'} for i in Constants.names]
+        nodes = self.generate_nodes()
         edges = []
         for p in self.get_players():
             friends = json.loads(p.friends)
             edges.extend(
-                [{'data': {'id': p.name + i, 'source': p.name, 'target': i}, 'group': 'edges'} for i in friends])
+                [{'data': {'id': p.name + '_' + str(i), 'source': p.name, 'target': i}, 'group': 'edges'}
+                 for i in friends])
 
             # Copio el valor de las propuestas recogido en las variables con numbre (1,2,3,...) a
             # proo_to_1, prop_to_2, ...
@@ -101,6 +112,17 @@ class Group(BaseGroup):
         self.network_data = json.dumps({'elements': elements,
                                         'style': style,
                                         })
+
+    # def choosing_types(self):
+    #     for player in self.get_players():
+    #         if player.given_type == 1:
+    #             player.chosen_type = 1
+    #             player.is_circle = 1
+    #             player.liked_action = 1
+    #         else:
+    #             player.chosen_type = 4
+    #             player.is_circle = 0
+    #             player.liked_action = 0
 
     def choosing_types(self):
         for player in self.get_players():
@@ -129,6 +151,7 @@ class Group(BaseGroup):
         self.total_circles = sum(circles)
         self.total_triangles = len(Constants.names)-self.total_circles
 
+
     def calculate_props_from_and_links(self):
         for player_to in self.get_players():
             for player_from in self.get_players():
@@ -152,9 +175,6 @@ class Group(BaseGroup):
                                 + player.prop_to_6 + player.prop_to_7
             player.degree = player.link_with_1 + player.link_with_2 + player.link_with_3 + player.link_with_4 + player.link_with_5 + \
                             player.link_with_6 + player.link_with_7
-            # player.out_degree = player.prop_to_1 + player.prop_to_2 + player.prop_to_3
-            # player.degree = player.link_with_1 + player.link_with_2 + player.link_with_3
-
 
     def linking_costs(self):
         for player in self.get_players():
@@ -184,6 +204,7 @@ class Group(BaseGroup):
                 player.coordinate_3 = 1
             else:
                 player.coordinate_3 = 0
+
             if player.action == player.action_4 and player.link_with_4 == 1:
                 player.coordinate_4 = 1
             else:
@@ -206,8 +227,6 @@ class Group(BaseGroup):
             player.coordination_score = Constants.personal + player.coordinate_1 + player.coordinate_2 + \
                                         player.coordinate_3 + player.coordinate_4 + player.coordinate_5 + \
                                         player.coordinate_6 + player.coordinate_7
-            # player.coordination_score = Constants.personal + player.coordinate_1 + player.coordinate_2 + \
-            #                             player.coordinate_3
 
     def values_coordination(self):
         for player in self.get_players():
@@ -253,6 +272,7 @@ class Player(BasePlayer):
     round_gains = models.IntegerField()
     name = models.StringField()
     friends = models.LongStringField()
+    position = models.IntegerField()
 
 
 for i in Constants.names:

@@ -35,7 +35,7 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
 
-    q1_symbol = models.PositiveIntegerField(
+    symbol = models.PositiveIntegerField(
         choices=[
             [1, 'They are fixed and do not change'],
             [2, 'The computer changes them in each round'],
@@ -44,7 +44,7 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect
     )
 
-    q2_label = models.PositiveIntegerField(
+    label = models.PositiveIntegerField(
         choices=[
             [1, 'It is fixed and does not change'],
             [2, 'The computer changes it in each round'],
@@ -53,7 +53,7 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect
     )
 
-    q3_cost = models.PositiveIntegerField(
+    active = models.PositiveIntegerField(
         choices=[
             [1, 'When I propose a relation to another player regardless of he/she proposing a relation to me'],
             [2, 'When another player proposes a relation to me regardless of me proposing a relation to him/her'],
@@ -62,16 +62,7 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect
     )
 
-    q4_active = models.PositiveIntegerField(
-        choices=[
-            [1, 'When I propose a relation to another player regardless of he/she proposing a relation to me'],
-            [2, 'When another player proposes a relation to me regardless of me proposing a relation to him/her'],
-            [3, 'When I propose a relation to a player who also proposes a relation to me']
-        ],
-        widget=widgets.RadioSelect
-    )
-
-    q5_count = models.PositiveIntegerField(
+    count = models.PositiveIntegerField(
         choices=[
             [1, '5'],
             [2, '4'],
@@ -80,29 +71,20 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect
     )
 
-    q6_pay = models.PositiveIntegerField(
+    pay_coord = models.PositiveIntegerField(
         choices=[
-            [1, '3 active relation with others x 2 points = 6 points'],
-            [2, '4 proposed relation to others  x 2 points = 8 points'],
-            [3, '4 proposed relation from others  x 2 points = 8 points']
+            [1, 'I gain 6 and pay the cost of 2 = 4 total points'],
+            [2, 'I gain 4 and pay the cost of 2 = 2 total points'],
+            [3, 'I gain 0 and pay the cost of 2 = -2 total points']
         ],
         widget=widgets.RadioSelect
     )
 
-    q7_points = models.PositiveIntegerField(
+    pay_nocoord = models.PositiveIntegerField(
         choices=[
-            [1, 'a'],
-            [2, 'b'],
-            [3, 'c']
-        ],
-        widget=widgets.RadioSelect
-    )
-
-    q8_payoffs = models.PositiveIntegerField(
-        choices=[
-            [1, 'x'],
-            [2, 'y'],
-            [3, 'z']
+            [1, 'I gain 6 and pay the cost of 2 = 4 total points'],
+            [2, 'I gain 4 and pay the cost of 2 = 2 total points'],
+            [3, 'I gain 0 and pay the cost of 2 = -2 total points']
         ],
         widget=widgets.RadioSelect
     )

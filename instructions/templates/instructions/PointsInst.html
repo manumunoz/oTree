@@ -4,134 +4,190 @@
 {% block title %}
 <div class="container">
     <div class="row">
-      <div class="col-sm-12 border border-dark text-white rounded" style='background-color: #455A64;'>
-        <h2> Decisions in Part 1 </h2>
+      <div class="col-sm-12 border border-dark text-white rounded" id="upper">
+        <h2> Points in Part 1 </h2>
       </div>
     </div>
-</div>
 {% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="row">
-      <div class="col-sm-12 border rounded" style='background-color: #F8F8FF;'>
+      <div class="col-sm-12 border rounded" id="pale">
+            <h5>Points: Gains - Costs</h5>
         <p>
-            In this screen you will see the instructions for the decisions you make in each round in Part 1.
-            The instructions will use as illustrations the Figures 1, 2 and 3 below as well as the example images on the
-            right hand side.
+            In each round you will gain points for every active relation choosing the same option as you. You will pay a
+            cost for each relation you propose. So the total points you earn in a round are the gains from your
+            coordinations minus the costs of your proposals. The computer will do the calculations for you in each round,
+            but below you can see how the points are calculated in 3 simple steps:
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 border rounded" id="network">
+          <br>
+            <h5>Step 1: Calculating Gains from coordinations</h5>
+        <p>
+            Gains in each round depend on (i) your group, (ii) the option you pick, and (iii) the number of your active
+            relations choosing the same. You do not earn anything with those players with whom you do not have an active
+            relation.
+        </p>
+        <p>
+            <b>If your group is <b>&#9679</b> and you:</b>
+            <ul>
+                <li>choose <b id="option_up">Up</b>, you get <b>{{ Constants.liked_gain }} points</b>  for each
+                active of your connections choosing <b id="option_up">Up</b> and <b>0 points</b> for any of
+                your active connections choosing <b id="option_down">Down</b> </li>
+                <br>
+                <li>choose <b id="option_down">Down</b>, you get <b>{{ Constants.disliked_gain }} points</b> for each
+                of your active connections choosing <b id="option_down">Down</b> and <b>0 points</b> for any of
+                your active connections choosing <b id="option_up">Up</b> </li>
+            </ul>
+        </p>
+        <p>
+            <b>If your group is <b>&#9650</b> and you:</b>
+            <ul>
+                <li>choose <b id="option_down">Down</b>, you get <b>{{ Constants.liked_gain }} points</b> for each active
+                connection choosing <b id="option_down">Down</b> and <b>0 points</b> for any of
+                your active connections choosing  <b id="option_up">Up</b> </li>
+                <br>
+                <li>choose <b id="option_up">Up</b>, you get <b>{{ Constants.disliked_gain }} points</b> for
+                each active connection choosing <b id="option_up">Up</b> and <b>0 points</b> for any of
+                    your active connections choosing <b id="option_down">Down</b> </li>
+            </ul>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 border rounded" id="network">
+          <br>
+            <h5>Step 2: Calculating Costs from proposals</h5>
+        <p>
+            Your costs in each round depend <b>only on the number of relations you propose</b>. You pay a cost of
+            <b>2 points</b> for each proposal you make.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 border rounded" id="network">
+          <br>
+            <h5>Step 3: Calculating points</h5>
+        <p>
+            Your points are calculated as the <b>gains from coordinating with your active relations</b> minus the
+            <b>cost of each relation you propose</b>. The examples illustrate this:
         </p>
       </div>
     </div>
 </div>
 <div class="container">
     <div class="row">
-      <div class="col-sm-4 border rounded" style='background-color: #F8F8FF;'>
-            <h6>Fig. 1: Groups</h6>
-        <img width="100%" src="{% static "instructions/Img_1.png" %}"/>
-      </div>
-      <div class="col-sm-4 border rounded" style='background-color: #F8F8FF;'>
-            <h6>Fig. 2: Relations</h6>
-        <img width="100%" src="{% static "instructions/Img_2.png" %}"/>
-      </div>
-      <div class="col-sm-4 border rounded" style='background-color: #F8F8FF;'>
-            <h6>Fig. 3: Options</h6>
-        <img width="100%" src="{% static "instructions/Img_3.png" %}"/>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-9 border rounded" style='background-color: #ffffff;'>
-         <p>
-            <h5>Groups, Appearances & Numbers</h5>
-            In this experiment you will participate with 6 players more. Each player is randomly assigned to a group &#9679
-          or &#9650, and will also have an appearance &#9711 (if group &#9679) or &#9651 (if group
-          &#9650) and a number from 1 to 7. You will see the group, appearance and number of each player in the display
-          (see Figure 1 ), and you will always see yours also on the header of each screen (see example).
+        <div class="col-sm-8 border rounded" id="pale">
+            <br>
+            <h5>Example 1: You are Player 6 and your group is <b>&#9679</b></h5>
+            <p>
+               <b>1. Gains:</b> You chose action <span id="option_up">Up</span> and have coordinated with 5 of your active connections.
+                So you have 6 coordinations (one with yourself and one with player 1, 2, 3, 4, and 7). Your 6 coordinations
+                are multiplied by <b>6</b> (because your group is &#9679 and you chose <span id="option_up">Up</span>).
+                So you gain <b>36 points.</b>
 
-          <br><br>
-            A player’s group and appearance will not change during Part 1 while the number and position in the display
-          will be randomly changed in each round.
-          </p>
-      </div>
-      <div class="col-sm-3 border rounded" style='background-color: #F8F8FF;'>
-          <br>
-            <h6>Ex. Header for Player 1 </h6>
-        <img width="100%" src="{% static "instructions/Img_4.png" %}"/>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-9 border rounded" style='background-color: #ffffff;'>
-         <p>
-            <h5>Stage 1: Relations</h5>
-          In the <b>Relations stage</b> you will propose a relation to those players you want to participate with in Stage 2,
-          by clicking on the checkbox next to a player’s label (see example). If you propose a relation to a player who
-          <b>also</b> proposes to you, there is an <b>active relation</b> between the two of you. In Stage 2 you will
-          <b>only participate</b> with the players with whom you have an active relation.
+                <br><br>
 
-          <br><br>
-            You will see your relations in the display (see Figure 2). There is a light arrow leaving from you for each
-          relation you proposed, and a dark arrow heading towards you for each relation proposed to you. If both arrows
-          are present you have an active relation with that other player. If only one of you proposes a relation but the
-          other does not, there is no active relation between the two of you. <i>Your relations are thicker and those of
-          others are thinner.</i>
-          </p>
-      </div>
-      <div class="col-sm-3 border rounded" style='background-color: #F8F8FF;'>
-          <br>
-            <h6>Ex. Proposing Relations by Player 1 </h6>
-        <img width="80%" src="{% static "instructions/Img_5.png" %}"/>
-      </div>
+                <b>2. Costs:</b> You proposed 6 relations, each costs 2 points, so you pay <b>12 points</b>.
+
+                <br><br>
+
+                <b>3. Total Points:</b> You get 36 in gains minus 12 in costs: 36 - 12 = <b>24 points</b> in this round.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+                <img width="100%"  src="{% static "instructions/Img_C1.png" %}"/>
+        </div>
     </div>
     <div class="row">
-      <div class="col-sm-9 border rounded" style='background-color: #ffffff;'>
-         <p>
-            <h5>Stage 2: Options</h5>
-          In the <b>Option stage</b> you will pick one of two options: <b style="color:#E91E63">Up</b> or
-          <b style="color:#009688">Down</b> (see example). You will get points for each
-          of your active relations picking <b>the same option as you</b>. You will <b>not</b> get any points for an
-          active relation picking a different option than you, nor from a player picking the same option as you, if he
-          <b>is not</b> an active connection.
-          <br><br>
-            The option picked by each player is illustrated by the color of his appearance (see Figure 3).
-          <br><br>
-            In the next screen we will show you how many points can you earn.
-          </p>
-      </div>
-      <div class="col-sm-3 border rounded" style='background-color: #F8F8FF;'>
-          <br>
-            <h6>Ex. Options</h6>
-        <img width="100%" src="{% static "instructions/Img_6.png" %}"/>
-      </div>
+        <div class="col-sm-8 border rounded" id="pale">
+            <br>
+            <h5>Example 2: You are Player 1 and your group is <b>&#9650</b></h5>
+            <p>
+               <b>1. Gains:</b> You chose action <span id="option_down">Down</span> and have 6 coordination (with yourself
+                and with 5 of your active relations). Your 6 coordinations are multiplied by <b>6</b> (because your group
+                is &#9650 and you chose <span id="option_down">Down</span>). So you gain <b>36 points.</b>
+
+                <br><br>
+
+                <b>2. Costs:</b> You proposed 6 relations, so you pay 6 x 2 = <b>8 points</b>.
+
+                <br><br>
+
+                <b>3. Total Points:</b> You get 36 in gains minus 12 in costs: 36 - 12 = <b>24 points</b> in this round.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+                <img width="100%" src="{% static "instructions/Img_C2.png" %}"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <br>
+            <h5>Example 3: You are Player 4 and your group is <b>&#9679</b></h5>
+            <p>
+               <b>1. Gains:</b> You chose action <span id="option_down">Down</span> and have 6 coordination (including with
+                yourself) which are multiplied by <b>4</b> (because your group is &#9679 and you chose
+                <span id="option_down">Down</span>). So you gain <b>24 points.</b>
+
+                <br><br>
+
+                <b>2. Costs:</b> You proposed 6 relations, so you pay 6 x 2 = <b>8 points</b>.
+
+                <br><br>
+
+                <b>3. Total Points:</b> You get 24 in gains minus 12 in costs: 24 - 12 = <b>12 points</b> in this round.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+                <img width="100%"  src="{% static "instructions/Img_C4.png" %}"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <br>
+            <h5>Example 4: You are Player 4 and your group is <b>&#9650</b></h5>
+            <p>
+               <b>1. Gains:</b> You chose action <span id="option_up">Up</span> and have 6 coordination (including with
+                yourself) which are multiplied by <b>4</b> (because your group is &#9650 and you chose
+                <span id="option_down">Down</span>). So you gain <b>24 points.</b>
+
+                <br><br>
+
+                <b>2. Costs:</b> You proposed 6 relations, so you pay 6 x 2 = <b>8 points</b>.
+
+                <br><br>
+
+                <b>3. Total Points:</b> You get 24 in gains minus 12 in costs: 24 - 12 = <b>12 points</b> in this round.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+                <img width="100%"  src="{% static "instructions/Img_C3.png" %}"/>
+        </div>
     </div>
 </div>
 <div class="container">
     <div class="row">
-      <div class="col-sm-12 border rounded" style='background-color: #ffffff;'>
+      <div class="col-sm-12 border rounded" id="network">
           <br>
           <h4>Before you continue, please answer the comprehension questions: </h4>
           <br>
           <p>
-            <b>1. You will be assigned to a group and given an appearance. How often do your group and appearance change?</b>
+            <b>1. Your group is circle, you chose option Up and you have one active relation with a player who chose option Up.
+                What are the total points you get from this relation?</b>
             <br>
-            <small>{% formfield player.q1_symbol label="" %}</small>
+            <small>{% formfield player.pay_coord label="" %}</small>
           </p>
           <p>
-            <b>2. You will be assigned a label from 1 to {{ Constants.names }}. How often does your label change?</b>
+            <b>2. Your group is circle, you chose option Up and you have one active relation with a player who chose option Down.
+                What are the total points you get from this relation?</b>
             <br>
-            <small>{% formfield player.q2_label label="" %}</small>
+            <small>{% formfield player.pay_nocoord label="" %}</small>
           </p>
-          <p>
-            <b>3. In Stage 2 (Options) you only participate with your active relations. When is a relation active?</b>
-            <br>
-            <small>{% formfield player.q4_active label="" %}</small>
-          </p>
-          <p>
-            <b>4. In Figure 2 above, how many active relations does player 1 have?</b>
-            <br>
-            <small>{% formfield player.q5_count label="" %}</small>
-          </p>
-
-
-
             <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Continue </button>
           <br><br>
       </div>
@@ -142,20 +198,51 @@
 
 {% block styles %}
     <style type="text/css">
-        .button {
-            background-color: #455A64;
-            color: #B3E5FC;
-            border: 2px solid #B3E5FC
-        }
-        .button:hover {
-            background-color: #B3E5FC;
-            color: #000000;
-            border: 2px solid #3E2723
-        }
         img {
             display: block;
             margin-left: auto;
             margin-right: auto;
+        }
+        .button {
+            background-color: #000000;
+            color: #EEE8AA;
+            border: 2px solid #EEE8AA
+        }
+        .button:hover {
+            background-color: #EEE8AA;
+            color: #000000;
+            border: 2px solid #000000
+        }
+        #upper{
+            background-color: #000000;
+        }
+        #middle{
+            background-color: #424242;
+        }
+        #lower{
+            color: #EEE8AA
+        }
+        #network{
+            background-color: #ffffff;
+        }
+        #pale{
+            background-color: #F5F5F5;
+        }
+        #in_tie{
+            background-color: #000000;
+            color: #ffffff
+        }
+        #out_tie{
+            background-color: #616161;
+            color: #ffffff
+        }
+        #option_up{
+            background-color: #9C27B0;
+            color: #ffffff
+        }
+        #option_down{
+            background-color: #00BCD4;
+            color: #ffffff
         }
     </style>
 {% endblock %}

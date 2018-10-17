@@ -8,26 +8,38 @@ class WelcomeInst(Page):
 
 class DecisionsInst(Page):
     form_model = 'player'
-    form_fields = ['q1_symbol','q2_label', 'q4_active', 'q5_count']
+    form_fields = ['symbol','label', 'active', 'count']
 
-    def q1_symbol_error_message(self, value):
+    def symbol_error_message(self, value):
         if value != 1:
             return 'In Part 1 your group and appearance are fixed for all 10 rounds'
 
-    def q2_label_error_message(self, value):
+    def label_error_message(self, value):
         if value != 2:
             return 'In Part 1 your label is randomly assigned in each round'
 
-    def q4_active_error_message(self, value):
+    def active_error_message(self, value):
         if value != 3:
             return 'Active relations require being proposed by both participants'
 
-    def q5_count_error_message(self, value):
+    def count_error_message(self, value):
         if value != 3:
             return 'Active relations require being proposed by both participants'
 
 class PointsInst(Page):
-    pass
+    form_model = 'player'
+    form_fields = ['pay_coord','pay_nocoord']
+
+    def pay_coord_error_message(self, value):
+        if value != 1:
+            return 'A player in group circle gets 6 points for each coordination with an active relation and pays 2 points for' \
+                   'proposing the relation'
+
+    def pay_nocoord_error_message(self, value):
+        if value != 3:
+            return 'A player get no points if there is no coordination with an active relation but still pays the 2 points' \
+                   'for proposing the relation'
+
 
 class SummaryInst(Page):
     pass
