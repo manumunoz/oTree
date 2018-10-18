@@ -5,6 +5,7 @@ from otree.api import (
 import random
 from collections import OrderedDict
 import json
+import itertools
 
 author = 'Manu Munoz'
 
@@ -33,6 +34,16 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
     def creating_session(self):
+        treat = itertools.cycle([1, 2, 3]) #1: Full, 2:Sticky, 3:Blind
+        # for p in self.get_players():
+        #     p.treat = next(treat)
+        for p in self.get_players():
+            if 'treatment' in self.session.config:
+                # demo mode
+                p.treat = self.session.config['treatment']
+            else:
+                # live experiment mode
+                p.treat = next(treat)
         num_players_err = 'Too many participants for such a short name list'
         # the following may create issues with mTurk sessions where num participants is doubled
         assert len(Constants.names) <= self.session.num_participants, num_players_err

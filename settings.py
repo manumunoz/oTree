@@ -142,17 +142,10 @@ SESSION_CONFIGS = [
         'treatment': 1,
     },
     {
-        'name': 'network_identity_p2',
-        'display_name': "network_identity_p2",
-        'num_demo_participants': 7,
-        'app_sequence': ['network_identity_p2'],
-        'treatment': 1,
-    },
-    {
-        'name': 'network_identity',
-        'display_name': "network_identity",
-        'num_demo_participants': 7,
-        'app_sequence': ['network_identity'],
+        'name': 'switch_inst_p2',
+        'display_name': "switch_inst_p2",
+        'num_demo_participants': 1,
+        'app_sequence': ['switch_inst_p2'],
     },
     {
         'name': 'instructions',

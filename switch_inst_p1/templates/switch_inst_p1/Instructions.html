@@ -1,0 +1,98 @@
+{% load otree staticfiles %}
+{% load static %}
+
+<div class="card bg-light instructions">
+    <div class="card-body">
+          <h2> Instructions: <i>Summary</i></h2>
+        <br>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-2 border text-white rounded" style='background-color: #ffffff;'>
+          <br>
+            <img width="100%" src="{% static "instructions/Img_Inst_14.jpeg" %}"/>
+      </div>
+      <div class="col-sm-10 border rounded" style='background-color: #F8F8FF;'>
+        <h5>Symbols and labels</h5>
+        <p>
+            In this experiment you will interact with {{ Constants.others }} players more. At the beginning of the
+            experiment each of you will be assigned to one of two groups: circle or triangle, and will be assigned symbols
+            (external and internal) and a label. Your symbols are fixed for all 10 rounds in Part 1 while your label will
+            change in each round.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2 border text-white rounded" style='background-color: #ffffff;'>
+          <br>
+            <img width="100%" src="{% static "instructions/Img_Inst_7.jpeg" %}"/>
+      </div>
+      <div class="col-sm-10 border rounded" style='background-color: #F8F8FF;'>
+        <h5>Phase 1: Connections</h5>
+        <p>
+            In Phase 1, you can propose connections to other players. Each proposed connection will cost you 2 points.
+            If you propose to a player who also proposes to you, the connection between the two of you is <b>active</b>.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2 border text-white rounded" style='background-color: #ffffff;'>
+          <br>
+            <img width="100%" src="{% static "instructions/Img_Inst_8.jpeg" %}"/>
+      </div>
+      <div class="col-sm-10 border rounded" style='background-color: #F8F8FF;'>
+        <h5>Phase 2: Action</h5>
+        <p>
+            In Phase 2, you will choose an action: Up or Down. You will earn points for each of your active connections
+            that chooses the same action as you (coordinate), including yourself. The points you earn depend on your
+            group and the action you choose as follows:
+        </p>
+        <p>
+             <b>If your group is <b>&#9711</b> and you:</b>
+            <ul>
+                <li>choose <b style="color: #8E24AA">Up</b>, you get <b>{{ Constants.liked_gain }}</b> points for each
+                    active connection choosing <b style="color: #8E24AA">Up</b></li>
+                <li>choose <b style="color: #43A047">Down</b>, you get <b>{{ Constants.disliked_gain }}</b> points for each active
+                    connection choosing <b style="color: #43A047">Down</b></li>
+            </ul>
+              <b>If your group is <b>&#9651</b> and you:</b>
+            <ul>
+                <li>choose <b style="color: #43A047">Down</b>, you get <b>{{ Constants.liked_gain }}</b> points for each active
+                    connection choosing <b style="color: #43A047">Down</b></li>
+                <li>choose <b style="color: #8E24AA">Up</b>, you get <b>{{ Constants.disliked_gain }}</b> points for
+                    each active connection choosing <b style="color: #8E24AA">Up</b></li>
+            </ul>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2 border text-white rounded" style='background-color: #ffffff;'>
+          <br>
+            <img width="100%" src="{% static "instructions/Img_Inst_9.jpeg" %}"/>
+      </div>
+      <div class="col-sm-10 border rounded" style='background-color: #F8F8FF;'>
+        <h5>Phase 3: Results</h5>
+        <p>
+            In Phase 3, you will see a summary of your choices and points. You will see how many of your active connections
+            your coordinated with, how many points you get from your coordinations minus the cost you pay for your proposed
+            connections.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2 border text-white rounded" style='background-color: #ffffff;'>
+          <br>
+            <img width="100%" src="{% static "instructions/Img_Inst_5.jpeg" %}"/>
+      </div>
+      <div class="col-sm-10 border rounded" style='background-color: #F8F8FF;'>
+        <p>
+            <br>
+            The experiment has <b>2 parts</b> of 10 rounds each (20 in total). In both parts you will interact
+            with the same other {{ Constants.others }} players. At the end of the experiment the computer will
+            randomly select one round from Part 1 and one round from Part 2. The total points you earned in the two
+            selected rounds will determine your payment. We will convert the points into Euros using the following
+            exchange rate: <b>{{ Constants.exchange }} points = 1 Euro</b>. You will receive your earnings in cash.
+        </p>
+      </div>
+    </div>
+</div>
+
