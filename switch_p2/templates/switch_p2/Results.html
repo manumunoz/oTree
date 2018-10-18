@@ -5,21 +5,26 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-12 border border-dark text-white rounded" id="upper">
-          <h2> You are player <b id="lower"> {{ player.name }}</b>.</h2>
+          <h2>
+              You are player <b id="lower"> {{ player.name }}</b> <small>(Round {{ subsession.round_number }}
+              of {{ Constants.num_rounds}})</small>
+          </h2>
             <h6>
                 {% if player.chosen_type == 1 %}
-                Your group is <b id='lower'>&#9679</b> and your appearance <b id='lower'>&#9711</b>
+                Your <span id='lower'>chosen </span> group is <b id='lower'>&#9679</b> and your appearance <b id='lower'>&#9711</b>
 
                 {% elif player.chosen_type == 2 %}
-                Your group is <b id='lower'>&#9679</b> and your appearance <b id='lower'>&#9651</b>
+                Your <span id='lower'>chosen </span> group is <b id='lower'>&#9679</b> and your appearance <b id='lower'>&#9651</b>
 
                 {% elif player.chosen_type == 3 %}
-                Your group is <b id='lower'>&#9650</b> and your appearance <b id='lower'>&#9711</b>
+                Your <span id='lower'>chosen </span> group is <b id='lower'>&#9650</b> and your appearance <b id='lower'>&#9711</b>
 
                 {% else %}
-                Your group is <b id='lower'>&#9650</b> and your appearance <b id='lower'>&#9651</b>
+                Your <span id='lower'>chosen </span> group is <b id='lower'>&#9650</b> and your appearance <b id='lower'>&#9651</b>
                 {% endif %}
             </h6>
+          <h6 id="lower">In this round there are: <span id="white">{{ group.total_circles }} &#9679 </span> and <span id="white">
+              {{ group.total_triangles }} &#9650</span></h6>
       </div>
     </div>
 </div>
@@ -27,58 +32,46 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
-      <div class="col-sm-3 border border-dark text-white rounded mb-1" id="middle">
-          <h5 class="text-center"> Results <small id='lower'>(Round {{ subsession.round_number }})</small></h5>
-      </div>
-      <div class="col-sm-9 border border-dark text-white rounded mb-1" id="middle">
-           <p class="text-center">
-               In this round there are <b id='lower'> {{ group.total_circles }} &#9679</b> and <b id='lower'>
-               {{ group.total_triangles }} &#9650</b>.
-           </p>
-      </div>
-    </div>
+    <!--<div class="row">-->
+      <!--<div class="col-sm-3 border border-dark text-white rounded mb-1" id="middle">-->
+          <!--<h5 class="text-center"> Results <small id='lower'>(Round {{ subsession.round_number }})</small></h5>-->
+      <!--</div>-->
+      <!--<div class="col-sm-9 border border-dark text-white rounded mb-1" id="middle">-->
+           <!--<p class="text-center">-->
+               <!--In this round there are <b id='lower'> {{ group.total_circles }} &#9679</b> and <b id='lower'>-->
+               <!--{{ group.total_triangles }} &#9650</b>.-->
+           <!--</p>-->
+      <!--</div>-->
+    <!--</div>-->
     <div class="row">
       <div class="col-sm-3 border border-dark text-white rounded p-3 mb-1" id="middle">
+          <h5 id="lower">Stage 4: Results</h5>
         <div>
-            {% if player.action == 1 %}
-                You chose option:
-                <span id="highlight">Up</span>
-            {% else %}
-                You chose option:
-                <span id="highlight">Down</span>
-            {% endif %}
-
-            <br><br>
-
-            You made <span id="lower"> {{ player.out_degree }} </span> proposals
-            <br>
-            <small>[<span id="lower">cost:</span>  {{ Constants.link_cost }} x {{ player.out_degree}} =
-                {{ player.linking_costs }} points.]</small>
-
-            <br><br>
-
-            You formed <span id="lower"> {{ player.degree }}</span> active relations and have
-            <span id="lower"> {{ player.coordination_score }}</span> coordination <small>(counting yourself)</small>
-            <br>
-            {% if player.action == player.liked_action %}
-            <small>[<span id="lower">gains:</span> {{ Constants.liked_gain }} x {{ player.coordination_score }} =
-                {{ player.coordination_gains }} points]</small>
-            {% else %}
-            <small>[<span id="lower">gains:</span> {{ Constants.disliked_gain }} x {{ player.coordination_score }} =
-                {{ player.coordination_gains }} points]</small>
-            {% endif %}
-
-            <br><br>
-
+            <p>
             In this round you earn:
                 <h3 id="highlight">{{ player.round_gains }} points</h3>
 
-            <small>[<span id="lower">gains-costs:</span> {{ player.coordination_gains }} - {{ player.linking_costs }} =
-                {{ player.round_gains }} points]</small>
+            <small>
+                {% if player.action == 1 %}
+                    You chose option <span id="highlight">Up</span>. You have <span id="lower"> {{ player.coordination_score }}</span>
+                    coordination (counting yourself) and proposed <span id="lower"> {{ player.out_degree }} </span> relations:
+                    <br>
+                    [<span id="lower">gains-costs:</span> {{ player.coordination_gains }} - {{ player.linking_costs }} =
+                    {{ player.round_gains }} points]
+                {% else %}
+                    You chose option <span id="highlight">Down</span>. You have <span id="lower"> {{ player.coordination_score }}</span>
+                    coordination (counting yourself) and proposed <span id="lower"> {{ player.out_degree }} </span> relations:
+                    <br>
+                    [<span id="lower">gains-costs:</span> {{ player.coordination_gains }} - {{ player.linking_costs }} =
+                    {{ player.round_gains }} points]
+                {% endif %}
+            </small>
 
             <br><br>
+
                 <button type="otree-btn-next" class="btn button btn-md"> Continue </button>
+
+            </p>
         </div>
       </div>
       <div class="col-sm-9 border border-dark rounded p-3 mb-1"  id="network">
@@ -169,17 +162,17 @@
             .style('target-distance-from-node', '7px')
             // My Links
             .selector('edge[isMine="yes"]')
-            .style('line-color', '#455A64')
+            .style('line-color', '#000000')
             .style("target-arrow-shape", "triangle")
             .style('arrow-scale','1')
-            .style("target-arrow-color", "#455A64")
+            .style("target-arrow-color", "#757575")
             .style("curve-style", 'bezier')
             .style('target-distance-from-node', '8px')
             .style('width', '4')
             // My Links: Out-degree
             .selector('edge[linkStyle="source"]')
-            .style("target-arrow-color", "#455A64")
-            .style('line-color', '#78909C')
+            .style("target-arrow-color", "#000000")
+            .style('line-color', '#757575')
             // NOT My Links
             .selector('edge[isMine="no"]')
             .style('display', 'none')

@@ -4,15 +4,15 @@ from otree.api import (
 )
 
 
-author = 'Your name here'
+author = 'Manu Munoz'
 
 doc = """
-Your app description
+Identity Switch - Networks: Instructions P1
 """
 
 
 class Constants(BaseConstants):
-    name_in_url = 'instructions'
+    name_in_url = 'switch_inst_p1'
     players_per_group = None
     num_rounds = 1
     min_pay = 5
@@ -22,7 +22,7 @@ class Constants(BaseConstants):
     liked_gain = 6
     disliked_gain = 4
     exchange = 2
-    instructions_template= 'instructions/Instructions.html'
+    instructions_template= 'switch_inst_p1/Instructions.html'
 
 
 class Subsession(BaseSubsession):

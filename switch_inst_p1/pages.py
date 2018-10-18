@@ -6,6 +6,11 @@ from .models import Constants
 class WelcomeInst(Page):
     pass
 
+
+class DecisionsInstWP(WaitPage):
+    pass
+
+
 class DecisionsInst(Page):
     form_model = 'player'
     form_fields = ['symbol','label', 'active', 'count']
@@ -26,6 +31,11 @@ class DecisionsInst(Page):
         if value != 3:
             return 'Active relations require being proposed by both participants'
 
+
+class PointsInstWP(WaitPage):
+    pass
+
+
 class PointsInst(Page):
     form_model = 'player'
     form_fields = ['pay_coord','pay_nocoord']
@@ -41,6 +51,10 @@ class PointsInst(Page):
                    'for proposing the relation'
 
 
+class SummaryInstWP(WaitPage):
+    pass
+
+
 class SummaryInst(Page):
     pass
 
@@ -48,13 +62,11 @@ class SummaryInst(Page):
 
 
 page_sequence = [
-    # StartInst,
     WelcomeInst,
+    DecisionsInstWP,
     DecisionsInst,
+    PointsInstWP,
     PointsInst,
-    # PartOneInst,
-    # LinkingInst,
-    # ActionInst,
-    # ResultsInst,
-    # SummaryInst,
+    SummaryInstWP,
+    SummaryInst,
 ]

@@ -5,21 +5,26 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-12 border border-dark text-white rounded" id="upper">
-          <h2> You are player <b id="lower"> {{ player.name }}</b>.</h2>
+          <h2>
+              You are player <b id="lower"> {{ player.name }}</b> <small>(Round {{ subsession.round_number }}
+              of {{ Constants.num_rounds}})</small>
+          </h2>
             <h6>
                 {% if player.chosen_type == 1 %}
-                Your group is <b id='lower'>&#9679</b> and your appearance <b id='lower'>&#9711</b>
+                Your <span id='lower'>chosen </span> group is <b id='lower'>&#9679</b> and your appearance <b id='lower'>&#9711</b>
 
                 {% elif player.chosen_type == 2 %}
-                Your group is <b id='lower'>&#9679</b> and your appearance <b id='lower'>&#9651</b>
+                Your <span id='lower'>chosen </span> group is <b id='lower'>&#9679</b> and your appearance <b id='lower'>&#9651</b>
 
                 {% elif player.chosen_type == 3 %}
-                Your group is <b id='lower'>&#9650</b> and your appearance <b id='lower'>&#9711</b>
+                Your <span id='lower'>chosen </span> group is <b id='lower'>&#9650</b> and your appearance <b id='lower'>&#9711</b>
 
                 {% else %}
-                Your group is <b id='lower'>&#9650</b> and your appearance <b id='lower'>&#9651</b>
+                Your <span id='lower'>chosen </span> group is <b id='lower'>&#9650</b> and your appearance <b id='lower'>&#9651</b>
                 {% endif %}
             </h6>
+          <h6 id="lower">In this round there are: <span id="white">{{ group.total_circles }} &#9679 </span> and <span id="white">
+              {{ group.total_triangles }} &#9650</span></h6>
       </div>
     </div>
 </div>
@@ -27,19 +32,20 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
-      <div class="col-sm-3 border border-dark text-white rounded mb-1" id="middle">
-          <h5 class="text-center"> Relations <small id='lower'>(Round {{ subsession.round_number }})</small></h5>
-      </div>
-      <div class="col-sm-9 border border-dark text-white rounded mb-1" id="middle">
-           <p class="text-center">
-               In this round there are <b id='lower'> {{ group.total_circles }} &#9679</b> and <b id='lower'>
-               {{ group.total_triangles }} &#9650</b>.
-           </p>
-      </div>
-    </div>
+    <!--<div class="row">-->
+      <!--<div class="col-sm-3 border border-dark text-white rounded mb-1" id="middle">-->
+          <!--<h5 class="text-center"> Relations <small id='lower'>(Round {{ subsession.round_number }})</small></h5>-->
+      <!--</div>-->
+      <!--<div class="col-sm-9 border border-dark text-white rounded mb-1" id="middle">-->
+           <!--<p class="text-center">-->
+               <!--In this round there are <b id='lower'> {{ group.total_circles }} &#9679</b> and <b id='lower'>-->
+               <!--{{ group.total_triangles }} &#9650</b>.-->
+           <!--</p>-->
+      <!--</div>-->
+    <!--</div>-->
     <div class="row">
       <div class="col-sm-3 border border-dark text-white rounded p-3 mb-1" id="middle">
+          <h5 id="lower">Stage 2: Relations</h5>
         <p>Select each player you want to propose a relation to:</p>
 
             {% for f in form %}

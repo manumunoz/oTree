@@ -4,10 +4,10 @@ from otree.api import (
 )
 
 
-author = 'Your name here'
+author = 'Manu Munoz'
 
 doc = """
-Your app description
+Identity Switch - Networks: Instructions P2
 """
 
 
