@@ -22,8 +22,9 @@ class Constants(BaseConstants):
     liked_gain = 6
     disliked_gain = 4
     exchange = 2
-    instructions_template= 'switch_inst_p1/Instructions.html'
-
+    total_circles = 4
+    total_triangles = 3
+    instructions_template = 'switch_inst_p1/Instructions.html'
 
 class Subsession(BaseSubsession):
     pass
@@ -73,18 +74,18 @@ class Player(BasePlayer):
 
     pay_coord = models.PositiveIntegerField(
         choices=[
-            [1, 'I gain 6 and pay the cost of 2 = 4 total points'],
-            [2, 'I gain 4 and pay the cost of 2 = 2 total points'],
-            [3, 'I gain 0 and pay the cost of 2 = -2 total points']
+            [1, 'I gain 6 and pay the cost of 2 = 4 points in total'],
+            [2, 'I gain 4 and pay the cost of 2 = 2 points in total'],
+            [3, 'I gain 0 and pay the cost of 2 = -2 points in total']
         ],
         widget=widgets.RadioSelect
     )
 
     pay_nocoord = models.PositiveIntegerField(
         choices=[
-            [1, 'I gain 6 and pay the cost of 2 = 4 total points'],
-            [2, 'I gain 4 and pay the cost of 2 = 2 total points'],
-            [3, 'I gain 0 and pay the cost of 2 = -2 total points']
+            [1, 'I gain 6 and pay the cost of 2 = 4 points in total'],
+            [2, 'I gain 4 and pay the cost of 2 = 2 points in total'],
+            [3, 'I gain 0 and pay the cost of 2 = -2 points in total']
         ],
         widget=widgets.RadioSelect
     )

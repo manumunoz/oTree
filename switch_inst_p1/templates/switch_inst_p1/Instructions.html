@@ -27,8 +27,9 @@
       <div class="col-sm-10 border rounded" style='background-color: #F8F8FF;'>
         <h5>Stage 1: Relations</h5>
         <p>
-            In stage 1, you can propose relations to other players. A relation is <b>active</b> if both you and another player
-            propose to each other. Each proposed relation will cost you {{ Constants.link_cost }} points.
+            In stage 1, you can propose relations to other players. A relation with another player <b>active</b> if both
+            you and the other player propose to each other. Each proposed relation will cost you {{ Constants.link_cost }}
+            points.
         </p>
       </div>
     </div>
@@ -39,33 +40,32 @@
       <div class="col-sm-10 border rounded" style='background-color: #F8F8FF;'>
         <h5>Stage 2: Options</h5>
         <p>
-            In Phase 2, you will choose an action: <span id="option_up">Up</span> or <span id="option_down">Down</span>.
-            You will earn points depending on your group, the option you choose, and the number of your active connections
+            In stage 2, you will choose an option: <span id="option_up">Up</span> or <span id="option_down">Down</span>.
+            You will earn points depending on your group, the option you choose, and the number of your active relations
             choosing <b>the same option</b> as you:
         </p>
-
-        <p>
+       <p>
             <b>If your group is <b>&#9679</b> and you:</b>
             <ul>
                 <li>choose <b id="option_up">Up</b>, you get <b>{{ Constants.liked_gain }} points</b>  for each
-                active of your connections choosing <b id="option_up">Up</b> and <b>0 points</b> for any of
-                your active connections choosing <b id="option_down">Down</b> </li>
+                    active relation choosing <b id="option_up">Up</b> (including yourself) and <b>0 points</b> for any
+                    active relation choosing <b id="option_down">Down</b> </li>
                 <br>
                 <li>choose <b id="option_down">Down</b>, you get <b>{{ Constants.disliked_gain }} points</b> for each
-                of your active connections choosing <b id="option_down">Down</b> and <b>0 points</b> for any of
-                your active connections choosing <b id="option_up">Up</b> </li>
+                active relation choosing <b id="option_down">Down</b> (including yourself) and <b>0 points</b> for any
+                    active relation choosing <b id="option_up">Up</b> </li>
             </ul>
         </p>
         <p>
             <b>If your group is <b>&#9650</b> and you:</b>
             <ul>
                 <li>choose <b id="option_down">Down</b>, you get <b>{{ Constants.liked_gain }} points</b> for each active
-                connection choosing <b id="option_down">Down</b> and <b>0 points</b> for any of
-                your active connections choosing  <b id="option_up">Up</b> </li>
+                relation choosing <b id="option_down">Down</b> (including yourself) and <b>0 points</b> for any active
+                    relation choosing  <b id="option_up">Up</b> </li>
                 <br>
                 <li>choose <b id="option_up">Up</b>, you get <b>{{ Constants.disliked_gain }} points</b> for
-                each active connection choosing <b id="option_up">Up</b> and <b>0 points</b> for any of
-                    your active connections choosing <b id="option_down">Down</b> </li>
+                each active relation choosing <b id="option_up">Up</b> (including yourself) and <b>0 points</b> for any
+                    active relation choosing <b id="option_down">Down</b> </li>
             </ul>
         </p>
       </div>

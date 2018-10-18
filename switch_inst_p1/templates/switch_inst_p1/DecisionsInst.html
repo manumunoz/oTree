@@ -12,92 +12,89 @@
 
 {% block content %}
 <div class="container">
+    <!--<div class="row">-->
+      <!--<div class="col-sm-4 border rounded" id="network">-->
+            <!--<h6>Fig. 1: Groups</h6>-->
+        <!--<img width="100%" src="{% static "switch_inst_p1/Img_B1.png" %}"/>-->
+      <!--</div>-->
+      <!--<div class="col-sm-4 border rounded" id="network">-->
+            <!--<h6>Fig. 2: Relations</h6>-->
+        <!--<img width="100%" src="{% static "switch_inst_p1/Img_B2.png" %}"/>-->
+      <!--</div>-->
+      <!--<div class="col-sm-4 border rounded" id="network">-->
+            <!--<h6>Fig. 3: Options</h6>-->
+        <!--<img width="100%" src="{% static "switch_inst_p1/Img_B3.png" %}"/>-->
+      <!--</div>-->
+    <!--</div>-->
     <div class="row">
-      <div class="col-sm-12 border rounded" id="pale">
-        <p>
-            In this screen you will see the instructions for the decisions you make in each round in Part 1.
-            The instructions will use as illustrations the Figures 1, 2 and 3 below as well as the example images on the
-            right hand side.
-        </p>
-      </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-      <div class="col-sm-4 border rounded" id="network">
-            <h6>Fig. 1: Groups</h6>
-        <img width="100%" src="{% static "switch_inst_p1/Img_B1.png" %}"/>
-      </div>
-      <div class="col-sm-4 border rounded" id="network">
-            <h6>Fig. 2: Relations</h6>
-        <img width="100%" src="{% static "switch_inst_p1/Img_B2.png" %}"/>
-      </div>
-      <div class="col-sm-4 border rounded" id="network">
-            <h6>Fig. 3: Options</h6>
-        <img width="100%" src="{% static "switch_inst_p1/Img_B3.png" %}"/>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-9 border rounded" id="pale">
+      <div class="col-sm-8 border rounded" id="pale">
          <p>
             <h5>Groups, Appearances & Numbers</h5>
+
             In this experiment you will participate with 6 players more. Each player is randomly assigned to a group &#9679
-          or &#9650, and will also have an appearance &#9711 (if group &#9679) or &#9651 (if group
-          &#9650) and a number from 1 to 7. You will see the group, appearance and number of each player in the display
-          (see Figure 1 ), and you will always see yours also on the header of each screen (see example).
+          or &#9650, and will also have an appearance &#9711 (if group &#9679) or &#9651 (if group &#9650) and a number
+          from 1 to 7. You will see the group, appearance and number of each player on the display (see Figure 1).
 
           <br><br>
-            A player’s group and appearance will not change during Part 1 while the number and position in the display
-          will be randomly changed in each round.
+
+          On the header of each screen you will see a summary of this information as in the example below:
+
+          <br><br>
+
+          <img width="50%" src="{% static "switch_inst_p1/Img_B4.png" %}"/>
+
+          <br>
+            In
+          each round there will be {{ Constants.total_circles }} players in group &#9679 and {{ Constants.total_triangles }}
+          in group &#9650. A player’s group and appearance will not change during Part 1, while the number and position
+          in the display will be randomly changed in each round.
           </p>
       </div>
-      <div class="col-sm-3 border rounded" id="network">
+      <div class="col-sm-4 border rounded" id="network">
           <br>
-            <h6>Ex. Header for Player 7 </h6>
-        <img width="100%" src="{% static "switch_inst_p1/Img_B4.png" %}"/>
+            <h6>Fig. 1: Groups </h6>
+        <img width="100%" src="{% static "switch_inst_p1/Img_B1.png" %}"/>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-9 border rounded" id="pale">
+      <div class="col-sm-8 border rounded" id="pale">
          <p>
             <h5>Stage 1: Relations</h5>
-          In the <b>Relations stage</b> you will propose a relation to those players you want to participate with in Stage 2,
-          by clicking on the checkbox next to a player’s label (see example). If you propose a relation to a player who
-          <b>also</b> proposes to you, there is an <b>active relation</b> between the two of you. In Stage 2 you will
-          <b>only participate</b> with the players with whom you have an active relation.
+          In the <b>Relations stage</b> you can propose a relation to those players you want to participate with in Stage 2.
+          If you propose a relation to a player who <b>also</b> proposes to you, there is an <b>active relation</b>
+          between the two of you. In Stage 2 you will <b>only participate</b> with the players with whom you have an
+          active relation.
 
           <br><br>
           You will see your relations in the display (see Figure 2). There is a <span id="out_tie">light arrow</span> leaving
           from you for each relation you proposed, and a <span id="in_tie">dark arrow</span> heading towards you for each
           relation proposed to you. <b>If both</b> arrows are present you have an <b>active relation</b> with that other
           player. If only one of you proposes a relation but the other does not, there is no active relation between the
-          two of you. <i>Your relations are thicker and those of others are thinner.</i>
+          two of you. <i>*Your relations are illustrated with thicker lines and those of others are thinner.</i>
           </p>
       </div>
-      <div class="col-sm-3 border rounded" id="network">
+      <div class="col-sm-4 border rounded" id="network">
           <br>
-            <h6>Ex. Proposing Relations by Player 7 </h6>
-        <img width="80%" src="{% static "switch_inst_p1/Img_B5.png" %}"/>
+            <h6>Fig. 2: Relations </h6>
+        <img width="100%" src="{% static "switch_inst_p1/Img_B2.png" %}"/>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-9 border rounded" id="pale">
+      <div class="col-sm-8 border rounded" id="pale">
          <p>
             <h5>Stage 2: Options</h5>
           In the <b>Option stage</b> you will pick one of two options: <b id="option_up"> Up </b> or
-          <b id="option_down"> Down </b> (see example). You will get points for each
-          of your active relations picking <b>the same option as you</b>. You will <b>not</b> get any points for an
-          active relation picking <b>a different option</b> than you, nor from a player picking the same option as you, if he
-          <b>is not</b> an active connection.
+          <b id="option_down"> Down </b>. You will get points for each of your active relations picking <b>the same
+          option as you</b>. You will <b>not</b> get any points for an active relation picking <b>a different option</b>
+          than you, nor from a player picking the same option as you, if he <b>is not</b> an active connection.
           <br><br>
-            The option picked by each player is illustrated by the color of his appearance (see Figure 3). In the next
-          screen you will see how many points you can earn.
+            The option picked by each player is illustrated by the color of his appearance (see Figure 3).
           </p>
       </div>
-      <div class="col-sm-3 border rounded" id="network">
+      <div class="col-sm-4 border rounded" id="network">
           <br>
-            <h6>Ex. Options</h6>
-        <img width="100%" src="{% static "switch_inst_p1/Img_B6.png" %}"/>
+            <h6>Fig. 3: Options </h6>
+        <img width="100%" src="{% static "switch_inst_p1/Img_B3.png" %}"/>
       </div>
     </div>
 </div>
@@ -123,7 +120,7 @@
             <small>{% formfield player.active label="" %}</small>
           </p>
           <p>
-            <b>4. In Figure 2 above, how many active relations does player 1 have?</b>
+            <b>4. In Figure 2 above, how many active relations does player 7 have?</b>
             <br>
             <small>{% formfield player.count label="" %}</small>
           </p>

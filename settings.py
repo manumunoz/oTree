@@ -150,6 +150,12 @@ SESSION_CONFIGS = [
         'treatment': 1,
     },
     {
+        'name': 'switch_inst_p1',
+        'display_name': "switch_inst_p1",
+        'num_demo_participants': 1,
+        'app_sequence': ['switch_inst_p1'],
+    },
+    {
         'name': 'switch_inst_p2',
         'display_name': "switch_inst_p2",
         'num_demo_participants': 1,
