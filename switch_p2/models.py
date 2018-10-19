@@ -17,7 +17,6 @@ Identity Switch - Networks: P2
 class Constants(BaseConstants):
     name_in_url = 'id_switch_p2'
     num_rounds = 10
-
     circle = 1 # Majority
     triangle = 0 # Minority
     names = ['1','2','3','4','5','6','7']
@@ -27,10 +26,10 @@ class Constants(BaseConstants):
     liked_gain = 6
     disliked_gain = 4
     personal = 1
-    # visible = 1
-    # invisible = 0
+    others = len(names) - 1
+    exchange = 2
     players_per_group = len(names)
-
+    instructions_template = 'switch_p2/Instructions.html'
 
 class Subsession(BaseSubsession):
     def creating_session(self):
@@ -60,14 +59,10 @@ class Subsession(BaseSubsession):
                 p.was_circle = 1
             else: # triangle-triangle
                 p.was_circle = 0
-            # if p.given_type == 1: # circle-circle
-            #     p.chosen_type = 1
-            #     p.is_circle = 1
-            #     p.liked_action = 1
-            # else: # triangle-triangle
-            #     p.chosen_type = 4
-            #     p.is_circle = 0
-            #     p.liked_action = 0
+
+        if self.round_number == 1:
+            paying_round_2 = random.randint(1, Constants.num_rounds)
+            self.session.vars['paying_round_2'] = paying_round_2
 
 
 class Group(BaseGroup):
@@ -252,7 +247,7 @@ class Group(BaseGroup):
 
     def round_payoffs(self):
         for player in self.get_players():
-            if player.round_gains > 0:
+            if self.subsession.round_number == self.session.vars['paying_round_2']:
                 player.payoff = player.round_gains
             else:
                 player.payoff = 0

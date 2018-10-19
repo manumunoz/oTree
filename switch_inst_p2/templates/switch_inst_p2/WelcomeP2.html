@@ -4,17 +4,32 @@
 {% block title %}
 <div class="container">
     <div class="row">
-        <div class="col-sm-12 border border-dark text-white rounded" id="upper">
-            <h2> Summary </h2>
-        </div>
+      <div class="col-sm-12 border border-dark text-white rounded" id="upper">
+        <h2> Welcome to Part 2 </h2>
+      </div>
     </div>
-</div>
 {% endblock %}
 
 {% block content %}
-    {% include Constants.instructions_template %}
-    <br>
-    <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Begin Part 1 </button>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 border rounded" id="pale">
+            <h5>
+                You have concluded Part 1 and will now begin Part 2:
+            </h5>
+            <ul>
+                <li>First, you will read the instructions for Part 2</li>
+                <li>Then, you will participate in Part2 for 10 rounds </li>
+                <li>At the end, the computer will randomly choose two rounds (one from Part 1 and one from Part 2).</li>
+                <li>You will be paid for the total number of points you earned in the two selected rounds.</li>
+                <li>You will receive your earnings in cash</li>
+            </ul>
+            <br>
+            <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Continue </button>
+            <br><br>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block styles %}

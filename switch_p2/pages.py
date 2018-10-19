@@ -73,9 +73,17 @@ class Results(Page):
         self.group.forming_network()
 
 
-# class TypeChoice(Page):
-#     form_model = 'player'
-#     form_fields = ['chosen_preference']
+class RandomPay(Page):
+    def is_displayed(self):
+        return self.subsession.round_number == Constants.num_rounds
+
+    def vars_for_template(self):
+        return {
+            'total_payoff': sum(
+                [p.payoff for p in self.player.in_all_rounds()]),
+            'paying_round_1': self.session.vars['paying_round_1'],
+            'paying_round_2': self.session.vars['paying_round_2'],
+        }
 
 
 page_sequence = [
@@ -86,5 +94,6 @@ page_sequence = [
     BeforeActionWP,
     Action,
     BeforeResultsWP,
-    Results
+    Results,
+    RandomPay
 ]

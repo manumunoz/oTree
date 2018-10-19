@@ -5,16 +5,27 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 border border-dark text-white rounded" id="upper">
-            <h2> Summary </h2>
+            <h2> Payment </h2>
         </div>
     </div>
 </div>
 {% endblock %}
 
 {% block content %}
-    {% include Constants.instructions_template %}
-    <br>
-    <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Begin Part 1 </button>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                <h5>Chosen Rounds in Part 1 and Part 2:</h5>
+                The computer selected round {{ paying_round_1 }} in Part 1 and round {{ paying_round_2 }} in Part 2.
+                <br><br>
+                Your total payoff is therefore {{ total_payoff }}.
+                <br><br>
+            </p>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
 
 {% block styles %}

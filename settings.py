@@ -129,13 +129,19 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
+        'name': 'test_switch',
+        'display_name': "test_switch",
+        'num_demo_participants': 7,
+        'app_sequence': ['switch_p1', 'switch_p2'],
+        'treatment': 1,
+    },
+    {
         'name': 'full_switch',
         'display_name': "full_switch",
         'num_demo_participants': 7,
         'app_sequence': ['switch_inst_p1','switch_p1','switch_inst_p2','switch_p2'],
         'treatment': 1,
     },
-
     {
         'name': 'switch_p1',
         'display_name': "switch_p1",

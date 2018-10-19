@@ -2,6 +2,8 @@ from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
 from .models import Constants
 
+class WelcomeP2(Page):
+    pass
 
 
 class GroupChangeInst(Page):
@@ -12,13 +14,8 @@ class GroupChangeInst(Page):
         if value != 3:
             return 'In Part 2 you can change your group (and appearance) in each round'
 
-class SummaryInst(Page):
-    pass
-
-# You will observe your type, choose connection, observe the network, choose an action, and observe your earnings.
-
 
 page_sequence = [
+    WelcomeP2,
     GroupChangeInst,
-    # SummaryInst,
 ]

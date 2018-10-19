@@ -9,3 +9,11 @@ class PlayerBot(Bot):
     def play_round(self):
         yield (pages.MyPage)
         yield (pages.Results)
+
+
+    def play_round(self):
+        yield (pages.WelcomeP2)
+        yield (pages.GroupChangeInst,
+               {'new_symbol': 3})
+
+# otree test switch_inst_p2 --export=test_inst_p2
