@@ -1,0 +1,103 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 border rounded p-1 mb-0" style="background-color:#3e2723">
+            <h1 id="lightbrown"> Group Task 2</b>
+                <small id="lightbrown">(Round {{ subsession.round_number }} of {{ Constants.num_rounds }})</small></h1>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Coordination Outcome -->
+    <div class="row">
+        <div class="col-md-6 text-black border border-dark rounded p-3 mb-1" style="background-color:#efebe9">
+            <p>
+                <h4 id="brown">1. Results from last round:</h4>
+            </p>
+            {% if subsession.round_number > 1 %}
+            <p id="brown">
+                Choices in your group:
+                <button type="button" class="btn btn-sm btn-info" disabled>{{ player.old_effort_a }}</button>
+                <button type="button" class="btn btn-sm btn-info" disabled>{{ player.old_effort_b }}</button>
+                <button type="button" class="btn btn-sm btn-info" disabled>{{ player.old_effort_c }}</button>
+                <button type="button" class="btn btn-sm btn-info" disabled>{{ player.old_effort_d }}</button>
+            </p>
+            <p id="brown">
+                Your choice:
+                <button type="button" class="btn btn-sm btn-info" disabled>{{ player.old_effort }}</button>
+            </p>
+            <p id="brown">
+                Minimum choice:
+                <button type="button" class="btn btn-sm btn-danger" disabled>{{ group.old_min_effort }}</button>
+            </p>
+            <p id="brown">
+                Your gains last round:
+                <button type="button" class="btn btn-sm btn-dark" disabled>{{ player.old_round_gains }} points</button>
+                <br>
+                <small>[(20x{{ group.old_min_effort }}) - (10x{{ player.old_effort }}) + {{ Constants.fix }} = {{ player.old_round_gains}}]</small>
+            </p>
+            <p id="brown">
+                Your total gains in this task:
+                <button type="button" class="btn btn-sm btn-dark" disabled>{{ player.old_round_gains }} points</button>
+            </p>
+            {% endif %}
+        </div>
+        <div class="col-md-6 border border-dark rounded p-3 mb-1" style="background-color:#3e2723">
+            <p>
+                <h4 id="lightbrown">This task is over</h4>
+            </p>
+
+            <button type="otree-btn-next" class="btn button btn-md">
+                Continue
+            </button>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
+
+{% block styles %}
+<!-- CSS -->
+    <style type="text/css">
+        #cy {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        #brown{
+            color: #3e2723;
+        }
+        #lightbrown{
+            color: #efebe9;
+        }
+        #white{
+            color: #ffffff;
+        }
+        #gray{
+            color: #424242;
+        }
+        .center {
+            text-align: center;
+        }
+        .button {
+            background-color: #455A64;
+            color: #B3E5FC;
+            border: 2px solid #B3E5FC
+        }
+        .button:hover {
+            background-color: #B3E5FC;
+            color: #000000;
+            border: 2px solid #3E2723
+        }
+    </style>
+{% endblock %}

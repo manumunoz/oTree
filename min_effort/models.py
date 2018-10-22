@@ -13,46 +13,72 @@ Your app description
 
 class Constants(BaseConstants):
     name_in_url = 'min_effort'
-    players_per_group = None
-    num_rounds = 2
-    names = ['A','B','C','D',]
-    highpay = c(3)
-    lowpay = c(1)
-    nopay = c(0)
+    players_per_group = 4
+    num_rounds = 3
+    gain = 20
+    cost = 10
+    fix = 60
+    # names = ['A','B','C','D',]
+    # highpay = c(3)
+    # lowpay = c(1)
+    # nopay = c(0)
 
 class Subsession(BaseSubsession):
     pass
 
 
 class Group(BaseGroup):
-    coordination = models.BooleanField(initial=False)
+    min_effort = models.IntegerField()
+    old_min_effort = models.IntegerField()
 
-    def set_coordination(self):
-        print('in set_payoffs')
-        a = self.get_player_by_role('A')
-        b = self.get_player_by_role('B')
-        c = self.get_player_by_role('C')
-        d = self.get_player_by_role('D')
+    def set_effort(self):
+        for player in self.get_players():
+            player.effort_a = self.get_player_by_role('1').effort
+            player.effort_b = self.get_player_by_role('2').effort
+            player.effort_c = self.get_player_by_role('3').effort
+            player.effort_d = self.get_player_by_role('4').effort
 
-        if a.act == b.act == c.act == d.act:
-            self.coordination = 1
+        # for player in [a, b, c, d]:
+        #     if self.coordination == 1 and player.action == player.favorite:
+        #         player.is_winner = True
+        #     else:
+        #         player.is_winner = False
+        #
+        # for player in [a, b, c, d]:
+        #     if self.coordination == 1:
+        #         if player.is_winner is True:
+        #             player.points = Constants.highpay
+        #         else:
+        #             player.points = Constants.lowpay
+        #     else:
+        #         player.points = Constants.nopay
+        #
+        # for player in [a, b, c, d]:
+        #     player.total_points = sum([player.points for player in player.in_all_rounds()])
 
-        for player in [a, b, c, d]:
-            if self.coordination == 1 and player.act == player.id_in_group:
-                player.is_winner = True
-            else:
-                player.is_winner = False
 
-        for player in [a, b, c, d]:
-            if self.coordination == 1:
-                if player.is_winner is True:
-                    player.payoff = Constants.highpay
-                else:
-                    player.payoff = Constants.lowpay
-            else:
-                player.payoff = Constants.nopay
+    def set_min_effort(self):
+        players = self.get_players()
+        efforts = sorted([p.effort for p in players])
+        self.min_effort = efforts[0]
+
+    def round_gains(self):
+        for player in self.get_players():
+            player.round_gains = (Constants.gain * self.min_effort) - (Constants.cost * player.effort) + Constants.fix
+
+
+
 
 class Player(BasePlayer):
+    effort_a = models.IntegerField()
+    effort_b = models.IntegerField()
+    effort_c = models.IntegerField()
+    effort_d = models.IntegerField()
+    old_effort_a = models.IntegerField()
+    old_effort_b = models.IntegerField()
+    old_effort_c = models.IntegerField()
+    old_effort_d = models.IntegerField()
+
     effort = models.IntegerField(
         choices=[
             [1, 'A'],
@@ -65,12 +91,9 @@ class Player(BasePlayer):
         ]
     )
 
+    old_effort = models.IntegerField()
+    round_gains = models.IntegerField()
+    old_round_gains = models.IntegerField()
+
     def role(self):
-        if self.id_in_group == 1:
-            return 'A'
-        if self.id_in_group == 2:
-            return 'B'
-        if self.id_in_group == 3:
-            return 'C'
-        if self.id_in_group == 4:
-            return 'D'
+        return {1: '1', 2: '2', 3: '3', 4: '4'}[self.id_in_group]
