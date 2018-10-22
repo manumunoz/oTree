@@ -13,6 +13,7 @@
 {% endblock %}
 
 {% block content %}
+{% if subsession.round_number == 1 or subsession.round_number == 3 %}
 <div class="container">
     <!-- Coordination Outcome -->
     <div class="row">
@@ -69,6 +70,64 @@
         </div>
     </div>
 </div>
+{% else %}
+<div class="container">
+    <!-- Coordination Outcome -->
+    <div class="row">
+        <div class="col-md-6 border border-dark rounded p-3 mb-1" style="background-color:#3e2723">
+            <p>
+                <h4 id="lightbrown">1. Results from last round:</h4>
+            </p>
+            {% if subsession.round_number > 1 %}
+            <p id="white">
+                Choices in your group:
+                <button type="button" class="btn btn-sm btn-info" disabled>{{ player.old_effort_a }}</button>
+                <button type="button" class="btn btn-sm btn-info" disabled>{{ player.old_effort_b }}</button>
+                <button type="button" class="btn btn-sm btn-info" disabled>{{ player.old_effort_c }}</button>
+                <button type="button" class="btn btn-sm btn-info" disabled>{{ player.old_effort_d }}</button>
+            </p>
+            <p id="lightbrown">
+                Your choice:
+                <button type="button" class="btn btn-sm btn-info" disabled>{{ player.old_effort }}</button>
+            </p>
+            <p id="lightbrown">
+                Minimum choice:
+                <button type="button" class="btn btn-sm btn-danger" disabled>{{ group.old_min_effort }}</button>
+            </p>
+            <p id="lightbrown">
+                Your gains last round:
+                <button type="button" class="btn btn-sm btn-light" disabled>{{ player.old_round_gains }} points</button>
+                <br>
+                <small>[(20x{{ group.old_min_effort }}) - (10x{{ player.old_effort }}) + {{ Constants.fix }} = {{ player.old_round_gains}}]</small>
+            </p>
+            <p id="lightbrown">
+                Your total gains in this task:
+                <button type="button" class="btn btn-sm btn-light" disabled>{{ player.old_round_gains }} points</button>
+            </p>
+            {% endif %}
+        </div>
+        <div class="col-md-6 text-black border border-dark rounded p-3 mb-1" style="background-color:#efebe9">
+            <p>
+                <h4 id="brown">2. Choice in this round</h4>
+            </p>
+            <br>
+            <h6 id="brown">
+                Choose your effort:
+            </h6>
+            <div>
+                <button name="effort" value="1" class="btn button2 btn-sm"> 1 </button>
+                <button name="effort" value="2" class="btn button2 btn-sm"> 2 </button>
+                <button name="effort" value="3" class="btn button2 btn-sm"> 3 </button>
+                <button name="effort" value="4" class="btn button2 btn-sm"> 4 </button>
+                <button name="effort" value="5" class="btn button2 btn-sm"> 5 </button>
+                <button name="effort" value="6" class="btn button2 btn-sm"> 6 </button>
+                <button name="effort" value="7" class="btn button2 btn-sm"> 7 </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endif %}
 {% endblock %}
 
 {% block scripts %}
@@ -107,6 +166,16 @@
             background-color: #B3E5FC;
             color: #000000;
             border: 2px solid #3E2723
+        }
+        .button2 {
+            background-color: #B3E5FC;
+            color: #000000;
+            border: 2px solid #3E2723
+        }
+        .button2:hover {
+            background-color: #455A64;
+            color: #B3E5FC;
+            border: 2px solid #B3E5FC
         }
     </style>
 {% endblock %}
