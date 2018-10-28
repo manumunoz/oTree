@@ -14,7 +14,7 @@ Your app description
 class Constants(BaseConstants):
     name_in_url = 'min_effort'
     players_per_group = 4
-    num_rounds = 3
+    num_rounds = 10
     gain = 20
     cost = 10
     fix = 60

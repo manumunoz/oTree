@@ -13,7 +13,8 @@
 {% endblock %}
 
 {% block content %}
-{% if subsession.round_number == 1 or subsession.round_number == 3 %}
+{% if subsession.round_number == 2 or subsession.round_number == 4 or subsession.round_number == 6 or
+    subsession.round_number == 8 or subsession.round_number == 10 %}
 <div class="container">
     <!-- Coordination Outcome -->
     <div class="row">
@@ -128,10 +129,6 @@
     </div>
 </div>
 {% endif %}
-{% endblock %}
-
-{% block scripts %}
-
 {% endblock %}
 
 {% block styles %}
