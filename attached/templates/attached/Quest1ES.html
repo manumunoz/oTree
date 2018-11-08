@@ -2,11 +2,11 @@
 {% load staticfiles otree %}
 
 {% block title %}
-    Questionnaire
+    <h2>Preguntas 1-12</h2>
 {% endblock %}
 
 {% block content %}
-
+<p>
      {% formfield player.q1 label="1. Prefiero no mostrar a mi pareja cómo me siento por dentro." %}
      {% formfield player.q2 label="2. Me preocupa que me abandonen." %}
      {% formfield player.q3 label="3. Me siento muy cómodo/a teniendo un alto grado de intimidad con mi pareja." %}
@@ -20,6 +20,6 @@
      {% formfield player.q11 label="11. Quiero acercarme afectivamente a mi pareja, pero a la vez marco las distancias con él/ella." %}
      {% formfield player.q12 label="12. A menudo quiero fusionarme completamente con mi pareja, pero me doy cuenta que esto a veces le asusta." %}
 
-    {% next_button %}
-
+    <button type="otree-btn-next" class="btn btn-primary btn-md"> Continuar </button>
+</p>
 {% endblock %}

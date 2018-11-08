@@ -1,0 +1,93 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 border border-dark text-white rounded" id="upper">
+            <h2> Bienvenido</h2>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 border rounded" id="pale">
+            <h6>
+                Este experimento tiene 3 partes el día de hoy y 1 parte mañana.
+                <br><br>
+                Al finalizar las primeras 3 partes (hoy)
+                usted recibirá un código. Sólo podrá participar en la parte número 4 con el código de hoy.
+                <br><br>
+                Las primeras 3 partes son preguntas acerca de usted.
+                <br>
+                La parte número 4 son preguntas sobre toma de decisiones.
+                <br><br>
+                Al finalizar la 4 parte se elegirá aleatoriamente a dos participantes y se les pagará de acuerdo a sus decisiones.
+                Si usted es elegido, podrá ganar entre 10 mil y 40 mil pesos.
+
+                <br><br>
+                Las primeras 3 partes tendrán una duración de máximo 25 minutos. Por favor presione el botón para comenzar su participación.
+            </h6>
+        </div>
+    </div>
+</div>
+
+<br>
+<button type="otree-btn-next" class="btn button btn-md"> Comenzar </button>
+
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .button {
+            background-color: #000000;
+            color: #EEE8AA;
+            border: 2px solid #EEE8AA
+        }
+        .button:hover {
+            background-color: #EEE8AA;
+            color: #000000;
+            border: 2px solid #000000
+        }
+        #upper{
+            background-color: #000000;
+        }
+        #middle{
+            background-color: #424242;
+            color: #ffffff;
+        }
+        #lower{
+            color: #EEE8AA
+        }
+        #network{
+            background-color: #ffffff;
+        }
+        #pale{
+            background-color: #F5F5F5;
+        }
+        #in_tie{
+            background-color: #000000;
+            color: #ffffff
+        }
+        #out_tie{
+            background-color: #616161;
+            color: #ffffff
+        }
+        #option_up{
+            background-color: #9C27B0;
+            color: #ffffff
+        }
+        #option_down{
+            background-color: #00BCD4;
+            color: #ffffff
+        }
+    </style>
+{% endblock %}

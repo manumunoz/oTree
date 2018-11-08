@@ -1,0 +1,206 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 border border-dark text-white rounded" id="option_up">
+            <h2> Parte 1 <small>(preguntas 13 al 24 de 42)</small></h2>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 border rounded" id="middle">
+            <p>
+                Las siguientes afirmaciones son acerca de su relación afectiva con su pareja. Si no tiene una pareja
+                actual, responda de acuerdo a su experiencia con sus parejas anteriores.
+                <br><br>
+                <span id="up">Elija si las siguientes afirmaciones son falsas <b>(F)</b> o verdaderas <b>(V)</b>.</span>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                13. No siento la necesidad de hacer demasiadas rabietas en mis relaciones afectivas
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a13 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                14. Pienso bastante acerca de mis relaciones.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a14 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                15. Se me dificulta depender de mis parejas afectivas.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a15 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                16. Suelo apegarme muy rápidamente a una pareja afectiva.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a16 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                17. No se me dificulta expresarle mis necesidades y deseos a mi pareja.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a17 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                18. A veces me siento con rabia o incómodo(a) con mi pareja sin saber porqué.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a18 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                19. Soy muy sensible al estado de ánimo de mi pareja.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a19 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                20. Yo creo que la mayoría de las personas son en esencia honestas y confiables.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a20 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                21. Prefiero tener sexo casual con sin compromiso con varias personas que sexo íntimo con una sola persona.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a21 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                22. Me siento cómodo(a) compartiendo mis pensamientos y sentimientos personales con mi pareja.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a22 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+               23.  Me preocupa que si mi pareja me deja puede que nunca encuentre a alguien más.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a23 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+               24.  Me hace sentir nervioso cuando mi pareja se me acerca mucho.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a24 label="" %}
+        </div>
+    </div>
+</div>
+
+<button type="otree-btn-next" class="btn button btn-md"> Continuar </button>
+
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .button {
+            background-color: #000000;
+            color: #EEE8AA;
+            border: 2px solid #EEE8AA
+        }
+        .button:hover {
+            background-color: #EEE8AA;
+            color: #000000;
+            border: 2px solid #000000
+        }
+        #upper{
+            background-color: #000000;
+        }
+        #middle{
+            background-color: #424242;
+            color: #ffffff;
+        }
+        #lower{
+            color: #EEE8AA
+        }
+        #network{
+            background-color: #ffffff;
+        }
+        #pale{
+            background-color: #F5F5F5;
+        }
+        #in_tie{
+            background-color: #000000;
+            color: #ffffff
+        }
+        #out_tie{
+            background-color: #616161;
+            color: #ffffff
+        }
+        #option_up{
+            background-color: #9C27B0;
+            color: #ffffff
+        }
+        #up{
+            color: #e7c9ed;
+        }
+        #option_down{
+            background-color: #00BCD4;
+            color: #ffffff
+        }
+    </style>
+{% endblock %}

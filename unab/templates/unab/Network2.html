@@ -1,0 +1,135 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 border border-dark text-white rounded" id="option_down">
+            <h2> Parte 2 <small>(2 de 3)</small></h2>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 border rounded" id="middle">
+            <p>
+                Reporte el nivel de cercanía en su relación con las personas que ha nombrado anteriormente.
+                <br>
+                <span id="down">Elija: <b>[0]</b> si no conoce a esa persona, <b>[1]</b> si sólo son conocidos, <b>[2]</b> si
+                    son cercanos, o <b>[3]</b> si son íntimos.</span>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 border rounded" id="pale">
+            <p>
+                El nivel de cercanía entre <b>usted</b> y <b id="down">{{ player.n1 }}</b> es:
+            </p>
+        </div>
+        <div class="col-sm-6 border rounded" id="network">
+               {% formfield player.c1 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 border rounded" id="pale">
+            <p>
+                El nivel de cercanía entre <b>usted</b> y <b id="down">{{ player.n2 }}</b> es:
+            </p>
+        </div>
+        <div class="col-sm-6 border rounded" id="network">
+               {% formfield player.c2 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 border rounded" id="pale">
+            <p>
+                El nivel de cercanía entre <b>usted</b> y <b id="down">{{ player.n3 }}</b> es:
+            </p>
+        </div>
+        <div class="col-sm-6 border rounded" id="network">
+               {% formfield player.c3 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 border rounded" id="pale">
+            <p>
+                El nivel de cercanía entre <b>usted</b> y <b id="down">{{ player.n4 }}</b> es:
+            </p>
+        </div>
+        <div class="col-sm-6 border rounded" id="network">
+               {% formfield player.c4 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 border rounded" id="pale">
+            <p>
+                El nivel de cercanía entre <b>usted</b> y <b id="down">{{ player.n5 }}</b> es:
+            </p>
+        </div>
+        <div class="col-sm-6 border rounded" id="network">
+               {% formfield player.c5 label="" %}
+        </div>
+    </div>
+</div>
+<br>
+<button type="otree-btn-next" class="btn button btn-md"> Continuar </button>
+
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .button {
+            background-color: #000000;
+            color: #EEE8AA;
+            border: 2px solid #EEE8AA
+        }
+        .button:hover {
+            background-color: #EEE8AA;
+            color: #000000;
+            border: 2px solid #000000
+        }
+        #upper{
+            background-color: #000000;
+        }
+        #middle{
+            background-color: #424242;
+            color: #ffffff;
+        }
+        #lower{
+            color: #EEE8AA
+        }
+        #network{
+            background-color: #ffffff;
+        }
+        #pale{
+            background-color: #F5F5F5;
+        }
+        #in_tie{
+            background-color: #000000;
+            color: #ffffff
+        }
+        #out_tie{
+            background-color: #616161;
+            color: #ffffff
+        }
+        #option_up{
+            background-color: #9C27B0;
+            color: #ffffff
+        }
+        #option_down{
+            background-color: #00BCD4;
+            color: #ffffff
+        }
+        #down{
+            color: #00BCD4;
+        }
+    </style>
+{% endblock %}

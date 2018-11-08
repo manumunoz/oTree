@@ -1,0 +1,209 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 border border-dark text-white rounded" id="option_up">
+            <h2> Parte 1 <small>(preguntas 25 al 36 de 42)</small></h2>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 border rounded" id="middle">
+            <p>
+                Las siguientes afirmaciones son acerca de su relación afectiva con su pareja. Si no tiene una pareja
+                actual, responda de acuerdo a su experiencia con sus parejas anteriores.
+                <br><br>
+                <span id="up">Elija si las siguientes afirmaciones son falsas <b>(F)</b> o verdaderas <b>(V)</b>.</span>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                25. Durante un conflicto, tiendo a decir o hacer cosas de manera impulsiva de las que luego me arrepiento,
+                en vez de ser capaz de razonar acerca de las cosas.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a25 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                26. Una discusión con mi pareja no suele hacerme cuestionar nuestra relación por completo.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a26 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                27. Mis parejas suelen querer que tengamos más intimidad de la que yo me siento cómodo teniendo.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a27 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                28. Me preocupa no ser lo suficientemente atractivo(a) .
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a28 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                29. A veces la gente piensa que soy aburrido(a) porque no creo mucho drama en mis relaciones .
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a29 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                30. Extraño a mi pareja cuando estamos lejos, pero luego cuando estamos juntos siento la necesidad de escapar.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a30 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                31. Cuando no estoy de acuerdo con alguien, me siento cómodo expresando mis opiniones.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a31 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                32. Odio sentir que otras personas dependen de mí .
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a32 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                33. Si me doy cuenta que alguien en quien estoy interesado está mirando a otras personas, no dejo que esto
+                me perturbe. Puede que sienta un poco de celos, pero es algo pasajero.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a33 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                34. Si me doy cuenta que alguien en quien estoy interesado está mirando a otras personas, me siento
+                aliviado(a) - esto significa que esta persona no tiene intenciones de que la relación sea exclusiva.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a34 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                35. Si me doy cuenta que alguien en quien estoy interesado está mirando a otras personas, me hace sentir deprimido(a).
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a35 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                36. Si alguien con quien he estado saliendo comienza a actuar de manera fría y distante, me puedo preguntar
+                qué puede haber pasado, pero sabré que probablemente no es por mí.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a36 label="" %}
+        </div>
+    </div>
+</div>
+
+<button type="otree-btn-next" class="btn button btn-md"> Continuar </button>
+
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .button {
+            background-color: #000000;
+            color: #EEE8AA;
+            border: 2px solid #EEE8AA
+        }
+        .button:hover {
+            background-color: #EEE8AA;
+            color: #000000;
+            border: 2px solid #000000
+        }
+        #upper{
+            background-color: #000000;
+        }
+        #middle{
+            background-color: #424242;
+            color: #ffffff;
+        }
+        #lower{
+            color: #EEE8AA
+        }
+        #network{
+            background-color: #ffffff;
+        }
+        #pale{
+            background-color: #F5F5F5;
+        }
+        #in_tie{
+            background-color: #000000;
+            color: #ffffff
+        }
+        #out_tie{
+            background-color: #616161;
+            color: #ffffff
+        }
+        #option_up{
+            background-color: #9C27B0;
+            color: #ffffff
+        }
+        #up{
+            color: #e7c9ed;
+        }
+        #option_down{
+            background-color: #00BCD4;
+            color: #ffffff
+        }
+    </style>
+{% endblock %}

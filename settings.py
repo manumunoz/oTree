@@ -254,12 +254,18 @@ SESSION_CONFIGS = [
     #     'num_demo_participants' : 1,
     #     'app_sequence' : ['attached_en',],
     # },
-    # {
-    #     'name' : 'attached',
-    #     'display_name' : "Attachment",
-    #     'num_demo_participants' : 1,
-    #     'app_sequence' : ['attached',],
-    # },
+    {
+        'name': 'unab',
+        'display_name': "unab",
+        'num_demo_participants': 1,
+        'app_sequence': ['unab', ],
+    },
+    {
+        'name' : 'attached',
+        'display_name' : "Attachment",
+        'num_demo_participants' : 1,
+        'app_sequence' : ['attached',],
+    },
     # {
     #     'name' : 'qualtrix',
     #     'display_name' : "Qualtrix",

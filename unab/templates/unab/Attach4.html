@@ -1,0 +1,150 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 border border-dark text-white rounded" id="option_up">
+            <h2> Parte 1 <small>(preguntas 37 al 42 de 42)</small></h2>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 border rounded" id="middle">
+            <p>
+                Las siguientes afirmaciones son acerca de su relación afectiva con su pareja. Si no tiene una pareja
+                actual, responda de acuerdo a su experiencia con sus parejas anteriores.
+                <br><br>
+                <span id="up">Elija si las siguientes afirmaciones son falsas <b>(F)</b> o verdaderas <b>(V)</b>.</span>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                37. Si alguien con quien he estado saliendo comienza a actuar de manera fría y distante, probablemente estaré
+                indiferente; es posible que aún me sienta aliviado(a).
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a37 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                38. Si alguien con quien he estado saliendo comienza a actuar de manera fría y distante, me preocupará que
+                yo haya hecho algo mal.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a38 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                39. Si mi pareja terminara la relación que tiene conmigo, haré lo posible para mostrarle lo que se está
+                perdiendo (un poco de celos no hace daño).
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a39 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                40. Si alguien con quien he estado saliendo por varios meses me dice que quiere dejar de salir conmigo, me
+                sentiré herido(a) al principio, pero luego lo superaré.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a40 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                41. A veces cuando consigo lo que quiero en una relación, ya no estoy seguro(a) qué es lo que quiero.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a41 label="" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 border rounded" id="pale">
+            <p>
+                42. No tengo muchos problemas para mantenerme en contacto con mi ex (de manera estrictamente platónica) -
+                después de todo, tenemos mucho en común.
+            </p>
+        </div>
+        <div class="col-sm-4 border rounded" id="network">
+               {% formfield player.a42 label="" %}
+        </div>
+    </div>
+</div>
+
+<button type="otree-btn-next" class="btn button btn-md"> Continuar </button>
+
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .button {
+            background-color: #000000;
+            color: #EEE8AA;
+            border: 2px solid #EEE8AA
+        }
+        .button:hover {
+            background-color: #EEE8AA;
+            color: #000000;
+            border: 2px solid #000000
+        }
+        #upper{
+            background-color: #000000;
+        }
+        #middle{
+            background-color: #424242;
+            color: #ffffff;
+        }
+        #lower{
+            color: #EEE8AA
+        }
+        #network{
+            background-color: #ffffff;
+        }
+        #pale{
+            background-color: #F5F5F5;
+        }
+        #in_tie{
+            background-color: #000000;
+            color: #ffffff
+        }
+        #out_tie{
+            background-color: #616161;
+            color: #ffffff
+        }
+        #option_up{
+            background-color: #9C27B0;
+            color: #ffffff
+        }
+        #up{
+            color: #e7c9ed;
+        }
+        #option_down{
+            background-color: #00BCD4;
+            color: #ffffff
+        }
+    </style>
+{% endblock %}
