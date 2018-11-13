@@ -224,18 +224,18 @@ SESSION_CONFIGS = [
     #     'num_demo_participants' : 1,
     #     'app_sequence' : ['matrixgman', 'final'],
     # },
-    # {
-    #     'name': 'word_task',
-    #     'display_name': "Word Task",
-    #     'num_demo_participants': 1,
-    #     'app_sequence': ['word_task', 'final'],
-    # },
-    # {
-    #     'name': 'sum_task',
-    #     'display_name': "Sum Task",
-    #     'num_demo_participants': 1,
-    #     'app_sequence': ['sum_task', 'final'],
-    # },
+    {
+        'name': 'word_task',
+        'display_name': "Word Task",
+        'num_demo_participants': 1,
+        'app_sequence': ['word_task', 'final'],
+    },
+    {
+        'name': 'sum_task',
+        'display_name': "Sum Task",
+        'num_demo_participants': 1,
+        'app_sequence': ['sum_task', 'final'],
+    },
     # {
     #     'name' : 'test_qualtrix',
     #     'display_name' : "Test Qualtrix",
