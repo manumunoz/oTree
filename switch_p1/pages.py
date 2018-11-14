@@ -6,6 +6,9 @@ from collections import OrderedDict
 import json
 
 
+class BeforeTypeWP(WaitPage):
+    pass
+
 class Type(Page):
     def is_displayed(self):
         return self.round_number == 1
@@ -72,6 +75,7 @@ class TypeChoice(Page):
 
 
 page_sequence = [
+    BeforeTypeWP,
     Type,
     BeforeFormationWP,
     Formation,

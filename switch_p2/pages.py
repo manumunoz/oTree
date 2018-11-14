@@ -5,6 +5,9 @@ import random
 from collections import OrderedDict
 import json
 
+class BeforeTypeWP(WaitPage):
+    pass
+
 class Type(Page):
     def is_displayed(self):
         return self.round_number == 1
@@ -90,6 +93,7 @@ class RandomPay(Page):
 
 
 page_sequence = [
+    BeforeTypeWP,
     Type,
     BeforeChosenTypeWP,
     ChosenType,

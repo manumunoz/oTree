@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-12 border border-dark text-white rounded" id="upper">
-          <h2>Your <span id="lower">Group</span> and <span id="lower">Appearance</span></h2>
+          <h2>Your <span id="lower">Group</span> and <span id="lower">Appearance</span>:</h2>
       </div>
     </div>
 </div>
@@ -14,33 +14,27 @@
 {% block content %}
 <div class="container">
     <div class="row">
-      <div class="col-sm-6 border rounded" id="pale">
-        <h3>
-          For each of the 10 rounds in Part 1:
-        </h3>
+      <div class="col-sm-6 border border-dark text-white rounded mb-1" id="middle">
+        <h5>
+          In each of the 10 rounds in Part 1:
+        </h5>
           <br><br>
 
           {% if player.given_type == 1 %}
-            <h3>Your group will be:</h3>
-            <br>
-            <h1>&#9679</h1>
-            <br>
-            <h3>Your appearance will be:</h3>
-            <br>
-            <h1>&#9711</h1>
+            <h5>Your group will be:</h5>
+            <h1 id='lower'>&#9679</h1>
+            <h5>Your appearance will be:</h5>
+            <h1 id='lower'>&#9711</h1>
             {% elif player.given_type == 4 %}
-            <h3>Your group will be:</h3>
-            <br>
-            <h1>&#9650</h1>
-            <br>
-            <h3>Your appearance will be:</h3>
-            <br>
-            <h1>&#9651</h1>.
+            <h5>Your group will be:</h5>
+            <h1 id='lower'>&#9650</h1>
+            <h5>Your appearance will be:</h5>
+            <h1 id='lower'>&#9651</h1>
             {% endif %}
         </h3>
       </div>
       <div class="col-sm-6 border    rounded" id="network">
-          <h3>You will be displayed with using the image below:</h3>
+          <h5>You will be displayed on the screen using the image below:</h5>
             <br>
           {% if player.given_type == 1 %}
             <img width="100%" src="{% static "switch_p1/Img_T1.jpeg" %}"/

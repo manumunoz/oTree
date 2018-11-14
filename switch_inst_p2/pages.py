@@ -21,7 +21,6 @@ class GroupChangeInst(Page):
 
 
 page_sequence = [
-    Type,
     WelcomeP2,
     GroupChangeInst,
 ]

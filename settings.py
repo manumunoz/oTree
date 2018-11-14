@@ -150,7 +150,7 @@ SESSION_CONFIGS = [
     {
         'name': 'full_switch',
         'display_name': "full_switch",
-        'num_demo_participants': 7,
+        'num_demo_participants': 70,
         'app_sequence': ['switch_inst_p1','switch_p1','switch_inst_p2','switch_p2'],
         'treatment': 1,
     },
