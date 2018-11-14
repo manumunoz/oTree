@@ -21,6 +21,7 @@ class Constants(BaseConstants):
     circle = 1 # Majority
     triangle = 0 # Minority
     names = ['1','2','3','4','5','6','7']
+    # names = ['1', '2']
     attribute = [1,4,1,4,1,1,4]
     attributes = {'1': 1, '2': 4, '3': 1, '4': 4, '5': 1, '6': 1, '7': 4}
     link_cost = 2

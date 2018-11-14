@@ -6,6 +6,10 @@ from collections import OrderedDict
 import json
 
 
+class Type(Page):
+    def is_displayed(self):
+        return self.round_number == 1
+
 class BeforeFormationWP(WaitPage):
     def after_all_players_arrive(self):
         self.group.assign_random_names_and_positions()
@@ -68,6 +72,7 @@ class TypeChoice(Page):
 
 
 page_sequence = [
+    Type,
     BeforeFormationWP,
     Formation,
     BeforeActionWP,
