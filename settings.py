@@ -128,12 +128,12 @@ SESSION_CONFIG_DEFAULTS = {
 }
 
 SESSION_CONFIGS = [
-    {
-        'name': 'task_words',
-        'display_name': "task_words",
-        'num_demo_participants': 1,
-        'app_sequence': ['task_words',],
-    },
+    # {
+    #     'name': 'task_words',
+    #     'display_name': "task_words",
+    #     'num_demo_participants': 1,
+    #     'app_sequence': ['task_words',],
+    # },
     # {
     #     'name': 'task_sums',
     #     'display_name': "task_sums",
@@ -242,12 +242,12 @@ SESSION_CONFIGS = [
         'num_demo_participants': 1,
         'app_sequence': ['word_task', 'final'],
     },
-    # {
-    #     'name': 'sum_task',
-    #     'display_name': "Sum Task",
-    #     'num_demo_participants': 1,
-    #     'app_sequence': ['sum_task', 'final'],
-    # },
+    {
+        'name': 'sum_task',
+        'display_name': "Sum Task",
+        'num_demo_participants': 1,
+        'app_sequence': ['sum_task', 'final'],
+    },
     # {
     #     'name' : 'test_qualtrix',
     #     'display_name' : "Test Qualtrix",
