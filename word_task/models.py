@@ -86,7 +86,7 @@ class Constants(BaseConstants):
     # A better way would maybe be to have alle the answers as lists in a dictionary instead of as seperate lists, then we could just reference the item in the dictionary instead of having
     # to make a list of lists.... A matter of taste.
 
-    num_rounds = 24
+    num_rounds = 26
 
     min_answer_length = 5
 
