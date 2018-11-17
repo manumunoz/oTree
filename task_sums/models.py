@@ -17,10 +17,11 @@ class Constants(BaseConstants):
     name_in_url = 'task_sums'
     players_per_group = None
     num_rounds = 40
-    max_rand = 99
-    min_rand = 40
-    num_rows = 10
-    num_cols = 10
+    max_rand = 33
+    min_rand = 0
+    num_rows = 6
+    num_cols = 6
+    code_length = 10
 
 class Subsession(BaseSubsession):
     pass
@@ -31,6 +32,13 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    code = models.StringField()
+
+    # def validate_answer(self, code):
+    #     if len(code) < Constants.code_length or code == 'None':
+    #         return False
+    #     return True
+
     rand_left = models.PositiveIntegerField()
     rand_right = models.PositiveIntegerField()
     solution = models.PositiveIntegerField()
@@ -42,8 +50,8 @@ class Player(BasePlayer):
 
     def initialize(self):
         self.num_correct = sum([p.answer_correct for p in self.in_all_rounds()])
-        self.rand_left = random.randint(Constants.min_rand, Constants.max_rand)
-        self.rand_right = random.randint(Constants.min_rand, Constants.max_rand)
+        self.rand_left = random.randint(Constants.min_rand, Constants.max_rand) + random.randint(Constants.min_rand, Constants.max_rand) + random.randint(Constants.min_rand, Constants.max_rand)
+        self.rand_right = random.randint(Constants.min_rand, Constants.max_rand) + random.randint(Constants.min_rand, Constants.max_rand) + random.randint(Constants.min_rand, Constants.max_rand)
         self.solution = self.rand_left + self.rand_right
 
         for i in range(Constants.num_rows):
@@ -56,3 +64,4 @@ class Player(BasePlayer):
 
     def set_payoff(self):
         self.payoff=self.answer_correct
+

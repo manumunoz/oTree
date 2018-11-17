@@ -134,12 +134,7 @@ SESSION_CONFIGS = [
     #     'num_demo_participants': 1,
     #     'app_sequence': ['task_words',],
     # },
-    # {
-    #     'name': 'task_sums',
-    #     'display_name': "task_sums",
-    #     'num_demo_participants': 1,
-    #     'app_sequence': ['task_sums',],
-    # },
+
     {
         'name': 'test_switch',
         'display_name': "test_switch",

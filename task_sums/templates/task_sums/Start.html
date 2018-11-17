@@ -2,12 +2,14 @@
 {% load otree static %}
 
 {% block title %}
-    Please click on the button to start the task.
+    Please entrer your <b>10-digit</b> code
 {% endblock %}
 
 {% block content %}
 <p>
-    You will have <b color="blue">5 minutes</b> to complete it.
+    {% formfield player.code label="" %}
+
+    After clicking the <b>Next</b> button the task will start.
 
     <br><br>
 
@@ -15,10 +17,3 @@
 </p>
 {% endblock %}
 
-
-{% extends "global/Page.html" %}
-{% load staticfiles otree_tags %}
-
-{% block title %}
-Please click on the button to start the task.
-{% endblock %}

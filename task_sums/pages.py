@@ -5,8 +5,17 @@ from .models import Constants
 import time
 
 class Start(Page):
+    form_model = 'player'
+    form_fields = ['code']
+
     def is_displayed(self):
         return self.round_number == 1
+
+
+    def code_error_message(self, value):
+        if len(value) != 10 :
+            return 'The code must be 10-digits long'
+
 
     def before_next_page(self):
         # user has 5 minutes to complete as many pages as possible
