@@ -128,6 +128,12 @@ SESSION_CONFIG_DEFAULTS = {
 }
 
 SESSION_CONFIGS = [
+    {
+        'name': 'task_sums',
+        'display_name': "task_sums",
+        'num_demo_participants': 1,
+        'app_sequence': ['task_sums', 'final'],
+    },
     # {
     #     'name': 'task_words',
     #     'display_name': "task_words",
