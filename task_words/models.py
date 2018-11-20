@@ -15,7 +15,7 @@ class Constants(BaseConstants):
     name_in_url = 'task_words'
     players_per_group = None
 
-    with open('word_task/list.csv') as f:
+    with open('task_words/list.csv') as f:
         questions = list(csv.DictReader(f)) # PERHAPS INCLUDE THE ANSWERS AS A LIST HERE.
 
     word1 = ['aeonic','canoe','cocain','cocaine','conic','ocean']
@@ -116,8 +116,7 @@ class Player(BasePlayer):
     word_points = models.FloatField()
     word_show = models.PositiveIntegerField(initial=0)
     word_increment = models.IntegerField(initial=0)
-    payoff = models.IntegerField(initial=0)
-    total_payoff = models.IntegerField(initial=0)
+    total_payoff = models.CurrencyField(initial=0)
 
     is_correct = models.BooleanField()
     payoff_score = models.IntegerField()
@@ -134,13 +133,13 @@ class Player(BasePlayer):
 
             self.is_correct = True
             self.payoff_score = (len(self.submitted_answer) - 4)
-            self.payoff += self.payoff_score
-            self.total_payoff = sum([p.payoff for p in self.in_all_rounds()])
         else:
             self.is_correct = False
             self.payoff_score = -1 * (len(self.submitted_answer) - 4)
-            self.payoff += self.payoff_score
-            self.total_payoff = sum([p.payoff for p in self.in_all_rounds()])
+
+        print(self.is_correct)
+        self.payoff += c(self.payoff_score)
+        self.total_payoff = c(sum([p.payoff for p in self.in_all_rounds()]))
 
     # Checks if the given answer is empty or shorter than the min_lenght, in which case returns false
     def validate_answer(self, answer):
